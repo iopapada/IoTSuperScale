@@ -1,0 +1,59 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:IoTControls="using:IoTSuperScale.IoTControls"
+    x:Class="IoTSuperScale.IoTViews.PageReceipt"
+    mc:Ignorable="d" Width="801.6" Height="462.4">
+
+    <Page.Resources>
+        <IoTControls:ConvertersUI x:Key="ConvertersUI" />
+    </Page.Resources>
+    <Grid Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="../Assets/Back4.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="btnLogOut_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="../Assets/LogOut4.png" />
+            </Button.Background>
+        </Button>
+        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="2" Margin="1,67,0,0" Width="800"/>
+        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="136,0,0,0" Width="2"/>
+        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="68,0,0,0" Width="2"/>
+        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Width="2" Margin="1,0,0,0"/>
+        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="1" Margin="1,439,0,0" Width="800"/>
+        <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
+
+        <ComboBox Width="514" Margin="83,86,0,0"
+        x:Name="CBoxSuppliers"
+        DisplayMemberPath="supplierDescr"
+        Style="{StaticResource BaseCombostyle}"
+        ItemsSource="{x:Bind SupplierOptions}"
+        SelectedItem="{x:Bind SelectedSupplier, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
+        SelectedValuePath="code"/>
+
+        <TextBlock x:Name="lblSup" Style="{StaticResource MediumLabelsStyle}" Text="Supplier:" Margin="3,96,0,0" Width="73"/>
+
+        <ComboBox Width="514" Margin="83,156,0,0"
+        x:Name="CBoxPackagedMaterials"
+        DisplayMemberPath="displayCodeDescr"
+        Style="{StaticResource BaseCombostyle}"
+        ItemsSource="{x:Bind PackagedMaterialOptions}"
+        SelectedItem="{x:Bind SelectedPackagedMaterial, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
+        SelectedValuePath="code"/>
+
+        <TextBlock x:Name="lblPackMaterials" Style="{StaticResource MediumLabelsStyle}" Text="Material:" Margin="2,166,0,0" Width="74"/>
+
+        <TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="83,223,0,198" InputScope="Number" Width="225"/>
+        <TextBlock x:Name="lblLOT" Style="{StaticResource MediumLabelsStyle}" Text="Lot num:" Margin="3,233,0,0" Width="73"/>
+
+        <TextBlock x:Name="lblPRINTS" Style="{StaticResource MediumLabelsStyle}" Text="Copies:" Margin="313,235,0,0" Width="60"/>
+        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="385,217,239,195"/>
+        <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="679,86,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
+        <Button x:Name="btnSave" Style="{StaticResource BaseButtonStyle}" Content="SAVE" Margin="598,217,0,0" Click="btnSave_Click"/>
+    </Grid>
+</Page>

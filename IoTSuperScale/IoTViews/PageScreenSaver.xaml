@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="IoTSuperScale.IoTViews.PageScreenSaver"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Width="801.6" Height="462.4" Tapped="Page_Tapped">
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush Stretch="Uniform" ImageSource="../Assets/CompanyLogo.png"/>
+        </Grid.Background>
+
+    </Grid>
+</Page>

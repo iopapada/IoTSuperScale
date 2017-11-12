@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="IoTSuperScale.IoTViews.PageMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Width="801.6" Height="462.4">
+    <Grid Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Button Name="btnFscale" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,104,0,0" Content="1. Scale" VerticalAlignment="Top" Click="btnScale_Click"/>
+        <Button Name="btnPlan" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,216,0,0" Content="2. Business Plan" VerticalAlignment="Top" Click="btnPlan_Click"/>
+
+        <Button Name="btnSuppliers" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,104,0,0" Content="4. Receipt" VerticalAlignment="Top" Click="btnSuppliers_Click"/>
+        <Button Name="btnCustomers" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,216,0,0" Content="5. Customers" VerticalAlignment="Top" Click="btnCustomers_Click"/>
+
+        <Button Name="btnSettings" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,332,0,0" Content="3. Settings" VerticalAlignment="Top" Click="btnSettings_Click" />
+        <Button Name="btnPrinterUtils" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,332,0,0" Content="6. Printer Utils" VerticalAlignment="Top" Click="btnPrinterUtils_Click"/>
+        
+        <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}"/>
+        <Border BorderBrush="Black" BorderThickness="2,1" HorizontalAlignment="Left" Height="1" Margin="0,439,0,0" VerticalAlignment="Top" Width="801" RenderTransformOrigin="0.5,0.5"/>
+        <Border x:Name="border0" BorderBrush="Black" BorderThickness="0,0,0,2" HorizontalAlignment="Left" Height="2" Margin="1,67,0,0" VerticalAlignment="Top" Width="800" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <CompositeTransform ScaleY="-1"/>
+            </Border.RenderTransform>
+        </Border>
+        <Button x:Name="btnLogOut" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="64" Margin="3,2,0,0" Click="btnLogOut_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="../Assets/LogOut4.png" Stretch="None"/>
+            </Button.Background>
+        </Button>
+        <Border BorderBrush="Black" x:Name="border1_Copy" BorderThickness="2" HorizontalAlignment="Left" Height="68" Margin="68,0,0,0" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5"/>
+        <Border BorderBrush="Black" x:Name="border1_Copy1" BorderThickness="2" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5" Margin="1,0,0,0"/>
+    </Grid>
+</Page>

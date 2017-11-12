@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="IoTSuperScale.IoTViews.PageLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Width="801.6" Height="462.4">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Assets/backLogin4.png" Stretch="Uniform"/>
+        </Grid.Background>
+
+        <TextBox x:Name="txtUser" Style="{StaticResource BaseTextBoxStyle}" HorizontalAlignment="Left" Margin="395,154,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
+        <PasswordBox x:Name="txtPass" Style="{StaticResource BasePswBoxstyle }" HorizontalAlignment="Left" Margin="395,214,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
+
+        <TextBlock x:Name="lblUsername" Style="{StaticResource SpecialLabelstyle}" HorizontalAlignment="Left" Margin="281,158,0,0" Text="Username:" VerticalAlignment="Top" Height="32" Width="114"/>
+        <TextBlock x:Name="lblPass" Style="{StaticResource SpecialLabelstyle}" HorizontalAlignment="Left" Margin="281,217,0,0" Text="Password:" VerticalAlignment="Top" Height="32" Width="104"/>
+
+        <Button x:Name="btnLogin" Style="{StaticResource BaseButtonStyle}"  Content="Login" HorizontalAlignment="Left" Margin="395,270,0,0" VerticalAlignment="Top" Click="btnLogin_Click"/>
+        <Button x:Name="btnCancel" HorizontalAlignment="Left" Margin="639,56,0,0" VerticalAlignment="Top" Height="73" Width="67" Click="btnCancel_Click">
+            <Button.Background>
+                <ImageBrush Stretch="None" ImageSource="../Assets/Cancel.png"/>
+            </Button.Background>
+        </Button>
+
+        <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}"/>
+    </Grid>
+</Page>
