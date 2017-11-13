@@ -1,5 +1,6 @@
 ﻿using IoTSuperScale.IoTCore;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -107,10 +108,15 @@ namespace IoTSuperScale
         }
         public static string GetAppVersion()
         {
-            Package package = Package.Current;
-            PackageId packageId = package.Id;
-            PackageVersion version = packageId.Version;
-            return string.Format("Version: {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            const string proteasbirth = "04-05-2017";
+            var startDate = DateTime.Parse(proteasbirth);
+            var currentDate = DateTime.Now;
+            var elapsedTimeSpan = currentDate.Subtract(startDate);
+
+            return string.Format("Version: {0}", FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion);
+            //For Assembly version
+            //return string.Format("Version: {0}",Assembly.GetExecutingAssembly().GetName().Version.ToString()).Replace("DB",elapsedTimeSpan.TotalDays.ToString());
+
         }
         public static string GetAppTextFooter()
         {

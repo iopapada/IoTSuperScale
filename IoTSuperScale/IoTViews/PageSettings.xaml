@@ -5,9 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:IoTControls="using:IoTSuperScale.IoTControls"
-    mc:Ignorable="d" Width="801.6" Height="462.4">
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
-    <Grid Name="settingGrid" Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Name="settingGrid" Style="{StaticResource ApplicationMainGrid}">
         <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
@@ -33,9 +33,9 @@
         <TextBlock x:Name="txtRVoltage" Style="{StaticResource IndicatorMediumLabelstyle}" Margin="112,73,0,0" Text="" Width="128"/>
         <CheckBox x:Name="chkBroadcast" Style="{StaticResource BaseCkhBoxstyle}" Content="Broadcast weight packets" Margin="9,98,0,0" Width="225" Checked="chkBroadcast_Checked" Unchecked="chkBroadcast_Unchecked"/>
         <TextBlock x:Name="lblScreensaver" Style="{StaticResource MediumLabelsStyle}" Margin="9,210,0,0" Text="Screensaver min:" Width="129"/>
-        <IoTControls:NumericSpinner x:Name="screenSaverSpinner" Margin="139,194,485,218" LostFocus="screenSaverSpinner_LostFocus"/>
+        <IoTControls:NumericSpinner x:Name="screenSaverSpinner" Margin="139,198,479,232" LostFocus="screenSaverSpinner_LostFocus"/>
         <TextBlock x:Name="lblDecimalPoints" Style="{StaticResource MediumLabelsStyle}" Margin="8,150,0,0" Text="Decimal Points:" Width="121"/>
-        <IoTControls:NumericSpinner x:Name="decimalPoints" Margin="139,135,485,277" LostFocus="decimalPoints_LostFocus"/>
+        <IoTControls:NumericSpinner x:Name="decimalPoints" Margin="139,140,479,290" LostFocus="decimalPoints_LostFocus"/>
 
         <TextBox x:Name="txtboxScaleName" Style="{StaticResource BaseTextBoxStyle}" Margin="340,98,0,0" Text="" Width="199" LostFocus="txtboxScaleName_LostFocus"/>
         <TextBlock x:Name="lblScaleName" Style="{StaticResource MediumLabelsStyle}" Margin="240,104,0,0" Text="Scale Name:" Width="100"/>
@@ -45,6 +45,8 @@
         <TextBox x:Name="txtLCcapacity" Style="{StaticResource BaseTextBoxStyle}" Margin="418,156,0,0" Text="" Width="123" LostFocus="txtLCcapacity_LostFocus"/>
         <TextBlock x:Name="lblPort" Style="{StaticResource MediumLabelsStyle}" Margin="548,165,0,0" Text="Port Gate:" Width="75"/>
         <TextBox x:Name="txtBoxPort" Style="{StaticResource BaseTextBoxStyle}" Margin="630,157,0,0" Text="" Width="163" LostFocus="txtBoxPort_LostFocus"/>
+        <TextBlock x:Name="lblScaleTimer" Style="{StaticResource MediumLabelsStyle}" Margin="324,222,0,0" Text="Scale timer:" Width="89"/>
+        <TextBox x:Name="txtScaleTimer" Style="{StaticResource BaseTextBoxStyle}" Margin="420,213,0,0" Text="" Width="122" LosingFocus="txtScaleTimer_LosingFocus"/>
 
         <TextBlock x:Name="lblOffset_Zero" Style="{StaticResource MediumLabelsStyle}" Margin="209,262,0,0" Text="Offset:" Width="53"/>
         <TextBlock x:Name="txtOffset_Zero" Style="{StaticResource IndicatorMediumLabelstyle}" Margin="262,262,0,0" Text="" Width="88"/>

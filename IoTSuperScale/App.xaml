@@ -4,6 +4,44 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     RequestedTheme="Light">
     <Application.Resources>
+
+        <Style x:Key="ApplicationMainGrid" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1"/>
+                        <GradientStop Color="#FFECCC05" Offset="0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Height" Value="480"/>
+            <Setter Property="Width" Value="800"/>
+            <!--<Setter Property="Height" Value="462.4"/>
+            <Setter Property="Width" Value="801.6"/>-->
+        </Style>
+
+        <Style x:Key="ApplicationPage" TargetType="Page">
+            <Setter Property="Height" Value="480"/>
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="Background" Value="Black"/>
+            <!--<Setter Property="Height" Value="462.4"/>
+            <Setter Property="Width" Value="801.6"/>-->
+        </Style>
+        
+        <Style x:Key="FooterLabelstyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Height" Value="22"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="800"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,458,0,0"/>
+        </Style>
+        
         <Style x:Key="BaseButtonStyle" TargetType="Button">
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -160,7 +198,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="32px"/>
-            <Setter Property="Foreground" Value="#FF3DF506"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="TextAlignment" Value="Left"/>
             <Setter Property="Height" Value="44"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -182,7 +220,8 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="22px"/>
-            <Setter Property="Foreground" Value="#FF88AACD"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Blue"/>
             <Setter Property="TextAlignment" Value="Left"/>
             <Setter Property="Height" Value="22"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -193,7 +232,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="12px"/>
-            <Setter Property="Foreground" Value="#FF06F5BF"/>
+            <Setter Property="Foreground" Value="Red"/>
             <Setter Property="TextAlignment" Value="Left"/>
             <Setter Property="Height" Value="18"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
@@ -204,7 +243,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="18px"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Height" Value="41"/>
         </Style>
@@ -223,7 +262,7 @@
             <Setter Property="Height" Value="41"/>
             <Setter Property="FontFamily" Value="Calibri"/>
             <Setter Property="FontSize" Value="24px"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderThickness" Value="2"/>
         </Style>
 
@@ -242,44 +281,21 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="BorderBrush" Value="#FF252323"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" >
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFF32612" Offset="0.57"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
+        </Style>
+
+        <Style x:Key="FooterBorderStyle" TargetType="Border">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="BorderBrush" Value="#FF252323"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Height" Value="1"/>
+            <Setter Property="Margin" Value="0,456,0,0"/>
+            <Setter Property="Width" Value="800"/>
         </Style>
 
         <Style x:Key="BaseImageStyle" TargetType="Image">
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
-
-        <Style x:Key="ApplicationPageBackgroundThemeBrush" TargetType="Grid">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="#FFECCC05" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="FooterLabelstyle" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Top"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Height" Value="22"/>
-            <Setter Property="FontFamily" Value="Calibri"/>
-            <Setter Property="FontSize" Value="18px"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Width" Value="800"/>
-            <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="1,440,1,0"/>
         </Style>
     </Application.Resources>
 </Application>

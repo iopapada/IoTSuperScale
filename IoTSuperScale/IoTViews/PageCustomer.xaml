@@ -6,13 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:IoTControls="using:IoTSuperScale.IoTControls"
     x:Class="IoTSuperScale.IoTViews.PageCustomer"
-    mc:Ignorable="d" Width="801.6" Height="462.4">
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
     <Page.Resources>
         <IoTControls:ConvertersUI x:Key="ConvertersUI" />
     </Page.Resources>
 
-    <Grid Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Style="{StaticResource ApplicationMainGrid}">
         <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
@@ -27,7 +27,7 @@
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="136,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="68,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Width="2" Margin="1,0,0,0"/>
-        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="1" Margin="1,439,0,0" Width="800"/>
+        <Border BorderBrush="Black" Style="{StaticResource FooterBorderStyle}"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
         <ComboBox Width="514" Margin="153,90,0,0"
@@ -40,7 +40,7 @@
         <TextBlock x:Name="lblSup" Style="{StaticResource BigLabelstyle}" Text="Customer:" Margin="4,95,0,0" Width="144"/>
 
         <TextBlock x:Name="lblPRINTS" Style="{StaticResource BigLabelstyle}" Text="Copies:" Margin="4,155,0,0" Width="97"/>
-        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="153,147,471,265"/>
+        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="153,147,465,265"/>
         <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="679,90,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
     </Grid>
 </Page>

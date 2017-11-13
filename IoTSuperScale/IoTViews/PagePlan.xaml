@@ -5,9 +5,9 @@
     xmlns:local="using:IoTSuperScale.IoTControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="801.6" Height="462.4">
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
-    <Grid Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Style="{StaticResource ApplicationMainGrid}">
         <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
@@ -22,7 +22,7 @@
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="136,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="68,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Width="2" Margin="1,0,0,0"/>
-        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="1" Margin="1,439,0,0" Width="800"/>
+        <Border BorderBrush="Black" Style="{StaticResource FooterBorderStyle}"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
         <Button x:Name="btnSave" Style="{StaticResource BaseButtonStyle}" Content="Save Plan" Margin="598,231,0,0"/>
@@ -31,8 +31,8 @@
         <CalendarDatePicker HorizontalAlignment="Left" Margin="479,3,0,0" VerticalAlignment="Top" Width="313" Height="29" BorderBrush="#668D8C8C" BorderThickness="2,2,2,4"/>
         <TimePicker HorizontalAlignment="Left" Margin="479,34,0,0" VerticalAlignment="Top" Width="313"/>
 
-        <local:NumericSpinner x:Name="chamberSpinner" Margin="324,14,333,398"/>
-        <TextBlock x:Name="textBlock" Style="{StaticResource SpecialLabelstyle}" Margin="207,25,0,0" Text="Chamber:" Height="32" Width="112"/>
+        <local:NumericSpinner x:Name="chamberSpinner" Margin="258,14,0,0"/>
+        <TextBlock x:Name="textBlock" Style="{StaticResource SpecialLabelstyle}" Margin="143,25,0,0" Text="Chamber:" Height="32" Width="112"/>
 
         <ScrollViewer Name="myScroll" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="208" Margin="1,75,0,0" VerticalAlignment="Top" Width="525" BorderThickness="2">
             <Grid x:Name="grid" HorizontalAlignment="Left" VerticalAlignment="Top" Width="532" Height="700"/>

@@ -64,6 +64,7 @@ namespace IoTSuperScale.IoTViews
             decimalPoints.TextValueProperty = AppSettings.Precision.ToString();
             screenSaverSpinner.TextValueProperty = AppSettings.ScreenSaverMins.ToString();
             txtLCcapacity.Text = AppSettings.LCcapacity.ToString();
+            txtScaleTimer.Text = AppSettings.ScaleTimer.ToString();
         }
         private void Timer_Tick(object sender, object e)
         {
@@ -121,6 +122,18 @@ namespace IoTSuperScale.IoTViews
             catch (Exception ex)
             {
                 App.PrintOkMessage(ex.Message, "Exception in save screensaver value");
+            }
+        }
+
+        private void txtScaleTimer_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
+        {
+            try
+            {
+                AppSettings.ScaleTimer = Int32.Parse(txtScaleTimer.Text.ToString());
+            }
+            catch (Exception ex)
+            {
+                App.PrintOkMessage(ex.Message, "Exception in save precesion value");
             }
         }
     }

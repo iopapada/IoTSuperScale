@@ -4,8 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="801.6" Height="462.4">
-    <Grid Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
+    
+    <Grid Style="{StaticResource ApplicationMainGrid}">
         <Button Name="btnFscale" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,104,0,0" Content="1. Scale" VerticalAlignment="Top" Click="btnScale_Click"/>
         <Button Name="btnPlan" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,216,0,0" Content="2. Business Plan" VerticalAlignment="Top" Click="btnPlan_Click"/>
 

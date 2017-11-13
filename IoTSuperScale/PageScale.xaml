@@ -5,13 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:IoTControls="using:IoTSuperScale.IoTControls"
-    mc:Ignorable="d" Width="801.6" Height="462.4" PointerPressed="Page_PointerPressed">
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}" PointerPressed="Page_PointerPressed">
 
     <Page.Resources>
         <IoTControls:ConvertersUI x:Key="ConvertersUI" />
         <Style x:Key="WarnTextBoxStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -24,6 +26,8 @@
         <Style x:Key="NeutralTextBoxStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -35,7 +39,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid x:Name="mainGrid" Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="mainGrid" Style="{StaticResource ApplicationMainGrid}">
         <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Assets/Back4.png"/>
@@ -63,8 +67,8 @@
             SelectedValuePath="code"
             SelectionChanged="CBoxMaterials_SelectionChanged"/>
 
-        <TextBlock x:Name="lblDescr" Style="{StaticResource BigLabelstyle}"  Text="Description:" Margin="2,66,0,0" Width="186"/>
-        <TextBlock x:Name="txtDescr" Text="{x:Bind SelectedMaterial.materialReadableDescr, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,119,0,0" VerticalAlignment="Top" Width="500" Height="71" Foreground="#FF3DF506" FontFamily="Calibri" FontSize="26" />
+        <TextBlock x:Name="lblDescr" Style="{StaticResource BigLabelstyle}"  Text="Description:" Margin="2,72,0,0" Width="186"/>
+        <TextBlock x:Name="txtDescr" Text="{x:Bind SelectedMaterial.materialReadableDescr, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,119,0,0" VerticalAlignment="Top" Width="500" Height="71" Foreground="#FF4AE80F" FontFamily="Calibri" FontSize="26" />
 
         <ComboBox Width="223" Margin="575,120,0,0"
             x:Name="CBoxSuppliers"
@@ -76,16 +80,16 @@
 
         <TextBlock x:Name="lblSup" Style="{StaticResource BigLabelstyle}" Text="Sup:" Margin="509,121,0,0" Width="63"/>
         <TextBlock x:Name="lblNetW" Style="{StaticResource BigLabelstyle}" Text="Net W:" Margin="2,214,0,0" Width="94"/>
-        <Border x:Name="txtNetWeightBorder" Style="{StaticResource BaseBorderStyle}" Height="64" Margin="96,198,0,0" Width="406">
+        <Border x:Name="txtNetWeightBorder" Style="{StaticResource WarnTextBoxStyle}" Height="64" Margin="96,198,0,0" Width="406">
             <TextBlock x:Name="txtNetW" TextAlignment="Right" VerticalAlignment="Top" FontFamily="Calibri" FontSize="52" FontWeight="Bold" Foreground="White" Height="63" Margin="183,0,0,-1"/>
         </Border>
-        <IoTControls:NumericSpinner x:Name="qtySpinner" Margin="102,206,522,206"/>
+        <IoTControls:NumericSpinner  x:Name="qtySpinner" Margin="102,206,516,224"/>
 
         <TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="575,168,0,0" InputScope="Number" Width="223" />
         <TextBlock x:Name="lblLOT" Style="{StaticResource BigLabelstyle}" Text="Lot:" Margin="509,173,0,0" Width="52"/>
 
         <TextBlock x:Name="lblPRINTS" Style="{StaticResource BigLabelstyle}" Text="Copies:" Margin="509,221,0,0" Width="97"/>
-        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="615,213,10,199"/>
+        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="616,213,2,217"/>
 
         <Border x:Name="txtWeightBorder" HorizontalAlignment="Left" Height="168" Margin="3,267,0,0" VerticalAlignment="Top" Width="607">
             <TextBlock x:Name="txtWeight" TextAlignment="Right" HorizontalAlignment="Left" Margin="4,4,-1.8,1.2" VerticalAlignment="Center" Width="601" FontSize="142" FontFamily="Calibri" FontWeight="Bold" Foreground="Black" Height="178"/>
@@ -97,8 +101,8 @@
         <TextBlock x:Name="lblRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="672,52,0,0" Text="RV:" Height="13"/>
         <TextBlock x:Name="txtRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="688,52,0,0" Text="" Width="59" Height="13" />
 
-        <Button x:Name="btnTare" Style="{StaticResource WarnButtonStyle}" Content="TARE" Margin="707,267,0,0" Height="80" Width="90" Click="btnTare_Click"/>
-        <Button x:Name="btnZero" Style="{StaticResource Neutral2ButtonStyle}" Content="ZERO" Margin="707,355,0,0" Height="80" Width="90" Click="btnZero_Click"/>
-        <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="614,267,0,0" Height="168" Width="90" Click="btnPrnt_Click"/>
+        <Button x:Name="btnTare" Style="{StaticResource WarnButtonStyle}" Content="TARE" Margin="709,267,0,0" Height="80" Width="88" Click="btnTare_Click"/>
+        <Button x:Name="btnZero" Style="{StaticResource Neutral2ButtonStyle}" Content="ZERO" Margin="709,355,0,0" Height="80" Width="88" Click="btnZero_Click"/>
+        <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="617,267,0,0" Height="168" Width="88" Click="btnPrnt_Click"/>
     </Grid>
 </Page>

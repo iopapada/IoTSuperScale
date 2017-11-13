@@ -5,12 +5,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:IoTControls="using:IoTSuperScale.IoTControls"
     x:Class="IoTSuperScale.IoTViews.PageReceipt"
-    mc:Ignorable="d" Width="801.6" Height="462.4">
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
     <Page.Resources>
         <IoTControls:ConvertersUI x:Key="ConvertersUI" />
     </Page.Resources>
-    <Grid Style="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Style="{StaticResource ApplicationMainGrid}">
         <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
@@ -52,7 +52,7 @@
         <TextBlock x:Name="lblLOT" Style="{StaticResource MediumLabelsStyle}" Text="Lot num:" Margin="3,233,0,0" Width="73"/>
 
         <TextBlock x:Name="lblPRINTS" Style="{StaticResource MediumLabelsStyle}" Text="Copies:" Margin="313,235,0,0" Width="60"/>
-        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="385,217,239,195"/>
+        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="385,217,0,0" Width="182"/>
         <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="679,86,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
         <Button x:Name="btnSave" Style="{StaticResource BaseButtonStyle}" Content="SAVE" Margin="598,217,0,0" Click="btnSave_Click"/>
     </Grid>

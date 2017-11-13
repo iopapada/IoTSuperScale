@@ -4,12 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="801.6" Height="462.4">
-    <Grid>
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
+
+    <Grid Style="{StaticResource ApplicationMainGrid}">
         <Grid.Background>
             <ImageBrush ImageSource="../Assets/backLogin4.png" Stretch="Uniform"/>
         </Grid.Background>
-
+        
         <TextBox x:Name="txtUser" Style="{StaticResource BaseTextBoxStyle}" HorizontalAlignment="Left" Margin="395,154,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
         <PasswordBox x:Name="txtPass" Style="{StaticResource BasePswBoxstyle }" HorizontalAlignment="Left" Margin="395,214,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
 

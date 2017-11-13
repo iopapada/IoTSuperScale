@@ -37,8 +37,9 @@ namespace IoTSuperScale
         private PackagedMaterialItem _SelectedMaterial;
         private SupplierItem _SelectedSupplier;
         public event PropertyChangedEventHandler PropertyChanged;
-        StorageFile protoCurrentLabel;
+        StorageFile currentLabel;
         StorageFile protoWeightLabel;
+        StorageFile protoMaterialLabel;
         StorageFile dataWeightLabel;
         //Printer values
         int step;
@@ -96,6 +97,7 @@ namespace IoTSuperScale
         {
             try
             {
+                protoMaterialLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
                 protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("WeightMaterial.x");
             }
             catch (Exception ex)
@@ -192,10 +194,13 @@ namespace IoTSuperScale
                 if (App.isAuthenticated && !SelectedMaterial.code.Equals("000") && !txtWeight.Text.Equals(App.s.zeroPointString))
                 {
                     txtNetW.Text = calculateNetW(App.s.finalDigitVal, SelectedMaterial.tarePack, SelectedMaterial.tarePrecentage, Int32.Parse(qtySpinner.TextValueProperty));
-                    protoCurrentLabel = protoWeightLabel;
+                    currentLabel = protoWeightLabel;
                 }
                 else
+                {
                     txtNetW.Text = App.s.zeroPointString;
+                    currentLabel = protoMaterialLabel;
+                }
 
                 onChangeWeightDigit();
                 lastWeightValue = txtWeight.Text.ToString();
@@ -260,13 +265,13 @@ namespace IoTSuperScale
             }
 
 
-            if (protoCurrentLabel != null)
+            if (currentLabel != null)
             {
                 //copy label file to public folder for editing rights
                 //await protoWeightLabel.CopyAsync(ApplicationData.Current.LocalFolder, "WeightData.x",NameCollisionOption.ReplaceExisting);
 
                 //fill the data
-                IBuffer bf = await FileIO.ReadBufferAsync(protoCurrentLabel);
+                IBuffer bf = await FileIO.ReadBufferAsync(currentLabel);
                 DataReader reader = DataReader.FromBuffer(bf);
                 byte[] fileContent = new byte[reader.UnconsumedBufferLength];
                 reader.ReadBytes(fileContent);
@@ -280,7 +285,7 @@ namespace IoTSuperScale
                 newVal = newVal.Replace("lot", txtBoxLot.Text);
                 newVal = newVal.Replace("nums", printsSpinner.TextValueProperty.ToString());
 
-                dataWeightLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + protoCurrentLabel.Name, CreationCollisionOption.ReplaceExisting);
+                dataWeightLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + currentLabel.Name, CreationCollisionOption.ReplaceExisting);
                 File.WriteAllText(dataWeightLabel.Path, newVal, App.encoding);
 
                 //StorageFolder publicFolder = ApplicationData.Current.LocalFolder;
@@ -335,11 +340,11 @@ namespace IoTSuperScale
             try
             {
                 if (SelectedMaterial.type == PackagedMaterialItem.materialType.BIO)
-                    protoCurrentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Bio.x");
+                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Bio.x");
                 else if (SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO)
-                    protoCurrentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("SemiBio.x");
+                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("SemiBio.x");
                 else if (SelectedMaterial.type == PackagedMaterialItem.materialType.CONVENTIONAL)
-                    protoCurrentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
+                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
 
                 if (SelectedMaterial.materialDescr.Equals("DOLE"))
                     txtBoxLot.Text = AppSettings.NewLot;
@@ -363,6 +368,7 @@ namespace IoTSuperScale
                 txtBoxLot.IsEnabled = true;
                 CBoxSuppliers.IsEnabled = true;
                 qtySpinner.TextValueProperty = "1";
+                printsSpinner.TextValueProperty = "1";
             }
             else
             {
@@ -370,6 +376,8 @@ namespace IoTSuperScale
                 printsSpinner.IsEnabled = false;
                 txtBoxLot.IsEnabled = false;
                 CBoxSuppliers.IsEnabled = false;
+                qtySpinner.TextValueProperty = "1";
+                printsSpinner.TextValueProperty = "1";
             }
         }
     }
