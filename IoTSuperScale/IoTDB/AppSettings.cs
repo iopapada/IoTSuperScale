@@ -106,7 +106,6 @@ namespace IoTSuperScale.IoTDB
                 localSettings.Values["OffsetZero"] = value;
             }
         }
-
         public static int MinZero
         {
             get
@@ -118,7 +117,6 @@ namespace IoTSuperScale.IoTDB
                 localSettings.Values["MinZero"] = value;
             }
         }
-
         public static int MaxZero
         {
             get

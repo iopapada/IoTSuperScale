@@ -36,7 +36,7 @@ namespace IoTSuperScale.IoTCore
             zeroPointString = zeroPointString + AppSettings.TrailingUnit;
         }
 
-        private string createZeroPoint()
+        public string createZeroPoint()
         {
             string zeroP = "0";
             if (AppSettings.Precision > 0)
@@ -58,7 +58,7 @@ namespace IoTSuperScale.IoTCore
                     finalDigitVal = dataOffsetDiff / AppSettings.CalibrationKilo;
                 else if (AppSettings.CalibrationHalfKilo != 1)
                     finalDigitVal = dataOffsetDiff / AppSettings.CalibrationHalfKilo;
-
+                
                 finalStringVal = AppSettings.LeadingUnit + Math.Round(finalDigitVal, AppSettings.Precision).ToString() + AppSettings.TrailingUnit;
                 //Auto correct offset...
                 if (finalDigitVal < 0.05 && finalDigitVal > -0.05)
