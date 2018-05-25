@@ -13,9 +13,6 @@ using System.IO;
 using System;
 using Windows.UI;
 using System.Threading;
-using System.Resources;
-using System.Reflection;
-using Windows.ApplicationModel.Resources;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -60,7 +57,7 @@ namespace IoTSuperScale
                 this.InitializeComponent();
                 txtScaleName.Text = AppSettings.ScaleName+" ("+AppSettings.LCcapacity+")";
                 txtFooter.Text = App.GetAppTextFooter();
-               
+
                 //Start scale timer tick
                 scaleTimer = new DispatcherTimer();
                 scaleTimer.Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer);
@@ -304,7 +301,8 @@ namespace IoTSuperScale
             PrinterUtil.sendToPrinterFile(dataWeightLabel);
             if (step == AppSettings.SumPrints)
             {
-                Thread.Sleep(500);
+                await Task.Delay(TimeSpan.FromSeconds(2));
+                //Thread.Sleep(2000);
                 PrinterUtil.sendTestToPrinter(sum.ToString() + AppSettings.TrailingUnit, AppSettings.CopiesPrints.ToString());
                 AppSettings.CopiesPrints = 1;
                 AppSettings.SumPrints = 1;
