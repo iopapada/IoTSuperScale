@@ -26,22 +26,22 @@
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="1" Margin="1,439,0,0" Width="800"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
-        <TextBlock x:Name="lblLotIncreaser" Style="{StaticResource MediumLabelsStyle}" Width="71" Text="Lot AA:" Margin="3,96,0,0"/>
+        <TextBlock x:Name="lblLotIncreaser" x:Uid="lblLotIncreaser" Style="{StaticResource MediumLabelsStyle}" Width="71" Margin="3,96,0,0"/>
         <IoTControls:NumericSpinner x:Name="lotSpinner" Margin="101,82,517,348"/>
 
-        <TextBlock x:Name="lblIPPrinter" Style="{StaticResource MediumLabelsStyle}" Margin="289,96,0,0" Text="IP printer:" Width="79"/>
+        <TextBlock x:Name="lblIPPrinter" x:Uid="lblIPPrinter" Style="{StaticResource MediumLabelsStyle}" Margin="289,96,0,0" Width="79"/>
         <TextBox x:Name="txtboxIPPrinter" Style="{StaticResource BaseTextBoxStyle}" Margin="370,87,0,0" Text="" Width="182" LostFocus="txtboxIPPrinter_LostFocus"/>
-        <TextBlock x:Name="lblPortPrinter" Style="{StaticResource MediumLabelsStyle}" Margin="557,94,0,0" Text="Port printer:" Width="93"/>
+        <TextBlock x:Name="lblPortPrinter" x:Uid="lblPortPrinter" Style="{StaticResource MediumLabelsStyle}" Margin="557,94,0,0" Width="93"/>
         <TextBox x:Name="txtBoxPortPrinter" Style="{StaticResource BaseTextBoxStyle}" Margin="654,86,0,0" Text="" Width="137" LostFocus="txtBoxPortPrinter_LostFocus"/>
 
-        <TextBlock x:Name="lblSumIncreaser" Style="{StaticResource MediumLabelsStyle}" Width="93" Text="Sum prints:" Margin="3,169,0,0"/>
+        <TextBlock x:Name="lblSumIncreaser" x:Uid="lblSumIncreaser" Style="{StaticResource MediumLabelsStyle}" Width="93" Margin="3,169,0,0"/>
         <IoTControls:NumericSpinner x:Name="sumSpinner" Margin="101,156,517,274" LostFocus="sumSpinner_LostFocus"/>
 
-        <TextBlock x:Name="lblCopies" Style="{StaticResource MediumLabelsStyle}" Width="66" Text="Copies:" Margin="307,170,0,0"/>
+        <TextBlock x:Name="lblCopies" x:Uid="lblCopies" Style="{StaticResource MediumLabelsStyle}" Width="83" Margin="285,170,0,0"/>
         <IoTControls:NumericSpinner x:Name="copiesSpinner" Margin="370,157,248,273" LostFocus="copiesSpinner_LostFocus"/>
 
         <TextBox x:Name="txtBoxTestText" Style="{StaticResource BaseTextBoxStyle}" Margin="101,226,0,0" Width="451"/>
-        <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT TEST" Margin="609,158,0,0" Height="111" Width="179" Click="btnPrnt_Click"/>
-        <TextBlock x:Name="lblTextPrint" Style="{StaticResource ResourceKey=MediumLabelsStyle}" Width="93" Text="Printer text:" Margin="3,236,0,0"/>
+        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="609,158,0,0" Height="111" Width="179" Click="btnPrnt_Click"/>
+        <TextBlock x:Name="lblTextPrint" x:Uid="lblTextPrint" Style="{StaticResource ResourceKey=MediumLabelsStyle}" Width="93" Margin="3,236,0,0"/>
     </Grid>
 </Page>

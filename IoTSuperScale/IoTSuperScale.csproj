@@ -52,6 +52,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <OutputPath>bin\ARM\Release\</OutputPath>
@@ -107,8 +108,9 @@
     <Compile Include="IoTDB\ComboBoxOptionsManager.cs" />
     <Compile Include="IoTDB\CustomerItem.cs" />
     <Compile Include="IoTDB\DBinit.cs" />
+    <Compile Include="IoTDB\LotItem.cs" />
     <Compile Include="IoTDB\PackagedMaterialItem.cs" />
-    <Compile Include="IoTDB\Supplier.cs" />
+    <Compile Include="IoTDB\SupplierItem.cs" />
     <Compile Include="IoTViews\PageCustomer.xaml.cs">
       <DependentUpon>PageCustomer.xaml</DependentUpon>
     </Compile>
@@ -146,11 +148,16 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="IoTLabels\Bio.x" />
+    <None Include="IoTLabels\BioOutEE.x" />
     <None Include="IoTLabels\Customer.x" />
     <None Include="IoTLabels\Material.x" />
     <None Include="IoTLabels\SemiBio.x" />
     <None Include="IoTLabels\Supplier.x" />
     <None Include="IoTLabels\WeightMaterial.x" />
+    <PRIResource Include="IoTLang\en-US\Messages.resw" />
+    <PRIResource Include="IoTLang\en-US\Resources.resw" />
+    <PRIResource Include="IoTLang\el-GR\Resources.resw" />
+    <PRIResource Include="IoTLang\el-GR\Messages.resw" />
     <None Include="IoTSuperScale_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +171,8 @@
     <Content Include="Assets\Delete.png" />
     <Content Include="Assets\Delete2.png" />
     <Content Include="Assets\Down.png" />
+    <Content Include="Assets\EN.png" />
+    <Content Include="Assets\GR.png" />
     <Content Include="Assets\Guest.png" />
     <Content Include="Assets\Guest2.png" />
     <Content Include="Assets\LogOut4.png" />
@@ -237,6 +246,7 @@
       <Version>6.0.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

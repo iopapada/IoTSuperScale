@@ -25,14 +25,14 @@
         <Border BorderBrush="Black" Style="{StaticResource FooterBorderStyle}"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
-        <Button x:Name="btnSave" Style="{StaticResource BaseButtonStyle}" Content="Save Plan" Margin="598,231,0,0"/>
-        <Button x:Name="btnAddMaterial" Style="{StaticResource BaseButtonStyle}" Content="Add material" Margin="598,164,0,0" Click="btnAddMaterial_Click"/>
+        <Button x:Name="btnSave" x:Uid="btnSave" Style="{StaticResource BaseButtonStyle}" Margin="598,231,0,0"/>
+        <Button x:Name="btnAddMaterial" x:Uid="btnAdd" Style="{StaticResource BaseButtonStyle}" Margin="598,164,0,0" Click="btnAddMaterial_Click"/>
 
         <CalendarDatePicker HorizontalAlignment="Left" Margin="479,3,0,0" VerticalAlignment="Top" Width="313" Height="29" BorderBrush="#668D8C8C" BorderThickness="2,2,2,4"/>
         <TimePicker HorizontalAlignment="Left" Margin="479,34,0,0" VerticalAlignment="Top" Width="313"/>
 
-        <local:NumericSpinner x:Name="chamberSpinner" Margin="258,14,0,0"/>
-        <TextBlock x:Name="textBlock" Style="{StaticResource SpecialLabelstyle}" Margin="143,25,0,0" Text="Chamber:" Height="32" Width="112"/>
+        <local:NumericSpinner x:Name="chamberSpinner" Margin="258,14,360,416"/>
+        <TextBlock x:Name="textBlock" x:Uid="lblChamber" Style="{StaticResource SpecialLabelstyle}" Margin="143,25,0,0" Height="32" Width="112"/>
 
         <ScrollViewer Name="myScroll" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="208" Margin="1,75,0,0" VerticalAlignment="Top" Width="525" BorderThickness="2">
             <Grid x:Name="grid" HorizontalAlignment="Left" VerticalAlignment="Top" Width="532" Height="700"/>

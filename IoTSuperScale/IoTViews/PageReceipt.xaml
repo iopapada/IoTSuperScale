@@ -28,7 +28,7 @@
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="1" Margin="1,439,0,0" Width="800"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
-        <ComboBox Width="514" Margin="83,86,0,0"
+        <ComboBox Width="514" Margin="152,88,0,0"
         x:Name="CBoxSuppliers"
         DisplayMemberPath="supplierDescr"
         Style="{StaticResource BaseCombostyle}"
@@ -36,9 +36,9 @@
         SelectedItem="{x:Bind SelectedSupplier, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
         SelectedValuePath="code"/>
 
-        <TextBlock x:Name="lblSup" Style="{StaticResource MediumLabelsStyle}" Text="Supplier:" Margin="3,96,0,0" Width="73"/>
+        <TextBlock x:Name="lblSupplier" x:Uid="lblSupplier" Style="{StaticResource Medium2LabelsStyle}" Margin="3,91,0,0" Width="145"/>
 
-        <ComboBox Width="514" Margin="83,156,0,0"
+        <ComboBox Width="514" Margin="152,158,0,0"
         x:Name="CBoxPackagedMaterials"
         DisplayMemberPath="displayCodeDescr"
         Style="{StaticResource BaseCombostyle}"
@@ -46,14 +46,13 @@
         SelectedItem="{x:Bind SelectedPackagedMaterial, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
         SelectedValuePath="code"/>
 
-        <TextBlock x:Name="lblPackMaterials" Style="{StaticResource MediumLabelsStyle}" Text="Material:" Margin="2,166,0,0" Width="74"/>
+        <TextBlock x:Name="lblPackMaterials" x:Uid="lblMaterial" Style="{StaticResource Medium2LabelsStyle}" Margin="2,161,0,0" Width="145"/>
 
-        <TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="83,223,0,198" InputScope="Number" Width="225"/>
-        <TextBlock x:Name="lblLOT" Style="{StaticResource MediumLabelsStyle}" Text="Lot num:" Margin="3,233,0,0" Width="73"/>
+        <TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="152,225,0,0" InputScope="Number" Width="225"/>
+        <TextBlock x:Name="lblLOT" x:Uid="lblLotNum" Style="{StaticResource Medium2LabelsStyle}" Margin="3,228,0,0" Width="145"/>
 
-        <TextBlock x:Name="lblPRINTS" Style="{StaticResource MediumLabelsStyle}" Text="Copies:" Margin="313,235,0,0" Width="60"/>
-        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="385,217,0,0" Width="182"/>
-        <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="679,86,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
-        <Button x:Name="btnSave" Style="{StaticResource BaseButtonStyle}" Content="SAVE" Margin="598,217,0,0" Click="btnSave_Click"/>
+        <TextBlock x:Name="lblPRINTS" x:Uid="lblCopies" Style="{StaticResource Medium2LabelsStyle}" Margin="383,230,0,0" Width="89"/>
+        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="483,219,135,211"/>
+        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="679,86,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
     </Grid>
 </Page>

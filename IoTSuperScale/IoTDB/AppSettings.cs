@@ -185,6 +185,83 @@ namespace IoTSuperScale.IoTDB
                 localSettings.Values["PortConfig"] = value;
             }
         }
+        public static string IpERPServerConfig
+        {
+            get
+            {
+                return (string)localSettings.Values["IpERPServerConfig"] ?? "192.168.1.1";
+            }
+            set
+            {
+                localSettings.Values["IpERPServerConfig"] = value;
+            }
+        }
+        public static string PortERPServerConfig
+        {
+            get
+            {
+                return (string)localSettings.Values["PortERPServerConfig"] ?? "1433";
+            }
+            set
+            {
+                localSettings.Values["PortERPServerConfig"] = value;
+            }
+        }
+        public static string ERPDBInstance
+        {
+            get
+            {
+                return (string)localSettings.Values["ERPDBInstance"];
+            }
+            set
+            {
+                localSettings.Values["ERPDBInstance"] = value;
+            }
+        }
+        public static string ERPDBname
+        {
+            get
+            {
+                return (string)localSettings.Values["ERPDBname"];
+            }
+            set
+            {
+                localSettings.Values["ERPDBname"] = value;
+            }
+        }
+        public static string ERPDBuser
+        {
+            get
+            {
+                return (string)localSettings.Values["ERPDBuser"] ?? "sa";
+            }
+            set
+            {
+                localSettings.Values["ERPDBuser"] = value;
+            }
+        }
+        public static string ERPDBpass
+        {
+            get
+            {
+                return (string)localSettings.Values["ERPDBpass"];
+            }
+            set
+            {
+                localSettings.Values["ERPDBpass"] = value;
+            }
+        }
+        public static string ConnectionString
+        {
+            get
+            {
+                return "Data source = "+IpERPServerConfig+"\\"+ERPDBInstance+","+PortERPServerConfig+";Initial Catalog="+ERPDBname+";User ID="+ERPDBuser+";Password = "+ERPDBpass + ";";
+            }
+            set
+            {
+                localSettings.Values["ConnectionString"] = value;
+            }
+        }
         public static bool BroadcastPcksConfig
         {
             get
@@ -227,6 +304,17 @@ namespace IoTSuperScale.IoTDB
             set
             {
                 localSettings.Values["ScreenSaverMins"] = value;
+            }
+        }
+        public static string LangConfig
+        {
+            get
+            {
+                return (string)localSettings.Values["LangConfig"] ?? "GR";
+            }
+            set
+            {
+                localSettings.Values["LangConfig"] = value;
             }
         }
         #endregion
@@ -274,20 +362,6 @@ namespace IoTSuperScale.IoTDB
             set
             {
                 localSettings.Values["CopiesPrints"] = value;
-            }
-        }
-        #endregion
-
-        #region material properties
-        public static string NewLot
-        {
-            get
-            {
-                return (string)localSettings.Values["NewLot"] ?? "--";
-            }
-            set
-            {
-                localSettings.Values["NewLot"] = value;
             }
         }
         #endregion

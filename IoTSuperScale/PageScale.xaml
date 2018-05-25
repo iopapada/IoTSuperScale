@@ -58,7 +58,7 @@
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}"/>
 
         <Image x:Name="press1_3" Style="{StaticResource BaseImageStyle}" Source="/Assets/Guest2.png" Height="58" Margin="744,3,0,0" Width="54" />
-        <ComboBox Width="610" Margin="188,71,0,0"
+        <ComboBox Width="662" Margin="136,71,0,0"
             x:Name="CBoxMaterials"
             DisplayMemberPath="displayCodeDescr"
             Style="{StaticResource BaseCombostyle}"
@@ -67,10 +67,10 @@
             SelectedValuePath="code"
             SelectionChanged="CBoxMaterials_SelectionChanged"/>
 
-        <TextBlock x:Name="lblDescr" Style="{StaticResource BigLabelstyle}"  Text="Description:" Margin="2,72,0,0" Width="186"/>
-        <TextBlock x:Name="txtDescr" Text="{x:Bind SelectedMaterial.materialReadableDescr, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,119,0,0" VerticalAlignment="Top" Width="500" Height="71" Foreground="#FF4AE80F" FontFamily="Calibri" FontSize="26" />
+        <TextBlock x:Name="lblMaterialDescription" x:Uid="lblMaterial" Style="{StaticResource BigLabelstyle}" Margin="2,72,0,0" Width="186"/>
+        <TextBlock x:Name="txtDescr" Text="{x:Bind SelectedMaterial.materialReadableDescr, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,119,0,0" VerticalAlignment="Top" Width="495" Height="71" Foreground="#FF4AE80F" FontFamily="Calibri" FontSize="26" />
 
-        <ComboBox Width="223" Margin="575,120,0,0"
+        <ComboBox Width="206" Margin="592,120,0,0"
             x:Name="CBoxSuppliers"
             DisplayMemberPath="supplierDescr"
             Style="{StaticResource BaseCombostyle}"
@@ -78,18 +78,27 @@
             SelectedItem="{x:Bind SelectedSupplier, Mode=TwoWay, Converter={StaticResource ConvertersUI}}"
             SelectedValuePath="code"/>
 
-        <TextBlock x:Name="lblSup" Style="{StaticResource BigLabelstyle}" Text="Sup:" Margin="509,121,0,0" Width="63"/>
-        <TextBlock x:Name="lblNetW" Style="{StaticResource BigLabelstyle}" Text="Net W:" Margin="2,214,0,0" Width="94"/>
-        <Border x:Name="txtNetWeightBorder" Style="{StaticResource WarnTextBoxStyle}" Height="64" Margin="96,198,0,0" Width="406">
-            <TextBlock x:Name="txtNetW" TextAlignment="Right" VerticalAlignment="Top" FontFamily="Calibri" FontSize="52" FontWeight="Bold" Foreground="White" Height="63" Margin="183,0,0,-1"/>
+        <TextBlock x:Name="lblSup" x:Uid="lblSup" Style="{StaticResource Medium2LabelsStyle}" Margin="498,124,0,0" Width="94"/>
+
+        <ComboBox Width="206" Margin="592,168,0,0"
+            x:Name="CBoxLotNums"
+            DisplayMemberPath="GetLot"
+            Style="{StaticResource BaseCombostyle}"
+            ItemsSource="{x:Bind LotOptions, Mode=OneWay}"
+            SelectedItem="{x:Bind SelectedLot, Mode=TwoWay, Converter={StaticResource ConvertersUI}}"
+            SelectedValuePath="Code"/>
+        <!--TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="575,168,0,0" InputScope="Number" Width="223" /-->
+        <TextBlock x:Name="lblLOT" x:Uid="lblLot" Style="{StaticResource Medium2LabelsStyle}" Margin="498,172,0,0" Width="94" Height="30"/>
+
+        <TextBlock x:Name="lblNetW" x:Uid="lblNetWeight" Style="{StaticResource Medium2LabelsStyle}" Margin="2,214,0,0" Width="94"/>
+        <Border x:Name="txtNetWeightBorder" Style="{StaticResource WarnTextBoxStyle}" Height="64" Margin="93,198,0,0" Width="406">
+            <TextBlock x:Name="txtNetW" TextAlignment="Right" VerticalAlignment="Top" FontFamily="Calibri" FontSize="52" FontWeight="Bold" Foreground="White" Height="63" Margin="182,0,1,-1"/>
         </Border>
-        <IoTControls:NumericSpinner  x:Name="qtySpinner" Margin="102,206,516,224"/>
+        <IoTControls:NumericSpinner  x:Name="qtySpinner" Margin="98,206,520,224"/>
 
-        <TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="575,168,0,0" InputScope="Number" Width="223" />
-        <TextBlock x:Name="lblLOT" Style="{StaticResource BigLabelstyle}" Text="Lot:" Margin="509,173,0,0" Width="52"/>
 
-        <TextBlock x:Name="lblPRINTS" Style="{StaticResource BigLabelstyle}" Text="Copies:" Margin="509,221,0,0" Width="97"/>
-        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="616,213,2,217"/>
+        <TextBlock x:Name="lblPRINTS" x:Uid="lblCopies" Style="{StaticResource Medium2LabelsStyle}" Margin="500,221,0,0" Width="111"/>
+        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="617,213,3,217"/>
 
         <Border x:Name="txtWeightBorder" HorizontalAlignment="Left" Height="168" Margin="3,267,0,0" VerticalAlignment="Top" Width="607">
             <TextBlock x:Name="txtWeight" TextAlignment="Right" HorizontalAlignment="Left" Margin="4,4,-1.8,1.2" VerticalAlignment="Center" Width="601" FontSize="142" FontFamily="Calibri" FontWeight="Bold" Foreground="Black" Height="178"/>
@@ -101,8 +110,8 @@
         <TextBlock x:Name="lblRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="672,52,0,0" Text="RV:" Height="13"/>
         <TextBlock x:Name="txtRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="688,52,0,0" Text="" Width="59" Height="13" />
 
-        <Button x:Name="btnTare" Style="{StaticResource WarnButtonStyle}" Content="TARE" Margin="709,267,0,0" Height="80" Width="88" Click="btnTare_Click"/>
-        <Button x:Name="btnZero" Style="{StaticResource Neutral2ButtonStyle}" Content="ZERO" Margin="709,355,0,0" Height="80" Width="88" Click="btnZero_Click"/>
-        <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="617,267,0,0" Height="168" Width="88" Click="btnPrnt_Click"/>
+        <Button x:Name="btnTare" x:Uid="btnTare" Style="{StaticResource WarnButtonStyle}" Margin="709,267,0,0" Height="80" Width="88" Click="btnTare_Click"/>
+        <Button x:Name="btnZero" x:Uid="btnZero" Style="{StaticResource Neutral2ButtonStyle}" Margin="709,355,0,0" Height="80" Width="88" Click="btnZero_Click"/>
+        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="611,267,0,0" Height="168" Width="94" Click="btnPrnt_Click"/>
     </Grid>
 </Page>

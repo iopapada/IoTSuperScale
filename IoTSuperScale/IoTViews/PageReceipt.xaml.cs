@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Text;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
@@ -35,7 +36,7 @@ namespace IoTSuperScale.IoTViews
             txtFooter.Text = App.GetAppTextFooter();
             //Load suppliers in ComboBox
             SupplierOptions = new ObservableCollection<SupplierItem>();
-            ComboBoxOptionsManager.GetAllSppliersList(SupplierOptions);
+            ComboBoxOptionsManager.GetAllSuppliersList(SupplierOptions);
             _SelectedSupplier = SupplierOptions[0];
             SelectedSupplier = SupplierOptions[0];
             //Load packaged materials in ComboBox
@@ -50,7 +51,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Print error");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgReceiptEncoding"));
             }
 
         }
@@ -109,7 +110,7 @@ namespace IoTSuperScale.IoTViews
             //edit label with real dat
             if (txtBoxLot.Text == string.Empty || txtBoxLot.Text == null)
             {
-                App.PrintOkMessage("Please fill in the lot number", "Print label error");
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
                 return;
             }
             if (protoWeightLabel != null)
@@ -130,22 +131,6 @@ namespace IoTSuperScale.IoTViews
                 File.WriteAllText(dataWeightLabel.Path, newVal, encoding);
             }
             PrinterUtil.sendToPrinterFile(dataWeightLabel);
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (txtBoxLot.Text == string.Empty || txtBoxLot.Text == null)
-                {
-                    App.PrintOkMessage("Please fill in the lot number", "Print label error");
-                    return;
-                }
-                AppSettings.NewLot = txtBoxLot.Text;
-            }
-            catch (Exception ex) {
-                App.PrintOkMessage(ex.Message, "Print label error");
-            }
         }
     }
 }

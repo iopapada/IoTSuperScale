@@ -33,14 +33,14 @@
 ^CWM,E:ARIAL9R.FNT
 ^AMN,26,61^FDΠρομηθευτής:^FS
 ^FT17,225
-^AMN,26,61^FDGR Προμ.:^FS
+^AMN,26,61^FDΚωδ. προμ.:^FS
 ^FT17,260
 ^AMN,26,60^FDΑρ. παρτ.:^FS
 ^FT17,295
 ^AMN,26,60^FDΗμ. παρ.:^FS
 ^FT130,295
 ^AMN,28,67^FDdatereceipt^FS
-^FT134,224
+^FT152,224
 ^AMN,28,67^FDgrsupplier^FS
 ^FO21,9
 ^XGR:SSGFX000.GRF,1,1^FS

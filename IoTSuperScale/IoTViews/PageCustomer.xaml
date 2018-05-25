@@ -30,17 +30,17 @@
         <Border BorderBrush="Black" Style="{StaticResource FooterBorderStyle}"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
-        <ComboBox Width="514" Margin="153,90,0,0"
+        <ComboBox Width="550" Margin="117,90,0,0"
         x:Name="CBoxCustomers"
         DisplayMemberPath="customerDescr"
         Style="{StaticResource BaseCombostyle}"
         ItemsSource="{x:Bind CustomerOptions}"
         SelectedItem="{x:Bind SelectedCustomer, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
         SelectedValuePath="code"/>
-        <TextBlock x:Name="lblSup" Style="{StaticResource BigLabelstyle}" Text="Customer:" Margin="4,95,0,0" Width="144"/>
+        <TextBlock x:Name="lblSup" x:Uid="lblCustomer" Style="{StaticResource Medium2LabelsStyle}" Margin="4,95,0,0" Width="108"/>
 
-        <TextBlock x:Name="lblPRINTS" Style="{StaticResource BigLabelstyle}" Text="Copies:" Margin="4,155,0,0" Width="97"/>
-        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="153,147,465,265"/>
-        <Button x:Name="btnPrnt" Style="{StaticResource NeutralButtonStyle}" Content="PRINT" Margin="679,90,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
+        <TextBlock x:Name="lblPRINTS" x:Uid="lblCopies" Style="{StaticResource Medium2LabelsStyle}" Margin="4,162,0,0" Width="108"/>
+        <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="117,150,501,262"/>
+        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="679,90,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using IoTSuperScale.IoTCore;
+using IoTSuperScale.IoTDB;
 using System;
 using System.Diagnostics;
 using System.Linq;

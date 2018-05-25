@@ -1,6 +1,7 @@
 ﻿using IoTSuperScale.IoTCore;
 using IoTSuperScale.IoTDB;
 using System;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -58,8 +59,15 @@ namespace IoTSuperScale.IoTViews
             txtVal_500.Text = AppSettings.CalibrationHalfKilo.ToString();
             txtVal_1000.Text = AppSettings.CalibrationKilo.ToString();
             txtboxScaleName.Text = AppSettings.ScaleName.ToString();
+
             txtboxIP.Text = AppSettings.IpConfig;
             txtBoxPort.Text = AppSettings.PortConfig;
+            txtBoxIPServer.Text = AppSettings.IpERPServerConfig;
+            txtBoxPortServer.Text = AppSettings.PortERPServerConfig;
+            txtBoxDBname.Text = AppSettings.ERPDBname;
+            txtBoxDBInstance.Text = AppSettings.ERPDBInstance;
+            txtBoxDBuser.Text = AppSettings.ERPDBuser;
+            txtBoxDBpass.Password = AppSettings.ERPDBpass;
 
             decimalPoints.TextValueProperty = AppSettings.Precision.ToString();
             screenSaverSpinner.TextValueProperty = AppSettings.ScreenSaverMins.ToString();
@@ -87,6 +95,10 @@ namespace IoTSuperScale.IoTViews
         {
             AppSettings.IpConfig = txtboxIP.Text;
         }
+        private void txtBoxPort_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.PortConfig = txtBoxPort.Text;
+        }
         private void txtLCcapacity_LostFocus(object sender, RoutedEventArgs e)
         {
             try
@@ -95,12 +107,8 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Exception in save precesion value");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSaveLCcapacity"));
             }
-        }
-        private void txtBoxPort_LostFocus(object sender, RoutedEventArgs e)
-        {
-            AppSettings.PortConfig = txtBoxPort.Text;
         }
         private void decimalPoints_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -110,7 +118,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Exception in save precision value");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSavePrecision"));
             }
         }
         private void screenSaverSpinner_LostFocus(object sender, RoutedEventArgs e)
@@ -121,7 +129,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Exception in save screensaver value");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSaveScreensaver"));
             }
         }
 
@@ -133,8 +141,38 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Exception in save precesion value");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSaveTimer"));
             }
+        }
+
+        private void txtBoxPortServer_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.PortERPServerConfig = txtBoxPortServer.Text;
+        }
+
+        private void txtboxIPServer_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.IpERPServerConfig = txtBoxIPServer.Text;
+        }
+
+        private void txtDBInstance_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.ERPDBInstance = txtBoxDBInstance.Text;
+        }
+
+        private void txtDBname_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.ERPDBname = txtBoxDBname.Text;
+        }
+
+        private void txtDBuser_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.ERPDBuser = txtBoxDBuser.Text;
+        }
+
+        private void txtDBpass_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.ERPDBpass = txtBoxDBpass.Password;
         }
     }
 }

@@ -7,14 +7,14 @@
     mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
     
     <Grid Style="{StaticResource ApplicationMainGrid}">
-        <Button Name="btnFscale" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,104,0,0" Content="1. Scale" VerticalAlignment="Top" Click="btnScale_Click"/>
-        <Button Name="btnPlan" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,216,0,0" Content="2. Business Plan" VerticalAlignment="Top" Click="btnPlan_Click"/>
+        <Button Name="btnFscale" x:Uid="btnScale" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,104,0,0" VerticalAlignment="Top" Click="btnScale_Click"/>
+        <Button Name="btnPlan" x:Uid="btnPlan" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Click="btnPlan_Click"/>
 
-        <Button Name="btnSuppliers" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,104,0,0" Content="4. Receipt" VerticalAlignment="Top" Click="btnSuppliers_Click"/>
-        <Button Name="btnCustomers" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,216,0,0" Content="5. Customers" VerticalAlignment="Top" Click="btnCustomers_Click"/>
+        <Button Name="btnSuppliers" x:Uid="btnReceipt" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnSuppliers_Click"/>
+        <Button Name="btnCustomers" x:Uid="btnCust" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,216,0,0" VerticalAlignment="Top" Click="btnCustomers_Click"/>
 
-        <Button Name="btnSettings" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,332,0,0" Content="3. Settings" VerticalAlignment="Top" Click="btnSettings_Click" />
-        <Button Name="btnPrinterUtils" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,332,0,0" Content="6. Printer Utils" VerticalAlignment="Top" Click="btnPrinterUtils_Click"/>
+        <Button Name="btnSettings" x:Uid="btnSettings" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,332,0,0" VerticalAlignment="Top" Click="btnSettings_Click" />
+        <Button Name="btnPrinterUtils" x:Uid="btnPrintUtils" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,332,0,0" VerticalAlignment="Top" Click="btnPrinterUtils_Click"/>
         
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}"/>
         <Border BorderBrush="Black" BorderThickness="2,1" HorizontalAlignment="Left" Height="1" Margin="0,439,0,0" VerticalAlignment="Top" Width="801" RenderTransformOrigin="0.5,0.5"/>

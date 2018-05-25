@@ -29,7 +29,7 @@
 ^AKN,22,53^FDΑριθμός παρτίδας:^FS
 ^FT5,310
 ^AKN,22,53^FDΚωδ. συσκ.:^FS
-^FT182,203
+^FT183,203
 ^AKN,22,53^FDΚατηγορία:^FS
 ^FT285,203
 ^AKN,22,53^FDcategory^FS
@@ -41,30 +41,26 @@
 ^AKN,22,53^FDvariety^FS
 ^FT5,175
 ^AKN,22,53^FDΠροέλευση:^FS
-^FT204,176
+^FT103,176
 ^AKN,22,53^FDΠεριοχή:^FS
 ^FT62,156
 ^AKN,22,53
 ^FB350,3,,^FDmaterialdescr^FS
-^FT270,177
+^FT284,177
 ^AKN,22,53^FDregion^FS
 ^FT105,175
 ^AKN,22,53^FDcountry^FS
 ^FT5,256
-^AKN,22,53^FDΚωδ. παραγ.:^FS
-^FT132,255
+^AKN,22,53^FDΚωδ. προμ.:^FS
+^FT123,255
 ^AKN,22,54^FDgrsupplier^FS
 ^FT117,78
 ^AKN,22,53^FDΕΜΠΟΡΙΑ - ΣΥΣΚΕΥΑΣΙΑ^FS
 ^FT362,274
 ^CWL,E:ARIAL5R.FNT
 ^ALN,16,37^FDGR-BIO-01^FS
-^FT362,290
-^ALN,16,37^FDΓεωργία ΕΕ^FS
-^FT5,229
-^AKN,22,54^FDΗμ. συσκ.:^FS
-^FT103,229
-^AKN,22,53^FDdatereceipt^FS
+^FT339,290
+^ALN,16,37^FDΓεωργία έκτος ΕΕ^FS
 ^FO10,11
 ^XGR:SSGFX000.GRF,1,1^FS
 ^PQnums,0,1,Y

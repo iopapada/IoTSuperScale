@@ -20,6 +20,8 @@ namespace IoTSuperScale.IoTControls
                 return value as SupplierItem;
             else if (value is CustomerItem)
                 return value as CustomerItem;
+            else if (value is LotItem)
+                return value as LotItem;
             else
                 return null;
         }

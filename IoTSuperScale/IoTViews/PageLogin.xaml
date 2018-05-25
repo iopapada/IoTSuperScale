@@ -10,15 +10,31 @@
         <Grid.Background>
             <ImageBrush ImageSource="../Assets/backLogin4.png" Stretch="Uniform"/>
         </Grid.Background>
-        
-        <TextBox x:Name="txtUser" Style="{StaticResource BaseTextBoxStyle}" HorizontalAlignment="Left" Margin="395,154,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
-        <PasswordBox x:Name="txtPass" Style="{StaticResource BasePswBoxstyle }" HorizontalAlignment="Left" Margin="395,214,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
 
-        <TextBlock x:Name="lblUsername" Style="{StaticResource SpecialLabelstyle}" HorizontalAlignment="Left" Margin="281,158,0,0" Text="Username:" VerticalAlignment="Top" Height="32" Width="114"/>
-        <TextBlock x:Name="lblPass" Style="{StaticResource SpecialLabelstyle}" HorizontalAlignment="Left" Margin="281,217,0,0" Text="Password:" VerticalAlignment="Top" Height="32" Width="104"/>
+        <TextBox x:Name="txtUser" Style="{StaticResource BaseTextBoxStyle}" HorizontalAlignment="Left" Margin="404,154,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
+        <PasswordBox x:Name="txtPass" Style="{StaticResource BasePswBoxstyle }" HorizontalAlignment="Left" Margin="404,214,0,0" VerticalAlignment="Top" Width="194" Background="#FF7593D3" BorderThickness="2"/>
 
-        <Button x:Name="btnLogin" Style="{StaticResource BaseButtonStyle}"  Content="Login" HorizontalAlignment="Left" Margin="395,270,0,0" VerticalAlignment="Top" Click="btnLogin_Click"/>
-        <Button x:Name="btnCancel" HorizontalAlignment="Left" Margin="639,56,0,0" VerticalAlignment="Top" Height="73" Width="67" Click="btnCancel_Click">
+        <TextBlock x:Name="lblUsername" x:Uid="lblUsern" Style="{StaticResource SpecialLabelstyle}" HorizontalAlignment="Left" Margin="290,158,0,0" VerticalAlignment="Top" Height="32" Width="114"/>
+        <TextBlock x:Name="lblPass" x:Uid="lblPassword" Style="{StaticResource SpecialLabelstyle}" HorizontalAlignment="Left" Margin="290,217,0,0" VerticalAlignment="Top" Height="32" Width="104"/>
+
+        <TextBlock x:Name="lblLang" x:Uid="lblLanguage" Style="{StaticResource SpecialLabelstyle}" HorizontalAlignment="Left" Margin="198,285,0,0" VerticalAlignment="Top" Height="32" Width="104"/>
+        <ComboBox Width="60" Margin="308,288,0,0"
+            x:Name="CBoxLang"
+            Height="32" SelectionChanged="CBoxLang_SelectionChanged">
+            <ComboBoxItem Name="GR">
+                <StackPanel Orientation="Vertical">
+                    <Image Width="20" Height="16" Source="../Assets/GR.png" Stretch="None"  />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem Name="EN">
+                <StackPanel Orientation="Vertical">
+                    <Image Width="20" Height="16" Source="../Assets/EN.png" Stretch="None" />
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+
+        <Button x:Name="btnLogin" x:Uid="btnLog" Style="{StaticResource BaseButtonStyle}" HorizontalAlignment="Left" Margin="404,270,0,0" VerticalAlignment="Top" Click="btnLogin_Click"/>
+        <Button x:Name="btnCancel" HorizontalAlignment="Left" Margin="639,62,0,0" VerticalAlignment="Top" Height="73" Width="67" Click="btnCancel_Click">
             <Button.Background>
                 <ImageBrush Stretch="None" ImageSource="../Assets/Cancel.png"/>
             </Button.Background>

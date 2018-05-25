@@ -13,6 +13,9 @@ using System.IO;
 using System;
 using Windows.UI;
 using System.Threading;
+using System.Resources;
+using System.Reflection;
+using Windows.ApplicationModel.Resources;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -34,8 +37,13 @@ namespace IoTSuperScale
         public static double tareweight;
         private ObservableCollection<PackagedMaterialItem> MaterialOptions;
         private ObservableCollection<SupplierItem> SupplierOptions;
+        public ObservableCollection<LotItem> LotOptions;
+
+        //private ObservableCollection<LotItem> _LotOptions;
         private PackagedMaterialItem _SelectedMaterial;
         private SupplierItem _SelectedSupplier;
+        private LotItem _SelectedLot;
+
         public event PropertyChangedEventHandler PropertyChanged;
         StorageFile currentLabel;
         StorageFile protoWeightLabel;
@@ -52,7 +60,7 @@ namespace IoTSuperScale
                 this.InitializeComponent();
                 txtScaleName.Text = AppSettings.ScaleName+" ("+AppSettings.LCcapacity+")";
                 txtFooter.Text = App.GetAppTextFooter();
-
+               
                 //Start scale timer tick
                 scaleTimer = new DispatcherTimer();
                 scaleTimer.Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer);
@@ -66,7 +74,7 @@ namespace IoTSuperScale
                     {
                         step = 0;
                         sum = 0;
-                        txtSum.Text = step.ToString() + " - Total:" + sum.ToString();
+                        txtSum.Text = step.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString();
                     }
                     DisplayUtilities();
                     //Load materials in ComboBox
@@ -74,14 +82,20 @@ namespace IoTSuperScale
                     ComboBoxOptionsManager.GetEnabledPackMaterialsList(MaterialOptions);
                     _SelectedMaterial = MaterialOptions[0];
                     SelectedMaterial = MaterialOptions[0];
+                    //Load empty lot
+                    LotOptions = new ObservableCollection<LotItem>();
+                    InsertEmptyLot();
+                    RaisePropertyChanged("LotOptions");
+                    _SelectedLot = LotOptions[0];
+                    SelectedLot = LotOptions[0];
                     //Load suppliers in ComboBox
                     SupplierOptions = new ObservableCollection<SupplierItem>();
-                    ComboBoxOptionsManager.GetAllSppliersList(SupplierOptions);
+                    ComboBoxOptionsManager.GetAllSuppliersList(SupplierOptions);
                     _SelectedSupplier = SupplierOptions[0];
                     SelectedSupplier = SupplierOptions[0];
                     //Load some labels
                     LoadLabelsFiles();
-                    //In case we want tosave the state of pagescale
+                    //In case we want to save the state of pagescale
                     //NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
                 }
                 else
@@ -89,10 +103,9 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Error on load scale");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgErrorOnLoadScale"));
             }
         }
-
         private async void LoadLabelsFiles()
         {
             try
@@ -102,10 +115,9 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Not found labels");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgNonExistLabelsTitle"));
             }
         }
-
         #region UI functions & bar buttons
         private void DisplayUtilities()
         {
@@ -118,11 +130,11 @@ namespace IoTSuperScale
             lblSup.Visibility = Visibility.Visible;
             CBoxSuppliers.Visibility = Visibility.Visible;
             lblLOT.Visibility = Visibility.Visible;
-            txtBoxLot.Visibility = Visibility.Visible;
+            CBoxLotNums.Visibility = Visibility.Visible;
             lblPRINTS.Visibility = Visibility.Visible;
             printsSpinner.Visibility = Visibility.Visible;
 
-            lblDescr.Visibility = Visibility.Visible;
+            lblMaterialDescription.Visibility = Visibility.Visible;
             txtDescr.Visibility = Visibility.Visible;
             CBoxMaterials.Visibility = Visibility.Visible;
             txtNetWeightBorder.Visibility = Visibility.Visible;
@@ -131,7 +143,6 @@ namespace IoTSuperScale
             qtySpinner.Visibility = Visibility.Visible;
 
             btnTare.Visibility = Visibility.Visible;
-            //btnZero.Visibility = Visibility.Visible;
             btnPrnt.Visibility = Visibility.Visible;
         }
         private void HideUtilities()
@@ -145,11 +156,11 @@ namespace IoTSuperScale
             lblSup.Visibility = Visibility.Collapsed;
             CBoxSuppliers.Visibility = Visibility.Collapsed;
             lblLOT.Visibility = Visibility.Collapsed;
-            txtBoxLot.Visibility = Visibility.Collapsed;
+            CBoxLotNums.Visibility = Visibility.Collapsed;
             lblPRINTS.Visibility = Visibility.Collapsed;
             printsSpinner.Visibility = Visibility.Collapsed;
 
-            lblDescr.Visibility = Visibility.Collapsed;
+            lblMaterialDescription.Visibility = Visibility.Collapsed;
             txtDescr.Visibility = Visibility.Collapsed;
             CBoxMaterials.Visibility = Visibility.Collapsed;
             txtNetWeightBorder.Visibility = Visibility.Collapsed;
@@ -207,10 +218,9 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Error on reading scale values");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgErrorScaleValues"));
             }
         }
-
         private string calculateNetW(double weight, double tareweight, double precentage, int qty)
         {
             if (weight <= 0)
@@ -219,7 +229,6 @@ namespace IoTSuperScale
             w = Math.Round(w, 1);
             return w.ToString() + AppSettings.TrailingUnit;
         }
-
         private void equalityOnFirstDec()
         {
             txtWeightBorder.Background = new SolidColorBrush(Color.FromArgb(191, 0, 245, 56));
@@ -248,12 +257,12 @@ namespace IoTSuperScale
             //edit label with real data
             if (SelectedSupplier.code == "000" && (SelectedMaterial.type == PackagedMaterialItem.materialType.BIO || SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO))
             {
-                App.PrintOkMessage("Please fill in the supplier GR", "Print label error");
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
                 return;
             }
-            if (txtBoxLot.Text == string.Empty || txtBoxLot.Text == null)
+            if (SelectedLot.Code == "000")
             {
-                App.PrintOkMessage("Please fill in the lot number", "Print label error");
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
                 return;
             }
             //Check printer settings
@@ -261,9 +270,8 @@ namespace IoTSuperScale
             {
                 step++;
                 sum += Double.Parse(txtNetW.Text.Remove(txtNetW.Text.Length - 3, 3));
-                txtSum.Text = step.ToString() + " - Total:" + sum.ToString() + AppSettings.TrailingUnit;
+                txtSum.Text = step.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString() + AppSettings.TrailingUnit;
             }
-
 
             if (currentLabel != null)
             {
@@ -280,14 +288,16 @@ namespace IoTSuperScale
                 newVal = newVal.Replace("country", SelectedMaterial.country);
                 newVal = newVal.Replace("region", SelectedMaterial.region);
                 newVal = newVal.Replace("grsupplier", SelectedSupplier.grSupplier);
-
+                newVal = newVal.Replace("category", SelectedMaterial.category);
+                newVal = newVal.Replace("variety", SelectedMaterial.variety);
+                //if(SelectedMaterial.type == PackagedMaterialItem.materialType.BIO || SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO)
+                newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));
                 newVal = newVal.Replace("weightval", txtNetW.Text);
-                newVal = newVal.Replace("lot", txtBoxLot.Text);
+                newVal = newVal.Replace("lot", SelectedLot.Code);
                 newVal = newVal.Replace("nums", printsSpinner.TextValueProperty.ToString());
 
                 dataWeightLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + currentLabel.Name, CreationCollisionOption.ReplaceExisting);
                 File.WriteAllText(dataWeightLabel.Path, newVal, App.encoding);
-
                 //StorageFolder publicFolder = ApplicationData.Current.LocalFolder;
                 //dataLabelFile = await publicFolder.GetFileAsync("WeightData.x");
             }
@@ -301,7 +311,6 @@ namespace IoTSuperScale
                 txtSum.Text = String.Empty;
             }
         }
-
         public PackagedMaterialItem SelectedMaterial
         {
             get
@@ -314,7 +323,13 @@ namespace IoTSuperScale
                 {
                     _SelectedMaterial = value;
                     RaisePropertyChanged("SelectedMaterial");
-                    txtBoxLot.Text = string.Empty;
+                    //Load lots of selected material
+                    LotOptions = new ObservableCollection<LotItem>();
+                    LotOptions = DBinit.GetLotsOfProduct(AppSettings.ConnectionString, SelectedMaterial.code);
+                    InsertEmptyLot();
+                    RaisePropertyChanged("LotOptions");
+                    SelectedLot = LotOptions[0];
+                    //Load suppliers 
                     SelectedSupplier = SupplierOptions[0];
                     ChangeSelectedLabel();
                 }
@@ -335,23 +350,48 @@ namespace IoTSuperScale
                 }
             }
         }
+        public LotItem SelectedLot
+        {
+            get
+            {
+                return _SelectedLot;
+            }
+            set
+            {
+                if (_SelectedLot != value)
+                {
+                    _SelectedLot = value;
+                    RaisePropertyChanged("SelectedLot");
+                }
+            }
+        }
+
+        private void InsertEmptyLot() {
+            LotItem initLot = new LotItem();
+            initLot.Code = "Καμία επιλογή";
+            initLot.Qty1 = 0;
+            initLot.Qty2 = 0;
+            LotOptions.Insert(0, initLot);
+        }
         private async void ChangeSelectedLabel()
         {
             try
             {
                 if (SelectedMaterial.type == PackagedMaterialItem.materialType.BIO)
-                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Bio.x");
+                {
+                    if(SelectedMaterial.isEEcountry==true)
+                        currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Bio.x");
+                    else
+                        currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("BioOutEE.x");
+                }
                 else if (SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO)
                     currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("SemiBio.x");
                 else if (SelectedMaterial.type == PackagedMaterialItem.materialType.CONVENTIONAL)
                     currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
-
-                if (SelectedMaterial.materialDescr.Equals("DOLE"))
-                    txtBoxLot.Text = AppSettings.NewLot;
             }
             catch (Exception)
             {
-                App.PrintOkMessage("There is no such label", "Label Print error");
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgNonExistLabels"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
             }
         }
         void RaisePropertyChanged(string prop)
@@ -365,7 +405,7 @@ namespace IoTSuperScale
             {
                 btnPrnt.IsEnabled = true;
                 printsSpinner.IsEnabled = true;
-                txtBoxLot.IsEnabled = true;
+                CBoxLotNums.IsEnabled = true;
                 CBoxSuppliers.IsEnabled = true;
                 qtySpinner.TextValueProperty = "1";
                 printsSpinner.TextValueProperty = "1";
@@ -374,7 +414,7 @@ namespace IoTSuperScale
             {
                 btnPrnt.IsEnabled = false;
                 printsSpinner.IsEnabled = false;
-                txtBoxLot.IsEnabled = false;
+                CBoxLotNums.IsEnabled = false;
                 CBoxSuppliers.IsEnabled = false;
                 qtySpinner.TextValueProperty = "1";
                 printsSpinner.TextValueProperty = "1";
