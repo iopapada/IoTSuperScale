@@ -1,14 +1,17 @@
-﻿using IoTSuperScale.IoTCore;
-using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.IoTDB;
 using System;
+using System.Data.SqlClient;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using static IoTSuperScale.IoTDB.DBinit;
 
 namespace IoTSuperScale.IoTViews
 {
     public sealed partial class PageSettings : Page
     {
+        //timer for seeing live real voltage
         public DispatcherTimer settingsTimer;
         public PageSettings()
         {
@@ -19,6 +22,7 @@ namespace IoTSuperScale.IoTViews
             settingsTimer.Start();
             this.LoadSettings();
             txtFooter.Text = App.GetAppTextFooter();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
         private void btnZero_Click(object sender, RoutedEventArgs e)
         {
@@ -37,6 +41,37 @@ namespace IoTSuperScale.IoTViews
             AppSettings.CalibrationKilo = App.s.Calibrate(1);
             txtVal_1000.Text = AppSettings.CalibrationKilo.ToString();
         }
+        private void btnERPDBconnectionTest_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SingletonERP.getERPDbInstance().GetERPDBConnection();
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titlePingDB"));
+            }
+            catch (SqlException ex)
+            {
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleERPerrorDBConnection"));
+            }
+            finally {
+                SingletonERP.getERPDbInstance().CloseERPDBConnection();
+            }
+        }
+        private void btnMRPDBconnectionTest_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SingletonMRP.getMRPDbInstance().GetMRPDBConnection();
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titlePingDB"));
+            }
+            catch (SqlException ex)
+            {
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleMRPerrorDBConnection"));
+            }
+            finally
+            {
+                SingletonMRP.getMRPDbInstance().CloseMRPDBConnection();
+            }
+        }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             settingsTimer.Stop();
@@ -48,7 +83,6 @@ namespace IoTSuperScale.IoTViews
         {
             App.isAuthenticated = false;
             settingsTimer.Stop();
-            Frame.Navigate(typeof(PageLogin), null);
         }
 
         public void LoadSettings()
@@ -66,8 +100,10 @@ namespace IoTSuperScale.IoTViews
             txtBoxPortServer.Text = AppSettings.PortERPServerConfig;
             txtBoxDBname.Text = AppSettings.ERPDBname;
             txtBoxDBInstance.Text = AppSettings.ERPDBInstance;
-            txtBoxDBuser.Text = AppSettings.ERPDBuser;
-            txtBoxDBpass.Password = AppSettings.ERPDBpass;
+            txtBoxMRPDBname.Text = AppSettings.MRPDBname;
+            txtBoxMRPDBInstance.Text = AppSettings.MRPDBInstance;
+            txtBoxDBuser.Text = AppSettings.DBuser;
+            txtBoxDBpass.Password = AppSettings.DBpass;
 
             decimalPoints.TextValueProperty = AppSettings.Precision.ToString();
             screenSaverSpinner.TextValueProperty = AppSettings.ScreenSaverMins.ToString();
@@ -107,7 +143,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSaveLCcapacity"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSaveLCcapacity"));
             }
         }
         private void decimalPoints_LostFocus(object sender, RoutedEventArgs e)
@@ -118,7 +154,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSavePrecision"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSavePrecision"));
             }
         }
         private void screenSaverSpinner_LostFocus(object sender, RoutedEventArgs e)
@@ -126,13 +162,22 @@ namespace IoTSuperScale.IoTViews
             try
             {
                 AppSettings.ScreenSaverMins = Int32.Parse(screenSaverSpinner.TextValueProperty.ToString());
+                if (AppSettings.ScreenSaverMins == 0)
+                {
+                    App.Current.idleTimer.Stop();
+                    App.Current.IsIdle = true;
+                }
+                else {
+                    App.Current.idleTimer.Interval = TimeSpan.FromSeconds(60 * AppSettings.ScreenSaverMins);
+                    App.Current.idleTimer.Start();
+                    App.Current.IsIdle = false;
+                }
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSaveScreensaver"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSaveScreensaver"));
             }
         }
-
         private void txtScaleTimer_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
         {
             try
@@ -141,38 +186,48 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgSettingsOnSaveTimer"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSaveTimer"));
             }
         }
-
         private void txtBoxPortServer_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.PortERPServerConfig = txtBoxPortServer.Text;
         }
-
         private void txtboxIPServer_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.IpERPServerConfig = txtBoxIPServer.Text;
         }
-
         private void txtDBInstance_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.ERPDBInstance = txtBoxDBInstance.Text;
         }
-
         private void txtDBname_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.ERPDBname = txtBoxDBname.Text;
         }
-
+        private void txtBoxMRPDBInstance_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.MRPDBInstance = txtBoxMRPDBInstance.Text;
+        }
+        private void txtBoxMRPDBname_LostFocus(object sender, RoutedEventArgs e)
+        {
+            AppSettings.MRPDBname = txtBoxMRPDBname.Text;
+        }
         private void txtDBuser_LostFocus(object sender, RoutedEventArgs e)
         {
-            AppSettings.ERPDBuser = txtBoxDBuser.Text;
+            AppSettings.DBuser = txtBoxDBuser.Text;
         }
-
         private void txtDBpass_LostFocus(object sender, RoutedEventArgs e)
         {
-            AppSettings.ERPDBpass = txtBoxDBpass.Password;
+            AppSettings.DBpass = txtBoxDBpass.Password;
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
     }
 }

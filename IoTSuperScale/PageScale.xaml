@@ -70,27 +70,29 @@
         <TextBlock x:Name="lblMaterialDescription" x:Uid="lblMaterial" Style="{StaticResource BigLabelstyle}" Margin="2,72,0,0" Width="186"/>
         <TextBlock x:Name="txtDescr" Text="{x:Bind SelectedMaterial.materialReadableDescr, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,119,0,0" VerticalAlignment="Top" Width="495" Height="71" Foreground="#FF4AE80F" FontFamily="Calibri" FontSize="26" />
 
-        <ComboBox Width="206" Margin="592,120,0,0"
+        <ComboBox Width="206" Margin="592,158,0,0"
             x:Name="CBoxSuppliers"
             DisplayMemberPath="supplierDescr"
             Style="{StaticResource BaseCombostyle}"
             ItemsSource="{x:Bind SupplierOptions}"
             SelectedItem="{x:Bind SelectedSupplier, Mode=TwoWay, Converter={StaticResource ConvertersUI}}"
-            SelectedValuePath="code"/>
+            SelectedValuePath="code" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="lblSup" x:Uid="lblSup" Style="{StaticResource Medium2LabelsStyle}" Margin="498,124,0,0" Width="94"/>
+        <TextBlock x:Name="lblSup" x:Uid="lblSup" Style="{StaticResource Medium2LabelsStyle}" Margin="498,162,0,0" Width="94" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <ComboBox Width="206" Margin="592,168,0,0"
+        <AutoSuggestBox Width="206" Margin="592,120,0,0"
             x:Name="CBoxLotNums"
             DisplayMemberPath="GetLot"
-            Style="{StaticResource BaseCombostyle}"
+            Style="{StaticResource BaseAutoSuggestBoxstyle}"
             ItemsSource="{x:Bind LotOptions, Mode=OneWay}"
-            SelectedItem="{x:Bind SelectedLot, Mode=TwoWay, Converter={StaticResource ConvertersUI}}"
-            SelectedValuePath="Code"/>
-        <!--TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="575,168,0,0" InputScope="Number" Width="223" /-->
-        <TextBlock x:Name="lblLOT" x:Uid="lblLot" Style="{StaticResource Medium2LabelsStyle}" Margin="498,172,0,0" Width="94" Height="30"/>
+            SuggestionChosen="CBoxLotNums_SuggestionChosen"
+            TextChanged="CBoxLotNums_TextChanged"
+            QuerySubmitted="CBoxLotNums_QuerySubmitted" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <TextBlock x:Name="lblNetW" x:Uid="lblNetWeight" Style="{StaticResource Medium2LabelsStyle}" Margin="2,214,0,0" Width="94"/>
+        <!--TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="575,168,0,0" InputScope="Number" Width="223" /-->
+        <TextBlock x:Name="lblLOT" x:Uid="lblLot" Style="{StaticResource Medium2LabelsStyle}" Margin="498,120,0,0" Width="94" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <TextBlock x:Name="lblNetW" x:Uid="lblNetWeight" Style="{StaticResource Medium2LabelsStyle}" Margin="2,193,0,0" Width="94" HorizontalAlignment="Left" Height="67" VerticalAlignment="Top" TextWrapping="Wrap"/>
         <Border x:Name="txtNetWeightBorder" Style="{StaticResource WarnTextBoxStyle}" Height="64" Margin="93,198,0,0" Width="406">
             <TextBlock x:Name="txtNetW" TextAlignment="Right" VerticalAlignment="Top" FontFamily="Calibri" FontSize="52" FontWeight="Bold" Foreground="White" Height="63" Margin="182,0,1,-1"/>
         </Border>
@@ -105,7 +107,7 @@
         </Border>
 
         <TextBlock x:Name="txtScaleName" Style="{StaticResource IndicatorLabelstyle}" Margin="159,3,0,0" Width="211" Height="63"/>
-        <TextBlock x:Name="txtSum" Style="{StaticResource IndicatorMedium2Labelstyle}" Margin="385,2,0,0" Width="280" Height="63"/>
+        <TextBlock x:Name="txtSum" Style="{StaticResource IndicatorMedium2Labelstyle}" Margin="373,2,0,0" Width="365" Height="55" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="672,52,0,0" Text="RV:" Height="13"/>
         <TextBlock x:Name="txtRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="688,52,0,0" Text="" Width="59" Height="13" />

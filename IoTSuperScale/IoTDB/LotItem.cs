@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 
 namespace IoTSuperScale.IoTDB
 {
@@ -19,9 +20,9 @@ namespace IoTSuperScale.IoTDB
             get
             {
                 if(Qty2!=0.0)
-                    return string.Format("{0} - {1} {2}", Code, Qty2, "ΚΙΒ");
+                    return string.Format("{0} - {1} {2}", Code, Qty2, ResourceLoader.GetForCurrentView().GetString("Boxes"));
                 else if(Qty1!=0.0)
-                    return string.Format("{0} - {1} {2}", Code, Qty1, "ΚΙΛΑ");
+                    return string.Format("{0} - {1} {2}", Code, Qty1, ResourceLoader.GetForCurrentView().GetString("Kilos"));
                 else
                     return string.Format("{0}", Code);
             }

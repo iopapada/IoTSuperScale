@@ -7,10 +7,7 @@ namespace IoTSuperScale.IoTDB
     {
         static ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
         static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-        
-        //should figure out how to refactor these public properties.
-        //these prevent multiple scales from the same application...
-        //should store the values where they're easier to read from source control
+
         #region general properties
         private static int getIntSetting(string key, int defaultValue)
         {
@@ -209,55 +206,88 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return (string)localSettings.Values["ERPDBInstance"];
+                return (string)localSettings.Values["ERPDBInstance"] ?? "";
             }
             set
             {
                 localSettings.Values["ERPDBInstance"] = value;
             }
         }
+        public static string MRPDBInstance
+        {
+            get
+            {
+                return (string)localSettings.Values["MRPDBInstance"] ?? "";
+            }
+            set
+            {
+                localSettings.Values["MRPDBInstance"] = value;
+            }
+        }
         public static string ERPDBname
         {
             get
             {
-                return (string)localSettings.Values["ERPDBname"];
+                return (string)localSettings.Values["ERPDBname"] ?? "";
             }
             set
             {
                 localSettings.Values["ERPDBname"] = value;
             }
         }
-        public static string ERPDBuser
+        public static string MRPDBname
         {
             get
             {
-                return (string)localSettings.Values["ERPDBuser"] ?? "sa";
+                return (string)localSettings.Values["MRPDBname"] ?? "";
             }
             set
             {
-                localSettings.Values["ERPDBuser"] = value;
+                localSettings.Values["MRPDBname"] = value;
             }
         }
-        public static string ERPDBpass
+        public static string DBuser
         {
             get
             {
-                return (string)localSettings.Values["ERPDBpass"];
+                return (string)localSettings.Values["DBuser"] ?? "sa";
             }
             set
             {
-                localSettings.Values["ERPDBpass"] = value;
+                localSettings.Values["DBuser"] = value;
             }
         }
-        public static string ConnectionString
+        public static string DBpass
         {
             get
             {
-                return "Data source = "+IpERPServerConfig+"\\"+ERPDBInstance+","+PortERPServerConfig+";Initial Catalog="+ERPDBname+";User ID="+ERPDBuser+";Password = "+ERPDBpass + ";";
+                return (string)localSettings.Values["DBpass"] ?? "";
             }
             set
             {
-                localSettings.Values["ConnectionString"] = value;
+                localSettings.Values["DBpass"] = value;
+            }
+        }
+        public static string ERPDBConnectionString
+        {
+            get
+            {
+                return "Data source = " + IpERPServerConfig + "\\" + ERPDBInstance + "," + PortERPServerConfig + ";Initial Catalog=" + ERPDBname + ";User ID=" + DBuser + ";Password = " + DBpass + ";";
+            }
+            set
+            {
+                localSettings.Values["ERPDBConnectionString"] = value;
+            }
+        }
+        public static string MRPDBConnectionString
+        {
+            get
+            {
+                return "Data source = " + IpERPServerConfig + "\\" + MRPDBInstance + "," + PortERPServerConfig + ";Initial Catalog=" + MRPDBname + ";User ID=" + DBuser + ";Password = " + DBpass + ";";
+            }
+            set
+            {
+                localSettings.Values["MRPDBConnectionString"] = value;
             }
         }
         public static bool BroadcastPcksConfig
@@ -297,7 +327,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("ScreenSaverMins", 15);
+                return getIntSetting("ScreenSaverMins", 0);
             }
             set
             {
@@ -360,6 +390,17 @@ namespace IoTSuperScale.IoTDB
             set
             {
                 localSettings.Values["CopiesPrints"] = value;
+            }
+        }
+        public static int PalletsNum
+        {
+            get
+            {
+                return getIntSetting("PalletsNum", 1);
+            }
+            set
+            {
+                localSettings.Values["PalletsNum"] = value;
             }
         }
         #endregion

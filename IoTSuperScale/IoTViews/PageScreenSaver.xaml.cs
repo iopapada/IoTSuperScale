@@ -1,5 +1,8 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -14,10 +17,23 @@ namespace IoTSuperScale.IoTViews
         {
             this.InitializeComponent();
         }
-
         private void Page_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(PageMenu), null);
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame.CanGoBack)
+                rootFrame.GoBack();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            App.Current.IsIdleChanged += onIsIdleChanged;
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            App.Current.IsIdleChanged -= onIsIdleChanged;
+        }
+        private void onIsIdleChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

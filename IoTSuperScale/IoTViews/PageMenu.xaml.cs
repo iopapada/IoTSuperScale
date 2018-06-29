@@ -9,6 +9,7 @@ namespace IoTSuperScale.IoTViews
         {
             this.InitializeComponent();
             txtFooter.Text = App.GetAppTextFooter();
+            //NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
 
         private void btnScale_Click(object sender, RoutedEventArgs e)

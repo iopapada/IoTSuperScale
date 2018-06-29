@@ -3,10 +3,12 @@ using IoTSuperScale.IoTDB;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 
 namespace IoTSuperScale.IoTViews
 {
@@ -25,6 +27,7 @@ namespace IoTSuperScale.IoTViews
             _SelectedMaterial = MaterialOptions[0];
             SelectedMaterial = MaterialOptions[0];
             txtFooter.Text = App.GetAppTextFooter();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
@@ -103,10 +106,9 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Grid Error");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleGridError"));
             }
         }
-
         public PackagedMaterialItem SelectedMaterial
         {
             get
@@ -122,11 +124,18 @@ namespace IoTSuperScale.IoTViews
                 }
             }
         }
-
         void RaisePropertyChanged(string prop)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
     }
 }

@@ -9,6 +9,70 @@ namespace IoTSuperScale.IoTDB
 {
     public class DBinit
     {
+        public sealed class SingletonMRP
+        {
+            private static SingletonMRP dbMRPInstance = null;
+            private SqlConnection mrpDBconn = new SqlConnection(AppSettings.MRPDBConnectionString);
+            public static SingletonMRP getMRPDbInstance()
+            {
+                if (dbMRPInstance == null)
+                {
+                    dbMRPInstance = new SingletonMRP();
+                }
+                return dbMRPInstance;
+            }
+            public SqlConnection GetMRPDBConnection()
+            {
+                SqlConnection mrpDBconn = new SqlConnection(AppSettings.MRPDBConnectionString);
+                try
+                {
+                    mrpDBconn.Open();
+                }
+                catch (SqlException ex)
+                {
+                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleMRPerrorDBConnection"));
+                }
+                return mrpDBconn;
+            }
+            public void CloseMRPDBConnection()
+            {
+                if (SingletonMRP.getMRPDbInstance().GetMRPDBConnection().State == ConnectionState.Open) mrpDBconn.Close();
+            }
+        }
+        public sealed class SingletonERP
+        {
+            private static SingletonERP dbERPInstance = null;
+            private readonly SqlConnection erpDBconn = new SqlConnection(AppSettings.ERPDBConnectionString);
+
+            private SingletonERP()
+            {
+            }
+            public static SingletonERP getERPDbInstance()
+            {
+                if (dbERPInstance == null)
+                {
+                    dbERPInstance = new SingletonERP();
+                }
+                return dbERPInstance;
+            }
+            public SqlConnection GetERPDBConnection()
+            {
+                SqlConnection erpDBconn = new SqlConnection(AppSettings.ERPDBConnectionString);
+                try
+                {
+                    erpDBconn.Open();
+                }
+                catch (SqlException ex)
+                {
+                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleERPerrorDBConnection"));
+                }
+                return erpDBconn;
+            }
+            public void CloseERPDBConnection()
+            {
+                if (SingletonERP.getERPDbInstance().GetERPDBConnection().State == ConnectionState.Open) erpDBconn.Close();
+            }
+        }
         public static ObservableCollection<PackagedMaterialItem> GetAllSuppliers()
         {
             return null;
@@ -21,8 +85,7 @@ namespace IoTSuperScale.IoTDB
         {
             return null;
         }
-
-        public static ObservableCollection<LotItem> GetLotsOfProduct(string connectionString, string itemCode)
+        public static ObservableCollection<LotItem> GetLotsOfProduct(string itemCode)
         {
             //string testt = @"select * from HEITEMS";
             string GetLotsQuery = @"select lot.HECREATIONDATE, lot.HECODE, lot.HEBLOCKSALES, data.HECODE, data.HENAME," +
@@ -38,47 +101,35 @@ namespace IoTSuperScale.IoTDB
             var lots = new ObservableCollection<LotItem>();
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand(GetLotsQuery, SingletonERP.getERPDbInstance().GetERPDBConnection()))
                 {
-
-                    using (SqlCommand cmd = new SqlCommand(GetLotsQuery, conn))
+                    //cmd.CommandType = CommandType.Text;
+                    //cmd.Parameters.AddWithValue("@itemCode",itemCode.ToString());
+                    cmd.Parameters.Add("@itemCode", SqlDbType.NVarChar);
+                    cmd.Parameters["@itemCode"].Value = itemCode;
+                    //SqlDataAdapter test = new SqlDataAdapter(cmd);
+                    //test.Fill(ds,"orders");
+                    using (SqlDataReader myReader = cmd.ExecuteReader())
                     {
-                        //cmd.CommandType = CommandType.Text;
-                        //cmd.Parameters.AddWithValue("@itemCode",itemCode.ToString());
-                        cmd.Parameters.Add("@itemCode", SqlDbType.NVarChar);
-                        cmd.Parameters["@itemCode"].Value = itemCode;
-                        //SqlDataAdapter test = new SqlDataAdapter(cmd);
-                        //test.Fill(ds,"orders");
-
-                        conn.Open();
-                        if (conn.State == ConnectionState.Open)
+                        while (myReader.Read())
                         {
-                            using (SqlDataReader myReader = cmd.ExecuteReader())
-                            {
-                                while (myReader.Read())
-                                {
-                                    var material = new LotItem();
-                                    material.Code = myReader.GetString(1);
-                                    material.Qty1 = Double.Parse(myReader.GetDecimal(5).ToString());
-                                    material.Qty2 = Double.Parse(myReader.GetDecimal(6).ToString());
+                            var material = new LotItem();
+                            material.Code = myReader.GetString(1);
+                            material.Qty1 = Double.Parse(myReader.GetDecimal(5).ToString());
+                            material.Qty2 = Double.Parse(myReader.GetDecimal(6).ToString());
 
-
-
-                                    lots.Add(material);
-                                }
-                                //DataTable myTable = new DataTable();
-                                //myTable.Load(myReader);
-                                conn.Close();
-                            }
+                            lots.Add(material);
                         }
+                        //DataTable myTable = new DataTable();
+                        //myTable.Load(myReader);
+                        SingletonERP.getERPDbInstance().CloseERPDBConnection();
                     }
                 }
                 return lots;
             }
             catch (Exception ex)
             {
-                //Debug.WriteLine("Exception: " + ex.Message);
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgReceiptEncoding"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLotNumsQuery"));
                 return lots;
             }
         }

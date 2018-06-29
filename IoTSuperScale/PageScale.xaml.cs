@@ -12,10 +12,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System;
 using Windows.UI;
-using System.Threading;
-
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using Windows.ApplicationModel.Resources;
+using System.Threading.Tasks;
+using System.Linq;
+using Windows.UI.Xaml.Navigation;
+using static IoTSuperScale.IoTDB.DBinit;
+using System.Data.SqlClient;
 
 namespace IoTSuperScale
 {
@@ -28,26 +30,25 @@ namespace IoTSuperScale
         object previousTouch1 = null;
         object previousTouch2 = null;
         object currentTouch = null;
-        public DispatcherTimer scaleTimer;
+        public static DispatcherTimer scaleTimer;
         //Helper values
         public static string lastWeightValue;
         public static double tareweight;
         private ObservableCollection<PackagedMaterialItem> MaterialOptions;
         private ObservableCollection<SupplierItem> SupplierOptions;
         public ObservableCollection<LotItem> LotOptions;
-
-        //private ObservableCollection<LotItem> _LotOptions;
         private PackagedMaterialItem _SelectedMaterial;
         private SupplierItem _SelectedSupplier;
         private LotItem _SelectedLot;
-
         public event PropertyChangedEventHandler PropertyChanged;
         StorageFile currentLabel;
         StorageFile protoWeightLabel;
         StorageFile protoMaterialLabel;
         StorageFile dataWeightLabel;
+        public static SqlConnection sin;
         //Printer values
         int step;
+        int pallet;
         double sum;
 
         public PageScale()
@@ -58,11 +59,27 @@ namespace IoTSuperScale
                 txtScaleName.Text = AppSettings.ScaleName+" ("+AppSettings.LCcapacity+")";
                 txtFooter.Text = App.GetAppTextFooter();
 
+                string temp = App.s.createZeroPoint();
+                double zeroPoint = Double.Parse(temp);
+                App.s.zeroPointString = temp + AppSettings.TrailingUnit;
+
                 //Start scale timer tick
                 scaleTimer = new DispatcherTimer();
                 scaleTimer.Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer);
                 scaleTimer.Tick += Timer_Tick;
                 scaleTimer.Start();
+                //just prepare the singleton object avoiding latency
+                try
+                {
+                    sin = SingletonERP.getERPDbInstance().GetERPDBConnection();
+                    SingletonERP.getERPDbInstance().CloseERPDBConnection();
+                    //sin2 = SingletonMRP.getMRPDbInstance().GetMRPDBConnection();
+                    //SingletonMRP.getMRPDbInstance().CloseMRPDBConnection();
+                }
+                catch (Exception ex)
+                {
+                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleERPerrorDBConnection"));
+                }
                 //By authenticated access
                 if (App.isAuthenticated)
                 {
@@ -71,7 +88,8 @@ namespace IoTSuperScale
                     {
                         step = 0;
                         sum = 0;
-                        txtSum.Text = step.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString();
+                        pallet = 1;
+                        txtSum.Text = ResourceLoader.GetForCurrentView().GetString("lblPallet") + pallet.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("Step") + step.ToString()+"/"+AppSettings.SumPrints+ " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString() + AppSettings.TrailingUnit;
                     }
                     DisplayUtilities();
                     //Load materials in ComboBox
@@ -81,10 +99,7 @@ namespace IoTSuperScale
                     SelectedMaterial = MaterialOptions[0];
                     //Load empty lot
                     LotOptions = new ObservableCollection<LotItem>();
-                    InsertEmptyLot();
                     RaisePropertyChanged("LotOptions");
-                    _SelectedLot = LotOptions[0];
-                    SelectedLot = LotOptions[0];
                     //Load suppliers in ComboBox
                     SupplierOptions = new ObservableCollection<SupplierItem>();
                     ComboBoxOptionsManager.GetAllSuppliersList(SupplierOptions);
@@ -92,15 +107,15 @@ namespace IoTSuperScale
                     SelectedSupplier = SupplierOptions[0];
                     //Load some labels
                     LoadLabelsFiles();
-                    //In case we want to save the state of pagescale
-                    //NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
+                    //we want to save the state of pagescale
+                    NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
                 }
                 else
                     HideUtilities();
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgErrorOnLoadScale"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleErrorOnLoadScale"));
             }
         }
         private async void LoadLabelsFiles()
@@ -112,7 +127,7 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgNonExistLabelsTitle"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleNonExistLabels"));
             }
         }
         #region UI functions & bar buttons
@@ -215,7 +230,7 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgErrorScaleValues"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleErrorScaleValues"));
             }
         }
         private string calculateNetW(double weight, double tareweight, double precentage, int qty)
@@ -241,8 +256,6 @@ namespace IoTSuperScale
         }
         private void btnTare_Click(object sender, RoutedEventArgs e)
         {
-            scaleTimer.Stop();
-            Frame.Navigate(typeof(PageScreenSaver), null);
             //tareweight = App.s.finalDigitVal;
         }
         private void btnZero_Click(object sender, RoutedEventArgs e)
@@ -254,20 +267,20 @@ namespace IoTSuperScale
             //edit label with real data
             if (SelectedSupplier.code == "000" && (SelectedMaterial.type == PackagedMaterialItem.materialType.BIO || SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO))
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
             }
-            if (SelectedLot.Code == "000")
+            if (String.IsNullOrEmpty(SelectedLot.Code.ToString()))
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
             }
             //Check printer settings
-            if (AppSettings.SumPrints > 1 && step <= AppSettings.SumPrints)
+            if (AppSettings.SumPrints > 1 || AppSettings.PalletsNum > 1)
             {
                 step++;
                 sum += Double.Parse(txtNetW.Text.Remove(txtNetW.Text.Length - 3, 3));
-                txtSum.Text = step.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString() + AppSettings.TrailingUnit;
+                txtSum.Text = ResourceLoader.GetForCurrentView().GetString("lblPallet") + pallet.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("Step") + step.ToString() + "/" + AppSettings.SumPrints + " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString() + AppSettings.TrailingUnit;
             }
 
             if (currentLabel != null)
@@ -303,10 +316,21 @@ namespace IoTSuperScale
             {
                 await Task.Delay(TimeSpan.FromSeconds(2));
                 //Thread.Sleep(2000);
-                PrinterUtil.sendTestToPrinter(sum.ToString() + AppSettings.TrailingUnit, AppSettings.CopiesPrints.ToString());
-                AppSettings.CopiesPrints = 1;
-                AppSettings.SumPrints = 1;
-                txtSum.Text = String.Empty;
+                if (pallet == AppSettings.PalletsNum)
+                {
+                    AppSettings.CopiesPrints = 1;
+                    AppSettings.SumPrints = 1;
+                    AppSettings.PalletsNum = 1;
+                    txtSum.Text = String.Empty;
+                }
+                else
+                {
+                    PrinterUtil.sendTestToPrinter(sum.ToString() + AppSettings.TrailingUnit, AppSettings.CopiesPrints.ToString());
+                    pallet++;
+                    step = 0;
+                    sum = 0;
+                    txtSum.Text = ResourceLoader.GetForCurrentView().GetString("lblPallet") + pallet.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("Step") + step.ToString() + "/" + AppSettings.SumPrints + " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString() + AppSettings.TrailingUnit;
+                }
             }
         }
         public PackagedMaterialItem SelectedMaterial
@@ -322,11 +346,10 @@ namespace IoTSuperScale
                     _SelectedMaterial = value;
                     RaisePropertyChanged("SelectedMaterial");
                     //Load lots of selected material
+                    CBoxLotNums.Text = "";
                     LotOptions = new ObservableCollection<LotItem>();
-                    LotOptions = DBinit.GetLotsOfProduct(AppSettings.ConnectionString, SelectedMaterial.code);
-                    InsertEmptyLot();
+                    LotOptions = DBinit.GetLotsOfProduct(SelectedMaterial.code);
                     RaisePropertyChanged("LotOptions");
-                    SelectedLot = LotOptions[0];
                     //Load suppliers 
                     SelectedSupplier = SupplierOptions[0];
                     ChangeSelectedLabel();
@@ -363,14 +386,6 @@ namespace IoTSuperScale
                 }
             }
         }
-
-        private void InsertEmptyLot() {
-            LotItem initLot = new LotItem();
-            initLot.Code = "Καμία επιλογή";
-            initLot.Qty1 = 0;
-            initLot.Qty2 = 0;
-            LotOptions.Insert(0, initLot);
-        }
         private async void ChangeSelectedLabel()
         {
             try
@@ -389,7 +404,7 @@ namespace IoTSuperScale
             }
             catch (Exception)
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgNonExistLabels"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgNonExistLabels"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
             }
         }
         void RaisePropertyChanged(string prop)
@@ -417,6 +432,46 @@ namespace IoTSuperScale
                 qtySpinner.TextValueProperty = "1";
                 printsSpinner.TextValueProperty = "1";
             }
+        }
+        private void CBoxLotNums_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) {
+                var matchingLot = LotOptions.ToList().Where(c => c.Code.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) > -1).OrderByDescending(c => c.Code.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase));
+                sender.ItemsSource = matchingLot.ToList();
+            }
+        }
+        private void CBoxLotNums_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+            {
+                LotItem chsLotItem = args.ChosenSuggestion as LotItem;
+                CBoxLotNums.Text = chsLotItem.GetLot;
+            }
+            else
+            {
+                var matchingLot = LotOptions.ToList().Where(c => c.Code.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) > -1).OrderByDescending(c => c.Code.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase));
+                if (matchingLot.Count() >= 1)
+                    CBoxLotNums.Text = matchingLot.FirstOrDefault().GetLot;
+            }
+        }
+        private void CBoxLotNums_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            LotItem selectedLot = args.SelectedItem as LotItem;
+            sender.Text = selectedLot.GetLot;
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            App.Current.IsIdleChanged += onIsIdleChanged;
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            App.Current.IsIdleChanged -= onIsIdleChanged;
+            scaleTimer.Stop();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+        }
+        private void onIsIdleChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

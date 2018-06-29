@@ -175,7 +175,7 @@
     <value>Θάλαμος:</value>
   </data>
   <data name="lblCopies.Text" xml:space="preserve">
-    <value>Πλήθος:</value>
+    <value>Ετικέτες:</value>
   </data>
   <data name="lblCustomer.Text" xml:space="preserve">
     <value>Πελάτης:</value>
@@ -211,7 +211,7 @@
     <value>min:</value>
   </data>
   <data name="lblNetWeight.Text" xml:space="preserve">
-    <value>Καθαρό:</value>
+    <value>Καθαρό Βάρος:</value>
   </data>
   <data name="lblOffsetZero.Text" xml:space="preserve">
     <value>Θέση:</value>
@@ -284,5 +284,35 @@
   </data>
   <data name="lblPortServer.Text" xml:space="preserve">
     <value>Πόρτα ERP:</value>
+  </data>
+  <data name="lblPallets.Text" xml:space="preserve">
+    <value>Παλέτες:</value>
+  </data>
+  <data name="Boxes" xml:space="preserve">
+    <value>Κιβώτια</value>
+  </data>
+  <data name="Kilos" xml:space="preserve">
+    <value>Κιλά</value>
+  </data>
+  <data name="lblPallet" xml:space="preserve">
+    <value>Παλέτα:</value>
+  </data>
+  <data name="lblStep.Text" xml:space="preserve">
+    <value>Βήμα:</value>
+  </data>
+  <data name="Step" xml:space="preserve">
+    <value>Βήμα:</value>
+  </data>
+  <data name="btnERPDBconnectionTest.Content" xml:space="preserve">
+    <value>Τεστ συνδεσης ERP DB</value>
+  </data>
+  <data name="btnMRPDBconnectionTest.Content" xml:space="preserve">
+    <value>Τεστ συνδεσης MRP DB</value>
+  </data>
+  <data name="lblMRPDBInstance.Text" xml:space="preserve">
+    <value>Στιγ. MRP</value>
+  </data>
+  <data name="lblMRPDBname.Text" xml:space="preserve">
+    <value>DB MRP:</value>
   </data>
 </root>

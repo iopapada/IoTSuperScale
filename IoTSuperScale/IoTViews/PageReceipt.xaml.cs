@@ -10,6 +10,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -51,9 +52,9 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgReceiptEncoding"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleEncodingError"));
             }
-
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
@@ -110,7 +111,7 @@ namespace IoTSuperScale.IoTViews
             //edit label with real dat
             if (txtBoxLot.Text == string.Empty || txtBoxLot.Text == null)
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLabelErrorTitle"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
             }
             if (protoWeightLabel != null)
@@ -131,6 +132,14 @@ namespace IoTSuperScale.IoTViews
                 File.WriteAllText(dataWeightLabel.Path, newVal, encoding);
             }
             PrinterUtil.sendToPrinterFile(dataWeightLabel);
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
     }
 }

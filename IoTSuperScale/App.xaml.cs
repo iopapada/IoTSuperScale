@@ -1,5 +1,6 @@
 ﻿using IoTSuperScale.IoTCore;
 using IoTSuperScale.IoTDB;
+using IoTSuperScale.IoTViews;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Reflection;
 using System.Text;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -21,7 +24,29 @@ namespace IoTSuperScale
     {
         public static bool isAuthenticated;
         public static Encoding encoding;
+        //Scale object is the first default view on start of application
         public static Scale s = new Scale();
+        //Idle time vars
+        public static new App Current => (App)Application.Current;
+        public event EventHandler IsIdleChanged;
+        public DispatcherTimer idleTimer;
+        private bool isIdle;
+        public bool IsIdle
+        {
+            get
+            {
+                return isIdle;
+            }
+
+            set
+            {
+                if (isIdle != value)
+                {
+                    isIdle = value;
+                    IsIdleChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
         public App()
         {
             this.InitializeComponent();
@@ -33,10 +58,9 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, "Encoding error");
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleEncodingError"));
             }
         }
-
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -45,25 +69,26 @@ namespace IoTSuperScale
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-
+            idleTimer = new DispatcherTimer();
+            idleTimer.Interval = TimeSpan.FromSeconds(60*AppSettings.ScreenSaverMins);
+            idleTimer.Tick += onIdleTimerTick;
+            if (AppSettings.ScreenSaverMins != 0)
+                idleTimer.Start();
+            Window.Current.CoreWindow.PointerMoved += onCoreWindowPointerMoved;
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
-
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
                 }
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
-
             if (e.PrelaunchActivated == false)
             {
                 if (rootFrame.Content == null)
@@ -77,7 +102,6 @@ namespace IoTSuperScale
                 Window.Current.Activate();
             }
         }
-
         /// <summary>
         /// Invoked when Navigation to a certain page fails
         /// </summary>
@@ -87,7 +111,22 @@ namespace IoTSuperScale
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
+        private void onIdleTimerTick(object sender, object e)
+        {
+            idleTimer.Stop();
+            IsIdle = true;
+            Frame rootFrame = Window.Current.Content as Frame;
+            rootFrame.Navigate(typeof(PageScreenSaver), null);
+        }
 
+        private void onCoreWindowPointerMoved(CoreWindow sender, PointerEventArgs args)
+        {
+            idleTimer.Stop();
+            idleTimer.Interval = TimeSpan.FromSeconds(60 * AppSettings.ScreenSaverMins);
+            if (AppSettings.ScreenSaverMins != 0)
+                idleTimer.Start();
+            IsIdle = false;
+        }
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
         /// without knowing whether the application will be terminated or resumed with the contents
