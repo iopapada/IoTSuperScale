@@ -18,28 +18,22 @@ namespace IoTSuperScale.IoTControls
         {
             this.InitializeComponent();
         }
-
         private void btnUp_Click(object sender, RoutedEventArgs e)
         {
             int temp = Convert.ToInt32(txtValue.Text);
+            if (temp == 0)
+                btnDown.IsHitTestVisible = true;
             temp = temp + 1;
             txtValue.Text = temp.ToString();
         }
-
         private void btnDown_Click(object sender, RoutedEventArgs e)
         {
             int temp = Convert.ToInt32(txtValue.Text);
-            if (temp == 0)
+            if (temp == 1)
                 btnDown.IsHitTestVisible = false;
-            else
-            {
-                if (temp == 1)
-                    btnDown.IsHitTestVisible = true;
-                temp = temp - 1;
-                txtValue.Text = temp.ToString();
-            }
+            temp = temp - 1;
+            txtValue.Text = temp.ToString();
         }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             step = Convert.ToInt32(txtValue.Text);
