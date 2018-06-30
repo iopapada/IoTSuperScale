@@ -30,11 +30,13 @@ namespace IoTSuperScale.IoTViews
         {
             Frame mainFrame = Window.Current.Content as Frame;
             App.isAuthenticated = false;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             mainFrame.Navigate(typeof(PageScale), null);
         }
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = true;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             Frame.Navigate(typeof(PageMenu), null);
         }
         private void CBoxLang_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,7 +69,7 @@ namespace IoTSuperScale.IoTViews
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            
         }
     }
 }

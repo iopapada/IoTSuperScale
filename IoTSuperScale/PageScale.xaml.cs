@@ -196,15 +196,17 @@ namespace IoTSuperScale
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
-            Frame.Navigate(typeof(PageLogin), null);
             scaleTimer.Stop();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            Frame.Navigate(typeof(PageLogin), null);
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            scaleTimer.Stop();
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame.CanGoBack)
                 rootFrame.GoBack();
-            scaleTimer.Stop();
         }
         #endregion
         private void Timer_Tick(object sender, object e)
@@ -467,7 +469,6 @@ namespace IoTSuperScale
         {
             App.Current.IsIdleChanged -= onIsIdleChanged;
             scaleTimer.Stop();
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
         private void onIsIdleChanged(object sender, EventArgs e)
         {

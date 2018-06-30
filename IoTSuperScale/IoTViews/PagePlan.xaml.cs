@@ -32,6 +32,7 @@ namespace IoTSuperScale.IoTViews
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             Frame.Navigate(typeof(PageLogin), null);
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -41,6 +42,7 @@ namespace IoTSuperScale.IoTViews
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             if (rootFrame.CanGoBack)
                 rootFrame.GoBack();
         }
@@ -135,7 +137,7 @@ namespace IoTSuperScale.IoTViews
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            
         }
     }
 }

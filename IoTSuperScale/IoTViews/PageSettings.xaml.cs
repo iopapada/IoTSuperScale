@@ -76,6 +76,7 @@ namespace IoTSuperScale.IoTViews
         {
             settingsTimer.Stop();
             Frame rootFrame = Window.Current.Content as Frame;
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             if (rootFrame.CanGoBack)
                 rootFrame.GoBack();
         }
@@ -83,6 +84,7 @@ namespace IoTSuperScale.IoTViews
         {
             App.isAuthenticated = false;
             settingsTimer.Stop();
+            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
 
         public void LoadSettings()
@@ -227,7 +229,6 @@ namespace IoTSuperScale.IoTViews
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
     }
 }
