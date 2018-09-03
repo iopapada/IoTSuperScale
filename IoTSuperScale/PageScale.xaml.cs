@@ -272,7 +272,7 @@ namespace IoTSuperScale
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
             }
-            if (String.IsNullOrEmpty(SelectedLot.Code.ToString()))
+            if (String.IsNullOrEmpty(CBoxLotNums.Text) || String.IsNullOrEmpty(SelectedLot.Code.ToString()))
             {
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
@@ -458,12 +458,22 @@ namespace IoTSuperScale
         }
         private void CBoxLotNums_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            LotItem selectedLot = args.SelectedItem as LotItem;
-            sender.Text = selectedLot.GetLot;
+            SelectedLot = new LotItem();
+            SelectedLot = args.SelectedItem as LotItem;
+            sender.Text = SelectedLot.GetLot;
+        }
+        private void CBoxLotNums_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (SelectedLot == null)
+            {
+                SelectedLot = new LotItem();
+                SelectedLot.Code = CBoxLotNums.Text;
+            }
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             App.Current.IsIdleChanged += onIsIdleChanged;
+            scaleTimer.Start();
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {

@@ -87,7 +87,7 @@
             ItemsSource="{x:Bind LotOptions, Mode=OneWay}"
             SuggestionChosen="CBoxLotNums_SuggestionChosen"
             TextChanged="CBoxLotNums_TextChanged"
-            QuerySubmitted="CBoxLotNums_QuerySubmitted" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            QuerySubmitted="CBoxLotNums_QuerySubmitted" HorizontalAlignment="Left" VerticalAlignment="Top" LostFocus="CBoxLotNums_LostFocus"/>
 
         <!--TextBox  x:Name="txtBoxLot" Style="{StaticResource BaseTextBoxStyle}" Margin="575,168,0,0" InputScope="Number" Width="223" /-->
         <TextBlock x:Name="lblLOT" x:Uid="lblLot" Style="{StaticResource Medium2LabelsStyle}" Margin="498,120,0,0" Width="94" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
