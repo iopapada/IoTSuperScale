@@ -147,17 +147,16 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <PRIResource Include="IoTLang\en-US\Messages.resw" />
+    <PRIResource Include="IoTLang\en-US\Resources.resw" />
+    <PRIResource Include="IoTLang\el-GR\Resources.resw" />
+    <PRIResource Include="IoTLang\el-GR\Messages.resw" />
     <None Include="IoTLabels\Bio.x" />
     <None Include="IoTLabels\BioOutEE.x" />
     <None Include="IoTLabels\Customer.x" />
     <None Include="IoTLabels\Material.x" />
     <None Include="IoTLabels\SemiBio.x" />
     <None Include="IoTLabels\Supplier.x" />
-    <None Include="IoTLabels\WeightMaterial.x" />
-    <PRIResource Include="IoTLang\en-US\Messages.resw" />
-    <PRIResource Include="IoTLang\en-US\Resources.resw" />
-    <PRIResource Include="IoTLang\el-GR\Resources.resw" />
-    <PRIResource Include="IoTLang\el-GR\Messages.resw" />
     <None Include="IoTSuperScale_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

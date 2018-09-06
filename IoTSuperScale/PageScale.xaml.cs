@@ -42,9 +42,7 @@ namespace IoTSuperScale
         private LotItem _SelectedLot;
         public event PropertyChangedEventHandler PropertyChanged;
         StorageFile currentLabel;
-        StorageFile protoWeightLabel;
-        StorageFile protoMaterialLabel;
-        StorageFile dataWeightLabel;
+        StorageFile dataLabel;
         public static SqlConnection sin;
         //Printer values
         int step;
@@ -122,8 +120,7 @@ namespace IoTSuperScale
         {
             try
             {
-                protoMaterialLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
-                protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("WeightMaterial.x");
+                currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
             }
             catch (Exception ex)
             {
@@ -217,15 +214,9 @@ namespace IoTSuperScale
                 txtRv.Text = App.s.lastOutput.ToString();
                 //calculation net weight
                 if (App.isAuthenticated && !SelectedMaterial.code.Equals("000") && !txtWeight.Text.Equals(App.s.zeroPointString))
-                {
                     txtNetW.Text = calculateNetW(App.s.finalDigitVal, SelectedMaterial.tarePack, SelectedMaterial.tarePrecentage, Int32.Parse(qtySpinner.TextValueProperty));
-                    currentLabel = protoWeightLabel;
-                }
                 else
-                {
                     txtNetW.Text = App.s.zeroPointString;
-                    currentLabel = protoMaterialLabel;
-                }
 
                 onChangeWeightDigit();
                 lastWeightValue = txtWeight.Text.ToString();
@@ -302,18 +293,26 @@ namespace IoTSuperScale
                 newVal = newVal.Replace("grsupplier", SelectedSupplier.grSupplier);
                 newVal = newVal.Replace("category", SelectedMaterial.category);
                 newVal = newVal.Replace("variety", SelectedMaterial.variety);
-                //if(SelectedMaterial.type == PackagedMaterialItem.materialType.BIO || SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO)
-                newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));
-                newVal = newVal.Replace("weightval", txtNetW.Text);
+                //newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));
+                if (Decimal.Parse(txtNetW.Text.Substring(0,txtNetW.Text.Length-3))>0)
+                {
+                    newVal = newVal.Replace("descrweightval", "Καθαρό Βάρος:");
+                    newVal = newVal.Replace("weightval", txtNetW.Text);
+                }
+                else
+                {
+                    newVal = newVal.Replace("descrweightval", " ");
+                    newVal = newVal.Replace("weightval", " ");
+                }
                 newVal = newVal.Replace("lot", SelectedLot.Code);
                 newVal = newVal.Replace("nums", printsSpinner.TextValueProperty.ToString());
 
-                dataWeightLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + currentLabel.Name, CreationCollisionOption.ReplaceExisting);
-                File.WriteAllText(dataWeightLabel.Path, newVal, App.encoding);
+                dataLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + currentLabel.Name, CreationCollisionOption.ReplaceExisting);
+                File.WriteAllText(dataLabel.Path, newVal, App.encoding);
                 //StorageFolder publicFolder = ApplicationData.Current.LocalFolder;
                 //dataLabelFile = await publicFolder.GetFileAsync("WeightData.x");
             }
-            PrinterUtil.sendToPrinterFile(dataWeightLabel);
+            PrinterUtil.sendToPrinterFile(dataLabel);
             if (step == AppSettings.SumPrints)
             {
                 await Task.Delay(TimeSpan.FromSeconds(2));
