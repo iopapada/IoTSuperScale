@@ -293,7 +293,7 @@ namespace IoTSuperScale
                 newVal = newVal.Replace("grsupplier", SelectedSupplier.grSupplier);
                 newVal = newVal.Replace("category", SelectedMaterial.category);
                 newVal = newVal.Replace("variety", SelectedMaterial.variety);
-                //newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));
+                newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));
                 if (Decimal.Parse(txtNetW.Text.Substring(0,txtNetW.Text.Length-3))>0)
                 {
                     newVal = newVal.Replace("descrweightval", "Καθαρό Βάρος:");
