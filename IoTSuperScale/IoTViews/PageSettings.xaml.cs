@@ -45,7 +45,7 @@ namespace IoTSuperScale.IoTViews
         {
             try
             {
-                SingletonERP.getERPDbInstance().GetERPDBConnection();
+                if(SingletonERP.getERPDbInstance().GetERPDBConnection()!=null);
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titlePingDB"));
             }
             catch (SqlException ex)
@@ -60,7 +60,7 @@ namespace IoTSuperScale.IoTViews
         {
             try
             {
-                SingletonMRP.getMRPDbInstance().GetMRPDBConnection();
+                if(SingletonMRP.getMRPDbInstance().GetMRPDBConnection() != null);
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titlePingDB"));
             }
             catch (SqlException ex)

@@ -19,9 +19,9 @@
 ^AIN,22,53^FDΑριθμός παρτίδας:^FS
 ^FT5,306
 ^AIN,22,53^FDΚωδ. συσκευαστή:^FS
-^FT218,203
+^FT221,203
 ^AIN,22,53^FDΚατηγορία:^FS
-^FT320,202
+^FT323,202
 ^AIN,22,53^FDcategory^FS
 ^FT170,307
 ^AIN,22,53^FDGR054577A08225902^FS
@@ -31,12 +31,12 @@
 ^AIN,22,53^FDvariety^FS
 ^FT4,175
 ^AIN,22,53^FDΠροέλευση:^FS
-^FT219,176
+^FT222,176
 ^AIN,22,53^FDΠεριοχή:^FS
 ^FT61,154
 ^AIN,22,53
 ^FB350,3,,^FDmaterialdescr^FS
-^FT300,176
+^FT303,176
 ^AIN,22,53^FDregion^FS
 ^FT104,176
 ^AIN,22,53^FDcountry^FS
@@ -44,7 +44,7 @@
 ^CWJ,E:ARIAL7B.FNT
 ^AJN,22,53^FDΠΑΠΑΔΑΚΗΣ ΙΩΑΝΝΗΣ Κ ΣΙΑ Ο.Ε^FS
 ^FO110,29
-^GB312,0,1^FS
+^GB310,0,1^FS
 ^FT117,35
 ^CWK,E:ARIAL6R.FNT
 ^AKN,19,45^FDΜάνου Κατράκη 129, Ηράκλειο Κρήτης,^FS
@@ -53,13 +53,10 @@
 ^FT116,79
 ^AIN,22,53^FDΕΜΠΟΡΙΑ - ΣΥΣΚΕΥΑΣΙΑ^FS
 ^FT4,233
-^CWK,E:ARIAL7B.FNT
-^AKN,22,53^FDdescrweightval^FS
-^FO4,253
-^GB146,0,1^FS
-^FT162,223
-^CWK,E:ARIAL12B.FNT
-^AKN,38,93^FDweightval^FS
+^AJN,22,53^FDdescrweightval^FS
+^FT155,220
+^CWL,E:ARIAL12B.FNT
+^ALN,38,93^FDweightval^FS
 ^FO7,13
 ^XGR:SSGFX000.GRF,1,1^FS
 ^PQnums,0,1,Y

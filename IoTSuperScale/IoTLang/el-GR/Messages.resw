@@ -127,7 +127,7 @@
     <value>Σφάλμα κατά την φόρτωση του ζυστικού</value>
   </data>
   <data name="titleErrorScaleValues" xml:space="preserve">
-    <value>Error on reading scale values</value>
+    <value>Σφάλμα κατά την ανάγνωση τιμών ζύγισης</value>
   </data>
   <data name="msgGrSupplier" xml:space="preserve">
     <value>Παρακαλώ συμπληρώστε το GR του προμηθευτή</value>

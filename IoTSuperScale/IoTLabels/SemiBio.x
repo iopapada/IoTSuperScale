@@ -19,9 +19,9 @@
 ^AIN,22,53^FDΑριθμός παρτίδας:^FS
 ^FT27,315
 ^AIN,22,53^FDΚωδ. συσκ.:^FS
-^FT227,207
+^FT246,207
 ^AIN,22,53^FDΚατηγορία:^FS
-^FT330,207
+^FT348,207
 ^AIN,22,53^FDcategory^FS
 ^FT141,315
 ^AIN,22,53^FDGR054577A08225902^FS
@@ -31,39 +31,35 @@
 ^AIN,22,53^FDvariety^FS
 ^FT27,180
 ^AIN,22,53^FDΠροέλευση:^FS
-^FT219,180
+^FT245,181
 ^AIN,22,53^FDΠεριοχή:^FS
 ^FT83,159
-^AIN,22,53
-^FB350,3,,^FDmaterialdescr^FS
-^FT300,180
+^AIN,22,53^FB350,3,,^FDmaterialdescr^FS
+^FT324,181
 ^AIN,22,53^FDregion^FS
-^FT126,180
+^FT128,180
 ^AIN,22,53^FDcountry^FS
 ^FT27,261
 ^AIN,22,53^FDΚωδ. Παραγ.:^FS
 ^FT153,260
 ^AIN,22,54^FDgrsupplier^FS
 ^FT125,8
-^CWK,E:ARIAL7B.FNT
-^AKN,22,53^FDΠΑΠΑΔΑΚΗΣ ΙΩΑΝΝΗΣ Κ ΣΙΑ Ο.Ε^FS
+^CWJ,E:ARIAL7B.FNT
+^AJN,22,53^FDΠΑΠΑΔΑΚΗΣ ΙΩΑΝΝΗΣ Κ ΣΙΑ Ο.Ε^FS
 ^FO125,28
-^GB312,0,1^FS
+^GB313,0,1^FS
 ^FT132,34
-^CWL,E:ARIAL6R.FNT
-^ALN,19,45^FDΜάνου Κατράκη 129, Ηράκλειο Κρήτης,^FS
+^CWK,E:ARIAL6R.FNT
+^AKN,19,45^FDΜάνου Κατράκη 129, Ηράκλειο Κρήτης,^FS
 ^FT132,54
-^ALN,19,45^FDΤηλ: 2810314252, Αρ. Μητρώου: 054577^FS
+^AKN,19,45^FDΤηλ: 2810314252, Αρ. Μητρώου: 054577^FS
 ^FT132,77
 ^AIN,22,53^FDΕΜΠΟΡΙΑ - ΣΥΣΚΕΥΑΣΙΑ^FS
 ^FT27,233
-^CWK,E:ARIAL7B.FNT
-^AKN,22,53^FDdescrweightval^FS
-^FO4,253
-^GB146,0,1^FS
-^FT162,223
-^CWK,E:ARIAL12B.FNT
-^AKN,38,93^FDweightval^FS
+^AJN,22,53^FDdescrweightval^FS
+^FT181,222
+^CWL,E:ARIAL12B.FNT
+^ALN,38,93^FDweightval^FS
 ^FO24,11
 ^XGR:SSGFX000.GRF,1,1^FS
 ^PQnums,0,1,Y
