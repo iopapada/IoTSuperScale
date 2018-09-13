@@ -86,7 +86,7 @@ namespace IoTSuperScale
                     {
                         step = 0;
                         sum = 0;
-                        pallet = 1;
+                        pallet = 0;
                         txtSum.Text = ResourceLoader.GetForCurrentView().GetString("lblPallet") + pallet.ToString() + " - " + ResourceLoader.GetForCurrentView().GetString("Step") + step.ToString()+"/"+AppSettings.SumPrints+ " - " + ResourceLoader.GetForCurrentView().GetString("lblTotal") + sum.ToString() + AppSettings.TrailingUnit;
                     }
                     DisplayUtilities();
@@ -263,7 +263,7 @@ namespace IoTSuperScale
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
             }
-            if (String.IsNullOrEmpty(CBoxLotNums.Text) || String.IsNullOrEmpty(SelectedLot.Code.ToString()))
+            if (String.IsNullOrEmpty(CBoxLotNums.Text) || String.IsNullOrEmpty(SelectedLot.Code))
             {
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
@@ -312,7 +312,7 @@ namespace IoTSuperScale
                 //StorageFolder publicFolder = ApplicationData.Current.LocalFolder;
                 //dataLabelFile = await publicFolder.GetFileAsync("WeightData.x");
             }
-            PrinterUtil.sendToPrinterFile(dataLabel);
+            //PrinterUtil.sendToPrinterFile(dataLabel);
             if (step == AppSettings.SumPrints)
             {
                 await Task.Delay(TimeSpan.FromSeconds(2));
@@ -464,10 +464,9 @@ namespace IoTSuperScale
         private void CBoxLotNums_LostFocus(object sender, RoutedEventArgs e)
         {
             if (SelectedLot == null)
-            {
                 SelectedLot = new LotItem();
+            if(String.IsNullOrEmpty(SelectedLot.Code))
                 SelectedLot.Code = CBoxLotNums.Text;
-            }
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
