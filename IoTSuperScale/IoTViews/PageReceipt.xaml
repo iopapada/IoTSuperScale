@@ -30,21 +30,21 @@
 
         <ComboBox Width="514" Margin="152,88,0,0"
         x:Name="CBoxSuppliers"
-        DisplayMemberPath="supplierDescr"
+        DisplayMemberPath="SupplierDescr"
         Style="{StaticResource BaseCombostyle}"
         ItemsSource="{x:Bind SupplierOptions}"
         SelectedItem="{x:Bind SelectedSupplier, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
-        SelectedValuePath="code"/>
+        SelectedValuePath="Code"/>
 
         <TextBlock x:Name="lblSupplier" x:Uid="lblSupplier" Style="{StaticResource Medium2LabelsStyle}" Margin="3,91,0,0" Width="145"/>
 
         <ComboBox Width="514" Margin="152,158,0,0"
         x:Name="CBoxPackagedMaterials"
-        DisplayMemberPath="displayCodeDescr"
+        DisplayMemberPath="DisplayCodeDescr"
         Style="{StaticResource BaseCombostyle}"
         ItemsSource="{x:Bind PackagedMaterialOptions}"
         SelectedItem="{x:Bind SelectedPackagedMaterial, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
-        SelectedValuePath="code"/>
+        SelectedValuePath="Code"/>
 
         <TextBlock x:Name="lblPackMaterials" x:Uid="lblMaterial" Style="{StaticResource Medium2LabelsStyle}" Margin="2,161,0,0" Width="145"/>
 

@@ -60,11 +60,11 @@
         <Image x:Name="press1_3" Style="{StaticResource BaseImageStyle}" Source="/Assets/Guest2.png" Height="58" Margin="744,3,0,0" Width="54" />
         <ComboBox Width="662" Margin="136,71,0,0"
             x:Name="CBoxMaterials"
-            DisplayMemberPath="displayCodeDescr"
+            DisplayMemberPath="DisplayCodeDescr"
             Style="{StaticResource BaseCombostyle}"
             ItemsSource="{x:Bind MaterialOptions}"
             SelectedItem="{x:Bind SelectedMaterial, Mode=TwoWay, Converter={StaticResource ConvertersUI}}"
-            SelectedValuePath="code"
+            SelectedValuePath="Code"
             SelectionChanged="CBoxMaterials_SelectionChanged"/>
 
         <TextBlock x:Name="lblMaterialDescription" x:Uid="lblMaterial" Style="{StaticResource BigLabelstyle}" Margin="2,72,0,0" Width="186"/>
@@ -72,11 +72,11 @@
 
         <ComboBox Width="206" Margin="592,158,0,0"
             x:Name="CBoxSuppliers"
-            DisplayMemberPath="supplierDescr"
+            DisplayMemberPath="SupplierDescr"
             Style="{StaticResource BaseCombostyle}"
             ItemsSource="{x:Bind SupplierOptions}"
             SelectedItem="{x:Bind SelectedSupplier, Mode=TwoWay, Converter={StaticResource ConvertersUI}}"
-            SelectedValuePath="code" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            SelectedValuePath="Code" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblSup" x:Uid="lblSup" Style="{StaticResource Medium2LabelsStyle}" Margin="498,162,0,0" Width="94" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 

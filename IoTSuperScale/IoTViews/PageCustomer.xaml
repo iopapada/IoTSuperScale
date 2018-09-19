@@ -32,11 +32,11 @@
 
         <ComboBox Width="550" Margin="117,90,0,0"
         x:Name="CBoxCustomers"
-        DisplayMemberPath="customerDescr"
+        DisplayMemberPath="CustomerDescr"
         Style="{StaticResource BaseCombostyle}"
         ItemsSource="{x:Bind CustomerOptions}"
         SelectedItem="{x:Bind SelectedCustomer, Converter={StaticResource ConvertersUI}, Mode=TwoWay}"
-        SelectedValuePath="code"/>
+        SelectedValuePath="Code"/>
         <TextBlock x:Name="lblSup" x:Uid="lblCustomer" Style="{StaticResource Medium2LabelsStyle}" Margin="4,95,0,0" Width="108"/>
 
         <TextBlock x:Name="lblPRINTS" x:Uid="lblCopies" Style="{StaticResource Medium2LabelsStyle}" Margin="4,162,0,0" Width="108"/>

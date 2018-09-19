@@ -23,7 +23,7 @@ namespace IoTSuperScale.IoTViews
             this.InitializeComponent();
             //Load materials in ComboBox
             MaterialOptions = new ObservableCollection<PackagedMaterialItem>();
-            ComboBoxOptionsManager.GetAllPackMaterialList(MaterialOptions);
+            ComboBoxOptionsManager.GetEnabledPackMaterialsList(MaterialOptions);
             _SelectedMaterial = MaterialOptions[0];
             SelectedMaterial = MaterialOptions[0];
             txtFooter.Text = App.GetAppTextFooter();
@@ -75,7 +75,7 @@ namespace IoTSuperScale.IoTViews
                 cboxMaterial.Height = 50;
                 cboxMaterial.HorizontalAlignment = HorizontalAlignment.Left;
                 cboxMaterial.Name = "CBoxMaterials";
-                cboxMaterial.DisplayMemberPath = "displayCodeDescr";
+                cboxMaterial.DisplayMemberPath = "DisplayCodeDescr";
                 cboxMaterial.ItemsSource = MaterialOptions;
                 cboxMaterial.FontSize = 16;
                 //cboxMaterial.SelectedItem = SelectedMaterial;
