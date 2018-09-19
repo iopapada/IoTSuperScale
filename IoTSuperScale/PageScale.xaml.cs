@@ -318,7 +318,8 @@ namespace IoTSuperScale
                 await Task.Delay(TimeSpan.FromSeconds(2));
                 //Thread.Sleep(2000);
                 if ((pallet+1) == AppSettings.PalletsNum)
-                {
+                {//print last pallet sum
+                    PrinterUtil.SendTestToPrinter(sum.ToString() + AppSettings.TrailingUnit, AppSettings.CopiesPrints.ToString());
                     AppSettings.CopiesPrints = 1;
                     AppSettings.SumPrints = 1;
                     AppSettings.PalletsNum = 1;
