@@ -312,7 +312,7 @@ namespace IoTSuperScale
                 //StorageFolder publicFolder = ApplicationData.Current.LocalFolder;
                 //dataLabelFile = await publicFolder.GetFileAsync("WeightData.x");
             }
-            //PrinterUtil.sendToPrinterFile(dataLabel);
+            PrinterUtil.SendToPrinterFile(dataLabel);
             if (step == AppSettings.SumPrints)
             {
                 await Task.Delay(TimeSpan.FromSeconds(2));
