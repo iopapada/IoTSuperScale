@@ -317,7 +317,7 @@ namespace IoTSuperScale
             {
                 await Task.Delay(TimeSpan.FromSeconds(2));
                 //Thread.Sleep(2000);
-                if (pallet == AppSettings.PalletsNum)
+                if ((pallet+1) == AppSettings.PalletsNum)
                 {
                     AppSettings.CopiesPrints = 1;
                     AppSettings.SumPrints = 1;
