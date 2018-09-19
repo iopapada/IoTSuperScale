@@ -40,12 +40,12 @@
     </Page.Resources>
 
     <Grid x:Name="mainGrid" Style="{StaticResource ApplicationMainGrid}">
-        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
+        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="BtnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="btnLogOut_Click">
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Assets/LogOut4.png" />
             </Button.Background>
@@ -68,7 +68,7 @@
             SelectionChanged="CBoxMaterials_SelectionChanged"/>
 
         <TextBlock x:Name="lblMaterialDescription" x:Uid="lblMaterial" Style="{StaticResource BigLabelstyle}" Margin="2,72,0,0" Width="186"/>
-        <TextBlock x:Name="txtDescr" Text="{x:Bind SelectedMaterial.materialReadableDescr, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,119,0,0" VerticalAlignment="Top" Width="495" Height="71" Foreground="#FF4AE80F" FontFamily="Calibri" FontSize="26" />
+        <TextBlock x:Name="txtDescr" Text="{x:Bind SelectedMaterial.MaterialReadableDescr, Mode=OneWay}" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="2,119,0,0" VerticalAlignment="Top" Width="495" Height="71" Foreground="#FF4AE80F" FontFamily="Calibri" FontSize="26" />
 
         <ComboBox Width="206" Margin="592,158,0,0"
             x:Name="CBoxSuppliers"
@@ -112,8 +112,8 @@
         <TextBlock x:Name="lblRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="672,52,0,0" Text="RV:" Height="13"/>
         <TextBlock x:Name="txtRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="688,52,0,0" Text="" Width="59" Height="13" />
 
-        <Button x:Name="btnTare" x:Uid="btnTare" Style="{StaticResource WarnButtonStyle}" Margin="709,267,0,0" Height="80" Width="88" Click="btnTare_Click"/>
-        <Button x:Name="btnZero" x:Uid="btnZero" Style="{StaticResource Neutral2ButtonStyle}" Margin="709,355,0,0" Height="80" Width="88" Click="btnZero_Click"/>
-        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="611,267,0,0" Height="168" Width="94" Click="btnPrnt_Click"/>
+        <Button x:Name="btnTare" x:Uid="btnTare" Style="{StaticResource WarnButtonStyle}" Margin="709,267,0,0" Height="80" Width="88" Click="BtnTare_Click"/>
+        <Button x:Name="btnZero" x:Uid="btnZero" Style="{StaticResource Neutral2ButtonStyle}" Margin="709,355,0,0" Height="80" Width="88" Click="BtnZero_Click"/>
+        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="611,267,0,0" Height="168" Width="94" Click="BtnPrnt_Click"/>
     </Grid>
 </Page>

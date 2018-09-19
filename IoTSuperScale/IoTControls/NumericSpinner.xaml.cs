@@ -18,7 +18,7 @@ namespace IoTSuperScale.IoTControls
         {
             this.InitializeComponent();
         }
-        private void btnUp_Click(object sender, RoutedEventArgs e)
+        private void ΒtnUp_Click(object sender, RoutedEventArgs e)
         {
             int temp = Convert.ToInt32(txtValue.Text);
             if (temp == 0)
@@ -26,7 +26,7 @@ namespace IoTSuperScale.IoTControls
             temp = temp + 1;
             txtValue.Text = temp.ToString();
         }
-        private void btnDown_Click(object sender, RoutedEventArgs e)
+        private void ΒtnDown_Click(object sender, RoutedEventArgs e)
         {
             int temp = Convert.ToInt32(txtValue.Text);
             if (temp == 1)

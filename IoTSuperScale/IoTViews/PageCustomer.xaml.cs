@@ -36,13 +36,13 @@ namespace IoTSuperScale.IoTViews
             SelectedCustomer = CustomerOptions[0];
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
             Frame.Navigate(typeof(PageLogin), null);
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
@@ -69,7 +69,7 @@ namespace IoTSuperScale.IoTViews
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-        private async void btnPrnt_Click(object sender, RoutedEventArgs e)
+        private async void BtnPrnt_Click(object sender, RoutedEventArgs e)
         {
             protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Customer.x");
             //edit label with real data
@@ -81,13 +81,13 @@ namespace IoTSuperScale.IoTViews
                 byte[] fileContent = new byte[reader.UnconsumedBufferLength];
                 reader.ReadBytes(fileContent);
                 string protoVal = App.encoding.GetString(fileContent, 0, fileContent.Length);
-                string newVal = protoVal.Replace("customerdescr", SelectedCustomer.customerDescr);
+                string newVal = protoVal.Replace("customerdescr", SelectedCustomer.CustomerDescr);
                 newVal = newVal.Replace("nums", printsSpinner.TextValueProperty.ToString());
 
                 dataWeightLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + protoWeightLabel.Name, CreationCollisionOption.ReplaceExisting);
                 File.WriteAllText(dataWeightLabel.Path, newVal, App.encoding);
             }
-            PrinterUtil.sendToPrinterFile(dataWeightLabel);
+            PrinterUtil.SendToPrinterFile(dataWeightLabel);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

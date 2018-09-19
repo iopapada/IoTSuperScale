@@ -29,24 +29,24 @@ namespace IoTSuperScale.IoTViews
             txtFooter.Text = App.GetAppTextFooter();
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             Frame.Navigate(typeof(PageLogin), null);
         }
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             
         }
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             if (rootFrame.CanGoBack)
                 rootFrame.GoBack();
         }
-        private void btnAddMaterial_Click(object sender, RoutedEventArgs e)
+        private void BtnAddMaterial_Click(object sender, RoutedEventArgs e)
         {
             try
             {

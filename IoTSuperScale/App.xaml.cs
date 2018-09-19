@@ -71,10 +71,10 @@ namespace IoTSuperScale
             Frame rootFrame = Window.Current.Content as Frame;
             idleTimer = new DispatcherTimer();
             idleTimer.Interval = TimeSpan.FromSeconds(60*AppSettings.ScreenSaverMins);
-            idleTimer.Tick += onIdleTimerTick;
+            idleTimer.Tick += ΟnIdleTimerTick;
             if (AppSettings.ScreenSaverMins != 0)
                 idleTimer.Start();
-            Window.Current.CoreWindow.PointerMoved += onCoreWindowPointerMoved;
+            Window.Current.CoreWindow.PointerMoved += ΟnCoreWindowPointerMoved;
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -111,7 +111,7 @@ namespace IoTSuperScale
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
-        private void onIdleTimerTick(object sender, object e)
+        private void ΟnIdleTimerTick(object sender, object e)
         {
             idleTimer.Stop();
             IsIdle = true;
@@ -119,7 +119,7 @@ namespace IoTSuperScale
             rootFrame.Navigate(typeof(PageScreenSaver), null);
         }
 
-        private void onCoreWindowPointerMoved(CoreWindow sender, PointerEventArgs args)
+        private void ΟnCoreWindowPointerMoved(CoreWindow sender, PointerEventArgs args)
         {
             idleTimer.Stop();
             idleTimer.Interval = TimeSpan.FromSeconds(60 * AppSettings.ScreenSaverMins);

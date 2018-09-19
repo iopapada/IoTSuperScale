@@ -13,7 +13,7 @@ namespace IoTSuperScale.IoTDB
         {
             private static SingletonMRP dbMRPInstance = null;
             private SqlConnection mrpDBconn = new SqlConnection(AppSettings.MRPDBConnectionString);
-            public static SingletonMRP getMRPDbInstance()
+            public static SingletonMRP GetMRPDbInstance()
             {
                 if (dbMRPInstance == null)
                 {
@@ -36,7 +36,7 @@ namespace IoTSuperScale.IoTDB
             }
             public void CloseMRPDBConnection()
             {
-                if (SingletonMRP.getMRPDbInstance().GetMRPDBConnection().State == ConnectionState.Open) mrpDBconn.Close();
+                if (SingletonMRP.GetMRPDbInstance().GetMRPDBConnection().State == ConnectionState.Open) mrpDBconn.Close();
             }
         }
         public sealed class SingletonERP
@@ -47,7 +47,7 @@ namespace IoTSuperScale.IoTDB
             private SingletonERP()
             {
             }
-            public static SingletonERP getERPDbInstance()
+            public static SingletonERP GetERPDbInstance()
             {
                 if (dbERPInstance == null)
                 {
@@ -70,7 +70,7 @@ namespace IoTSuperScale.IoTDB
             }
             public void CloseERPDBConnection()
             {
-                if (SingletonERP.getERPDbInstance().GetERPDBConnection().State == ConnectionState.Open) erpDBconn.Close();
+                if (SingletonERP.GetERPDbInstance().GetERPDBConnection().State == ConnectionState.Open) erpDBconn.Close();
             }
         }
         public static ObservableCollection<PackagedMaterialItem> GetAllSuppliers()
@@ -101,7 +101,7 @@ namespace IoTSuperScale.IoTDB
             var lots = new ObservableCollection<LotItem>();
             try
             {
-                using (SqlCommand cmd = new SqlCommand(GetLotsQuery, SingletonERP.getERPDbInstance().GetERPDBConnection()))
+                using (SqlCommand cmd = new SqlCommand(GetLotsQuery, SingletonERP.GetERPDbInstance().GetERPDBConnection()))
                 {
                     //cmd.CommandType = CommandType.Text;
                     //cmd.Parameters.AddWithValue("@itemCode",itemCode.ToString());
@@ -122,7 +122,7 @@ namespace IoTSuperScale.IoTDB
                         }
                         //DataTable myTable = new DataTable();
                         //myTable.Load(myReader);
-                        SingletonERP.getERPDbInstance().CloseERPDBConnection();
+                        SingletonERP.GetERPDbInstance().CloseERPDBConnection();
                     }
                 }
                 return lots;

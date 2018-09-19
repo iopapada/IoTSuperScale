@@ -17,12 +17,12 @@ namespace IoTSuperScale.IoTViews
             txtFooter.Text = App.GetAppTextFooter();
             //NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void ΒtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
             Frame.Navigate(typeof(PageLogin), null);
         }
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void ΒtnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame.CanGoBack)

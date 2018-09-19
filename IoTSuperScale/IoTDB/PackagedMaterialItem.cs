@@ -2,31 +2,31 @@
 {
     public class PackagedMaterialItem
     {
-        public enum materialType
+        public enum MaterialType
         {
             BIO,
             SEMIBIO,
             CONVENTIONAL
         }
-        public enum recipeType
+        public enum RecipeType
         {
             RECIPELUX,
             RECIPESIMPLE,
         }
-        public string code { get; set; }
-        public string displayCodeDescr { get; set; }
-        public string materialDescr { get; set; }
-        public string materialReadableDescr { get; set; }
-        public recipeType? recipe { get; set; }
-        public string country { get; set; }
-        public string region { get; set; }
-        public materialType type { get; set; }
-        public bool isEnabled { get; set; }
-        public bool isWeighed { get; set; }
-        public double tarePack { get; set; }
-        public double tarePrecentage { get; set; }
-        public bool isEEcountry { get; set; }
-        public string category { get; set; }
-        public string variety { get; set; }
+        public string Code { get; set; }
+        public string DisplayCodeDescr { get; set; }
+        public string MaterialDescr { get; set; }
+        public string MaterialReadableDescr { get; set; }
+        public RecipeType? Recipe { get; set; }
+        public string Country { get; set; }
+        public string Region { get; set; }
+        public MaterialType Type { get; set; }
+        public bool IsEnabled { get; set; }
+        public bool IsWeighed { get; set; }
+        public double TarePack { get; set; }
+        public double TarePrecentage { get; set; }
+        public bool IsEEcountry { get; set; }
+        public string Category { get; set; }
+        public string Variety { get; set; }
     }
 }

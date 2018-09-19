@@ -7,12 +7,12 @@
     mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
     <Grid Style="{StaticResource ApplicationMainGrid}">
-        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
+        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="ΒtnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="btnLogOut_Click">
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="ΒtnLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/LogOut4.png" />
             </Button.Background>

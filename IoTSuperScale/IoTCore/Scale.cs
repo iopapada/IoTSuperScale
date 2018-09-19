@@ -1,6 +1,4 @@
-﻿using IoTSuperScale;
-using IoTSuperScale.IoTCore;
-using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.IoTDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +7,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
-using Windows.Networking;
-using Windows.Networking.Sockets;
-using Windows.Storage.Streams;
 
 namespace IoTSuperScale.IoTCore
 {
@@ -31,12 +26,12 @@ namespace IoTSuperScale.IoTCore
         public Scale()
         {
             Zero();
-            zeroPointString = createZeroPoint();
+            zeroPointString = CreateZeroPoint();
             zeroPoint = Double.Parse(zeroPointString);
             zeroPointString = zeroPointString + AppSettings.TrailingUnit;
         }
 
-        public string createZeroPoint()
+        public string CreateZeroPoint()
         {
             string zeroP = "0";
             if (AppSettings.Precision > 0)
@@ -100,7 +95,7 @@ namespace IoTSuperScale.IoTCore
         }
         public void Zero()
         {
-            prework();
+            Prework();
             AppSettings.OffsetZero = _GetOutputData();
             AppSettings.MaxZero = AppSettings.OffsetZero;
             AppSettings.MinZero = AppSettings.OffsetZero;
@@ -120,7 +115,7 @@ namespace IoTSuperScale.IoTCore
                 temp = _GetOutputData() - AppSettings.OffsetZero;
             return temp / weight;
         }
-        private void prework()
+        private void Prework()
         {
             List<int> suggestedVals = new List<int>(10);
             for (int i = 0; i < 10; i++)
@@ -137,7 +132,7 @@ namespace IoTSuperScale.IoTCore
             }
             dbgTheVal = suggestedVals.GroupBy(s => s).OrderByDescending(s => s.Count()).First().Key;
         }
-        private void initializeDevice()
+        private void InitializeDevice()
         {
             GpioPin dataPin;
             GpioPin clockPin;
@@ -158,7 +153,7 @@ namespace IoTSuperScale.IoTCore
         }
         private int _GetOutputData()
         {
-            initializeDevice();
+            InitializeDevice();
             int result = 0;
             if (device != null)
             {

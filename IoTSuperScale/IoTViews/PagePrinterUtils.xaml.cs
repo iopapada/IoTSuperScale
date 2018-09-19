@@ -29,40 +29,40 @@ namespace IoTSuperScale.IoTViews
             copiesSpinner.TextValueProperty = AppSettings.CopiesPrints.ToString();
             palletsSpinner.TextValueProperty = AppSettings.PalletsNum.ToString();
         }
-        private void txtboxIPPrinter_LostFocus(object sender, RoutedEventArgs e)
+        private void TxtboxIPPrinter_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.IpPrinterConfig = txtboxIPPrinter.Text;
         }
-        private void txtBoxPortPrinter_LostFocus(object sender, RoutedEventArgs e)
+        private void TxtBoxPortPrinter_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.PortPrinterConfig = txtBoxPortPrinter.Text;
         }
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             if (rootFrame.CanGoBack)
                 rootFrame.GoBack();
         }
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             Frame.Navigate(typeof(PageLogin), null);
         }
-        private void btnPrnt_Click(object sender, RoutedEventArgs e)
+        private void BtnPrnt_Click(object sender, RoutedEventArgs e)
         {
-            PrinterUtil.sendTestToPrinter(txtBoxTestText.Text, copiesSpinner.TextValueProperty.ToString());
+            PrinterUtil.SendTestToPrinter(txtBoxTestText.Text, copiesSpinner.TextValueProperty.ToString());
         }
-        private void copiesSpinner_LostFocus(object sender, RoutedEventArgs e)
+        private void CopiesSpinner_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.CopiesPrints = Int32.Parse(copiesSpinner.TextValueProperty);
         }
-        private void sumSpinner_LostFocus(object sender, RoutedEventArgs e)
+        private void SumSpinner_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.SumPrints = Int32.Parse(sumSpinner.TextValueProperty);
         }
-        private void palletsSpinner_LostFocus(object sender, RoutedEventArgs e)
+        private void PalletsSpinner_LostFocus(object sender, RoutedEventArgs e)
         {
             AppSettings.PalletsNum = Int32.Parse(palletsSpinner.TextValueProperty);
         }

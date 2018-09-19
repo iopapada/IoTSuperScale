@@ -9,7 +9,7 @@ namespace IoTSuperScale.IoTDB
         static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
 
         #region general properties
-        private static int getIntSetting(string key, int defaultValue)
+        private static int GetIntSetting(string key, int defaultValue)
         {
             if (localSettings.Values[key] == null)
             {
@@ -17,7 +17,7 @@ namespace IoTSuperScale.IoTDB
             }
             return Convert.ToInt32(localSettings.Values[key]);
         }
-        private static bool getIntSetting(string key, bool defaultValue)
+        private static bool GetIntSetting(string key, bool defaultValue)
         {
             if (localSettings.Values[key] == null)
             {
@@ -29,7 +29,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("clockPinNumber", 23);
+                return GetIntSetting("clockPinNumber", 23);
             }
             set
             {
@@ -40,7 +40,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("DataPinNumber", 24);
+                return GetIntSetting("DataPinNumber", 24);
             }
             set
             {
@@ -51,7 +51,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("ScaleTimer", 500);
+                return GetIntSetting("ScaleTimer", 500);
             }
             set
             {
@@ -96,7 +96,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("OffsetZero", 0);
+                return GetIntSetting("OffsetZero", 0);
             }
             set
             {
@@ -107,7 +107,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("MinZero", 999999);
+                return GetIntSetting("MinZero", 999999);
             }
             set
             {
@@ -118,7 +118,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("MaxZero", 0);
+                return GetIntSetting("MaxZero", 0);
             }
             set
             {
@@ -151,7 +151,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("Precision", 2);
+                return GetIntSetting("Precision", 2);
             }
             set
             {
@@ -294,7 +294,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("BroadcastPcksConfig", false);
+                return GetIntSetting("BroadcastPcksConfig", false);
             }
             set
             {
@@ -316,7 +316,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("LCcapacity", 300);
+                return GetIntSetting("LCcapacity", 300);
             }
             set
             {
@@ -327,7 +327,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("ScreenSaverMins", 0);
+                return GetIntSetting("ScreenSaverMins", 0);
             }
             set
             {
@@ -374,7 +374,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("SumPrints", 1);
+                return GetIntSetting("SumPrints", 1);
             }
             set
             {
@@ -385,7 +385,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("CopiesPrints", 1);
+                return GetIntSetting("CopiesPrints", 1);
             }
             set
             {
@@ -396,7 +396,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return getIntSetting("PalletsNum", 1);
+                return GetIntSetting("PalletsNum", 1);
             }
             set
             {

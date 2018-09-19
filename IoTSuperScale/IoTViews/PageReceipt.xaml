@@ -11,12 +11,12 @@
         <IoTControls:ConvertersUI x:Key="ConvertersUI" />
     </Page.Resources>
     <Grid Style="{StaticResource ApplicationMainGrid}">
-        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
+        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="BtnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="btnLogOut_Click">
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/LogOut4.png" />
             </Button.Background>
@@ -53,6 +53,6 @@
 
         <TextBlock x:Name="lblPRINTS" x:Uid="lblCopies" Style="{StaticResource Medium2LabelsStyle}" Margin="383,230,0,0" Width="89"/>
         <IoTControls:NumericSpinner x:Name="printsSpinner" Margin="483,219,135,211"/>
-        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="679,86,0,0" Height="111" Width="113" Click="btnPrnt_Click"/>
+        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="679,86,0,0" Height="111" Width="113" Click="BtnPrnt_Click"/>
     </Grid>
 </Page>

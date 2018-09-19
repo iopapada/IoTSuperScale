@@ -9,12 +9,12 @@
     mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
     <Grid Style="{StaticResource ApplicationMainGrid}">
-        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
+        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="BtnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="btnLogOut_Click">
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/LogOut4.png" />
             </Button.Background>
@@ -30,21 +30,21 @@
         <IoTControls:NumericSpinner x:Name="lotSpinner" Margin="101,82,519,348"/>
 
         <TextBlock x:Name="lblIPPrinter" x:Uid="lblIPPrinter" Style="{StaticResource MediumLabelsStyle}" Margin="287,96,0,0" Width="79" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtboxIPPrinter" Style="{StaticResource BaseTextBoxStyle}" Margin="370,87,0,0" Text="" Width="182" LostFocus="txtboxIPPrinter_LostFocus"/>
+        <TextBox x:Name="txtboxIPPrinter" Style="{StaticResource BaseTextBoxStyle}" Margin="370,87,0,0" Text="" Width="182" LostFocus="TxtboxIPPrinter_LostFocus"/>
         <TextBlock x:Name="lblPortPrinter" x:Uid="lblPortPrinter" Style="{StaticResource MediumLabelsStyle}" Margin="557,94,0,0" Width="93"/>
-        <TextBox x:Name="txtBoxPortPrinter" Style="{StaticResource BaseTextBoxStyle}" Margin="654,86,0,0" Text="" Width="137" LostFocus="txtBoxPortPrinter_LostFocus"/>
+        <TextBox x:Name="txtBoxPortPrinter" Style="{StaticResource BaseTextBoxStyle}" Margin="654,86,0,0" Text="" Width="137" LostFocus="TxtBoxPortPrinter_LostFocus"/>
 
         <TextBlock x:Name="lblSumIncreaser" x:Uid="lblSumIncreaser" Style="{StaticResource MediumLabelsStyle}" Width="93" Margin="3,169,0,0"/>
-        <IoTControls:NumericSpinner x:Name="sumSpinner" Margin="101,156,519,274" LostFocus="sumSpinner_LostFocus"/>
+        <IoTControls:NumericSpinner x:Name="sumSpinner" Margin="101,156,519,274" LostFocus="SumSpinner_LostFocus"/>
 
         <TextBlock x:Name="lblCopies" x:Uid="lblCopies" Style="{StaticResource MediumLabelsStyle}" Width="83" Margin="285,170,0,0"/>
-        <IoTControls:NumericSpinner x:Name="copiesSpinner" Margin="370,156,250,274" LostFocus="copiesSpinner_LostFocus"/>
+        <IoTControls:NumericSpinner x:Name="copiesSpinner" Margin="370,156,250,274" LostFocus="CopiesSpinner_LostFocus"/>
 
         <TextBlock x:Name="lblStep" x:Uid="lblStep" Style="{StaticResource MediumLabelsStyle}" Width="55" Margin="550,169,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <IoTControls:NumericSpinner x:Name="palletsSpinner" Margin="610,156,10,274" LostFocus="palletsSpinner_LostFocus"/>
+        <IoTControls:NumericSpinner x:Name="palletsSpinner" Margin="610,156,10,274" LostFocus="PalletsSpinner_LostFocus"/>
 
         <TextBox x:Name="txtBoxTestText" Style="{StaticResource BaseTextBoxStyle}" Margin="101,226,0,0" Width="451"/>
-        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="610,226,0,0" Height="101" Width="178" Click="btnPrnt_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnPrnt" x:Uid="btnPrint" Style="{StaticResource NeutralButtonStyle}" Margin="610,226,0,0" Height="101" Width="178" Click="BtnPrnt_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblTextPrint" x:Uid="lblTextPrint" Style="{StaticResource ResourceKey=MediumLabelsStyle}" Width="93" Margin="3,236,0,0"/>
     </Grid>
 </Page>

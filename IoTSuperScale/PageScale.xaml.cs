@@ -57,7 +57,7 @@ namespace IoTSuperScale
                 txtScaleName.Text = AppSettings.ScaleName+" ("+AppSettings.LCcapacity+")";
                 txtFooter.Text = App.GetAppTextFooter();
 
-                string temp = App.s.createZeroPoint();
+                string temp = App.s.CreateZeroPoint();
                 double zeroPoint = Double.Parse(temp);
                 App.s.zeroPointString = temp + AppSettings.TrailingUnit;
 
@@ -69,8 +69,8 @@ namespace IoTSuperScale
                 //just prepare the singleton object avoiding latency
                 try
                 {
-                    sin = SingletonERP.getERPDbInstance().GetERPDBConnection();
-                    SingletonERP.getERPDbInstance().CloseERPDBConnection();
+                    sin = SingletonERP.GetERPDbInstance().GetERPDBConnection();
+                    SingletonERP.GetERPDbInstance().CloseERPDBConnection();
                     //sin2 = SingletonMRP.getMRPDbInstance().GetMRPDBConnection();
                     //SingletonMRP.getMRPDbInstance().CloseMRPDBConnection();
                 }
@@ -185,19 +185,19 @@ namespace IoTSuperScale
         {
             currentTouch = e.OriginalSource;
             if ((currentTouch is Image) && (previousTouch1 is TextBlock) && (previousTouch2 is Image))
-                btnLogOut_Click(null, null);
+                BtnLogOut_Click(null, null);
 
             previousTouch2 = previousTouch1;
             previousTouch1 = currentTouch;
         }
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
             scaleTimer.Stop();
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             Frame.Navigate(typeof(PageLogin), null);
         }
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             scaleTimer.Stop();
@@ -213,12 +213,12 @@ namespace IoTSuperScale
                 txtWeight.Text = App.s.GetReading();
                 txtRv.Text = App.s.lastOutput.ToString();
                 //calculation net weight
-                if (App.isAuthenticated && !SelectedMaterial.code.Equals("000") && !txtWeight.Text.Equals(App.s.zeroPointString))
-                    txtNetW.Text = calculateNetW(App.s.finalDigitVal, SelectedMaterial.tarePack, SelectedMaterial.tarePrecentage, Int32.Parse(qtySpinner.TextValueProperty));
+                if (App.isAuthenticated && !SelectedMaterial.Code.Equals("000") && !txtWeight.Text.Equals(App.s.zeroPointString))
+                    txtNetW.Text = CalculateNetW(App.s.finalDigitVal, SelectedMaterial.TarePack, SelectedMaterial.TarePrecentage, Int32.Parse(qtySpinner.TextValueProperty));
                 else
                     txtNetW.Text = App.s.zeroPointString;
 
-                onChangeWeightDigit();
+                OnChangeWeightDigit();
                 lastWeightValue = txtWeight.Text.ToString();
             }
             catch (Exception ex)
@@ -226,7 +226,7 @@ namespace IoTSuperScale
                 App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleErrorScaleValues"));
             }
         }
-        private string calculateNetW(double weight, double tareweight, double precentage, int qty)
+        private string CalculateNetW(double weight, double tareweight, double precentage, int qty)
         {
             if (weight <= 0)
                 return App.s.zeroPointString;
@@ -234,11 +234,11 @@ namespace IoTSuperScale
             w = Math.Round(w, 1);
             return w.ToString() + AppSettings.TrailingUnit;
         }
-        private void equalityOnFirstDec()
+        private void EqualityOnFirstDec()
         {
             txtWeightBorder.Background = new SolidColorBrush(Color.FromArgb(191, 0, 245, 56));
         }
-        private void onChangeWeightDigit()
+        private void OnChangeWeightDigit()
         {
             if (txtWeight.Text.ToString().Equals(lastWeightValue))
                 txtWeightBorder.Style = Resources["NeutralTextBoxStyle"] as Style;
@@ -247,18 +247,18 @@ namespace IoTSuperScale
                 txtWeightBorder.Style = Resources["WarnTextBoxStyle"] as Style;
             //txtWeightBorder.Background = new SolidColorBrush(Color.FromArgb(191, 245, 43, 43));
         }
-        private void btnTare_Click(object sender, RoutedEventArgs e)
+        private void BtnTare_Click(object sender, RoutedEventArgs e)
         {
             //tareweight = App.s.finalDigitVal;
         }
-        private void btnZero_Click(object sender, RoutedEventArgs e)
+        private void BtnZero_Click(object sender, RoutedEventArgs e)
         {
             txtWeight.Text = App.s.ZeroWithoutPrework();
         }
-        private async void btnPrnt_Click(object sender, RoutedEventArgs e)
+        private async void BtnPrnt_Click(object sender, RoutedEventArgs e)
         {
             //edit label with real data
-            if (SelectedSupplier.code == "000" && (SelectedMaterial.type == PackagedMaterialItem.materialType.BIO || SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO))
+            if (SelectedSupplier.Code == "000" && (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.BIO || SelectedMaterial.Type == PackagedMaterialItem.MaterialType.SEMIBIO))
             {
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
                 return;
@@ -287,12 +287,12 @@ namespace IoTSuperScale
                 byte[] fileContent = new byte[reader.UnconsumedBufferLength];
                 reader.ReadBytes(fileContent);
                 string protoVal = App.encoding.GetString(fileContent, 0, fileContent.Length);
-                string newVal = protoVal.Replace("materialdescr", SelectedMaterial.materialReadableDescr);
-                newVal = newVal.Replace("country", SelectedMaterial.country);
-                newVal = newVal.Replace("region", SelectedMaterial.region);
-                newVal = newVal.Replace("grsupplier", SelectedSupplier.grSupplier);
-                newVal = newVal.Replace("category", SelectedMaterial.category);
-                newVal = newVal.Replace("variety", SelectedMaterial.variety);
+                string newVal = protoVal.Replace("materialdescr", SelectedMaterial.MaterialReadableDescr);
+                newVal = newVal.Replace("country", SelectedMaterial.Country);
+                newVal = newVal.Replace("region", SelectedMaterial.Region);
+                newVal = newVal.Replace("grsupplier", SelectedSupplier.GrSupplier);
+                newVal = newVal.Replace("category", SelectedMaterial.Category);
+                newVal = newVal.Replace("variety", SelectedMaterial.Variety);
                 newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));
                 if (Decimal.Parse(txtNetW.Text.Substring(0,txtNetW.Text.Length-3))>0)
                 {
@@ -326,7 +326,7 @@ namespace IoTSuperScale
                 }
                 else
                 {
-                    PrinterUtil.sendTestToPrinter(sum.ToString() + AppSettings.TrailingUnit, AppSettings.CopiesPrints.ToString());
+                    PrinterUtil.SendTestToPrinter(sum.ToString() + AppSettings.TrailingUnit, AppSettings.CopiesPrints.ToString());
                     pallet++;
                     step = 0;
                     sum = 0;
@@ -349,7 +349,7 @@ namespace IoTSuperScale
                     //Load lots of selected material
                     CBoxLotNums.Text = "";
                     LotOptions = new ObservableCollection<LotItem>();
-                    LotOptions = DBinit.GetLotsOfProduct(SelectedMaterial.code);
+                    LotOptions = DBinit.GetLotsOfProduct(SelectedMaterial.Code);
                     RaisePropertyChanged("LotOptions");
                     //Load suppliers 
                     SelectedSupplier = SupplierOptions[0];
@@ -391,16 +391,16 @@ namespace IoTSuperScale
         {
             try
             {
-                if (SelectedMaterial.type == PackagedMaterialItem.materialType.BIO)
+                if (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.BIO)
                 {
-                    if(SelectedMaterial.isEEcountry==true)
+                    if(SelectedMaterial.IsEEcountry==true)
                         currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Bio.x");
                     else
                         currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("BioOutEE.x");
                 }
-                else if (SelectedMaterial.type == PackagedMaterialItem.materialType.SEMIBIO)
+                else if (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.SEMIBIO)
                     currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("SemiBio.x");
-                else if (SelectedMaterial.type == PackagedMaterialItem.materialType.CONVENTIONAL)
+                else if (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.CONVENTIONAL)
                     currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
             }
             catch (Exception)
@@ -470,15 +470,15 @@ namespace IoTSuperScale
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            App.Current.IsIdleChanged += onIsIdleChanged;
+            App.Current.IsIdleChanged += OnIsIdleChanged;
             scaleTimer.Start();
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            App.Current.IsIdleChanged -= onIsIdleChanged;
+            App.Current.IsIdleChanged -= OnIsIdleChanged;
             scaleTimer.Stop();
         }
-        private void onIsIdleChanged(object sender, EventArgs e)
+        private void OnIsIdleChanged(object sender, EventArgs e)
         {
             
         }

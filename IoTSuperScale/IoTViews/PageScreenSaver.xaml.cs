@@ -25,13 +25,13 @@ namespace IoTSuperScale.IoTViews
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            App.Current.IsIdleChanged += onIsIdleChanged;
+            App.Current.IsIdleChanged += OnIsIdleChanged;
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            App.Current.IsIdleChanged -= onIsIdleChanged;
+            App.Current.IsIdleChanged -= OnIsIdleChanged;
         }
-        private void onIsIdleChanged(object sender, EventArgs e)
+        private void OnIsIdleChanged(object sender, EventArgs e)
         {
             
         }

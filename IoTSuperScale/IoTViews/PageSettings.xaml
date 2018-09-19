@@ -8,12 +8,12 @@
     mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
     <Grid Name="settingGrid" Style="{StaticResource ApplicationMainGrid}">
-        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
+        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="BtnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="btnLogOut_Click">
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/LogOut4.png" />
             </Button.Background>
@@ -25,50 +25,50 @@
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="1" Margin="1,439,0,0" Width="800"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
-        <Button x:Name="btnZero" x:Uid="btnSettingsZero" Style="{StaticResource BaseButtonStyle}" Margin="10,271,0,0" Click="btnZero_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button x:Name="btnCalibrate3" x:Uid="btnCalibrate3" Style="{StaticResource BaseButtonStyle}" Margin="10,327,0,0" Click="btnCalibrate500gr_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button x:Name="btnCalibrate4" x:Uid="btnCalibrate4" Style="{StaticResource BaseButtonStyle}" Margin="10,382,0,0" Click="btnCalibrate1000gr_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnZero" x:Uid="btnSettingsZero" Style="{StaticResource BaseButtonStyle}" Margin="10,271,0,0" Click="BtnZero_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnCalibrate3" x:Uid="btnCalibrate3" Style="{StaticResource BaseButtonStyle}" Margin="10,327,0,0" Click="BtnCalibrate500gr_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="btnCalibrate4" x:Uid="btnCalibrate4" Style="{StaticResource BaseButtonStyle}" Margin="10,382,0,0" Click="BtnCalibrate1000gr_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblRVoltage" x:Uid="lblRealVoltage" Style="{StaticResource MediumLabelsStyle}" Margin="560,29,0,0" Width="99"/>
         <TextBlock x:Name="txtRVoltage" Style="{StaticResource IndicatorMediumLabelstyle}" Margin="662,29,0,0" Text="" Width="128"/>
-        <CheckBox x:Name="chkBroadcast" x:Uid="chkBroadcast" Style="{StaticResource BaseCkhBoxstyle}" Margin="9,234,0,0" Width="225" Checked="chkBroadcast_Checked" Unchecked="chkBroadcast_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <CheckBox x:Name="chkBroadcast" x:Uid="chkBroadcast" Style="{StaticResource BaseCkhBoxstyle}" Margin="9,234,0,0" Width="225" Checked="ChkBroadcast_Checked" Unchecked="ChkBroadcast_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblScreensaver" x:Uid="lblScreensaver" Style="{StaticResource MediumLabelsStyle}" Margin="9,188,0,0" Width="129"/>
-        <IoTControls:NumericSpinner x:Name="screenSaverSpinner" Margin="139,176,479,254" LostFocus="screenSaverSpinner_LostFocus"/>
+        <IoTControls:NumericSpinner x:Name="screenSaverSpinner" Margin="139,176,479,254" LostFocus="ScreenSaverSpinner_LostFocus"/>
         <TextBlock x:Name="lblDecimalPoints" x:Uid="lblDecimalPoints" Style="{StaticResource MediumLabelsStyle}" Margin="8,128,0,0" Width="121"/>
-        <IoTControls:NumericSpinner x:Name="decimalPoints" Margin="139,118,479,312" LostFocus="decimalPoints_LostFocus"/>
+        <IoTControls:NumericSpinner x:Name="decimalPoints" Margin="139,118,479,312" LostFocus="DecimalPoints_LostFocus"/>
 
-        <TextBox x:Name="txtboxScaleName" Style="{StaticResource BaseTextBoxStyle}" Margin="139,72,0,0" Width="183" LostFocus="txtboxScaleName_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtboxScaleName" Style="{StaticResource BaseTextBoxStyle}" Margin="139,72,0,0" Width="183" LostFocus="TxtboxScaleName_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblScaleName" x:Uid="lblScaleName" Style="{StaticResource MediumLabelsStyle}" Margin="10,78,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblIP" x:Uid="lblIP" Style="{StaticResource MediumLabelsStyle}" Margin="323,82,0,0" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblPort" x:Uid="lblPortGate" Style="{StaticResource MediumLabelsStyle}" Margin="577,81,0,0" Width="84" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxPort" Style="{StaticResource BaseTextBoxStyle}" Margin="662,73,0,0" Text="" Width="131" LostFocus="txtBoxPort_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtboxIP" Style="{StaticResource BaseTextBoxStyle}" Margin="391,72,0,0" Text="" Width="185" LostFocus="txtboxIP_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxPort" Style="{StaticResource BaseTextBoxStyle}" Margin="662,73,0,0" Text="" Width="131" LostFocus="TxtBoxPort_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtboxIP" Style="{StaticResource BaseTextBoxStyle}" Margin="391,72,0,0" Text="" Width="185" LostFocus="TxtboxIP_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblIPServer" x:Uid="lblIPServer" Style="{StaticResource MediumLabelsStyle}" Margin="322,138,0,0" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblPortServer" x:Uid="lblPortServer" Style="{StaticResource MediumLabelsStyle}" Margin="578,137,0,0" Width="82" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxPortServer" Style="{StaticResource BaseTextBoxStyle}" Margin="662,127,0,0" Text="" Width="131" LostFocus="txtBoxPortServer_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxIPServer" Style="{StaticResource BaseTextBoxStyle}" Margin="391,128,0,0" Text="" Width="185" LostFocus="txtboxIPServer_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxPortServer" Style="{StaticResource BaseTextBoxStyle}" Margin="662,127,0,0" Text="" Width="131" LostFocus="ΤxtBoxPortServer_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxIPServer" Style="{StaticResource BaseTextBoxStyle}" Margin="391,128,0,0" Text="" Width="185" LostFocus="ΤxtboxIPServer_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblDBname" x:Uid="lblDBname" Style="{StaticResource MediumLabelsStyle}" Margin="323,193,0,0" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxDBname" Style="{StaticResource BaseTextBoxStyle}" Margin="391,182,0,0" Text="" Width="185" LostFocus="txtDBname_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxDBname" Style="{StaticResource BaseTextBoxStyle}" Margin="391,182,0,0" Text="" Width="185" LostFocus="ΤxtDBname_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblDBInstance" x:Uid="lblDBInstance" Style="{StaticResource MediumLabelsStyle}" Margin="578,192,0,0" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxDBInstance" Style="{StaticResource BaseTextBoxStyle}" Margin="650,182,0,0" Text="" Width="143" LostFocus="txtDBInstance_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxDBInstance" Style="{StaticResource BaseTextBoxStyle}" Margin="650,182,0,0" Text="" Width="143" LostFocus="ΤxtDBInstance_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblMRPDBname" x:Uid="lblMRPDBname" Style="{StaticResource MediumLabelsStyle}" Margin="323,239,0,0" Width="67" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxMRPDBname" Style="{StaticResource BaseTextBoxStyle}" Margin="391,234,0,0" Text="" Width="185" LostFocus="txtBoxMRPDBname_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxMRPDBname" Style="{StaticResource BaseTextBoxStyle}" Margin="391,234,0,0" Text="" Width="185" LostFocus="ΤxtBoxMRPDBname_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblMRPDBInstance" x:Uid="lblMRPDBInstance" Style="{StaticResource MediumLabelsStyle}" Margin="578,240,0,0" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxMRPDBInstance" Style="{StaticResource BaseTextBoxStyle}" Margin="650,234,0,0" Text="" Width="143" LostFocus="txtBoxMRPDBInstance_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxMRPDBInstance" Style="{StaticResource BaseTextBoxStyle}" Margin="650,234,0,0" Text="" Width="143" LostFocus="ΤxtBoxMRPDBInstance_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblDBuser" x:Uid="lblDBuser" Style="{StaticResource MediumLabelsStyle}" Margin="326,293,0,0" Width="62" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtBoxDBuser" Style="{StaticResource BaseTextBoxStyle}" Margin="390,283,0,0" Text="" Width="185" LostFocus="txtDBuser_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtBoxDBuser" Style="{StaticResource BaseTextBoxStyle}" Margin="390,283,0,0" Text="" Width="185" LostFocus="ΤxtDBuser_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblDBpass" x:Uid="lblDBpass" Style="{StaticResource MediumLabelsStyle}" Margin="577,291,0,0" Width="71" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="txtBoxDBpass" Style="{StaticResource SecPswBoxstyle}" Margin="650,283,0,0" Width="143" LostFocus="txtDBpass_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="txtBoxDBpass" Style="{StaticResource SecPswBoxstyle}" Margin="650,283,0,0" Width="143" LostFocus="ΤxtDBpass_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblLCcapacity" x:Uid="lblLCcapacity" Style="{StaticResource MediumLabelsStyle}" Margin="338,341,0,0" Width="115" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtLCcapacity" Style="{StaticResource BaseTextBoxStyle}" Margin="453,334,0,0" Text="" Width="123" LostFocus="txtLCcapacity_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtLCcapacity" Style="{StaticResource BaseTextBoxStyle}" Margin="453,334,0,0" Text="" Width="123" LostFocus="TxtLCcapacity_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblScaleTimer" x:Uid="lblScaleTimer" Style="{StaticResource MediumLabelsStyle}" Margin="578,343,0,0" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtScaleTimer" Style="{StaticResource BaseTextBoxStyle}" Margin="671,334,0,0" Text="" Width="122" LosingFocus="txtScaleTimer_LosingFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtScaleTimer" Style="{StaticResource BaseTextBoxStyle}" Margin="671,334,0,0" Text="" Width="122" LosingFocus="TxtScaleTimer_LosingFocus" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblOffset_Zero" x:Uid="lblOffsetZero" Style="{StaticResource MediumLabelsStyle}" Margin="209,270,0,0" Width="53" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtOffset_Zero" Style="{StaticResource IndicatorMediumLabelstyle}" Margin="262,270,0,0" Text="" Width="88" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -83,8 +83,8 @@
         <TextBlock x:Name="lblVal_1000" x:Uid="lblVal1000" Style="{StaticResource MediumLabelsStyle}" Margin="209,394,0,0" Width="53" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtVal_1000" Style="{StaticResource IndicatorMediumLabelstyle}" Margin="262,394,0,0" Text="" Width="88" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <Button x:Name="btnERPDBconnectionTest" x:Uid="btnERPDBconnectionTest" Style="{StaticResource BaseButtonStyle}" Margin="382,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnERPDBconnectionTest_Click"/>
-        <Button x:Name="btnMRPDBconnectionTest" x:Uid="btnMRPDBconnectionTest" Style="{StaticResource BaseButtonStyle}" Margin="599,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnMRPDBconnectionTest_Click"/>
+        <Button x:Name="btnERPDBconnectionTest" x:Uid="btnERPDBconnectionTest" Style="{StaticResource BaseButtonStyle}" Margin="382,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnERPDBconnectionTest_Click"/>
+        <Button x:Name="btnMRPDBconnectionTest" x:Uid="btnMRPDBconnectionTest" Style="{StaticResource BaseButtonStyle}" Margin="599,380,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtnMRPDBconnectionTest_Click"/>
 
     </Grid>
 </Page>

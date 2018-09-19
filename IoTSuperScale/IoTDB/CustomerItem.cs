@@ -2,7 +2,7 @@
 {
     public class CustomerItem
     {
-        public string code { get; set; }
-        public string customerDescr { get; set; }
+        public string Code { get; set; }
+        public string CustomerDescr { get; set; }
     }
 }

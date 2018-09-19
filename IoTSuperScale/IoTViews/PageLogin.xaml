@@ -33,8 +33,8 @@
             </ComboBoxItem>
         </ComboBox>
 
-        <Button x:Name="btnLogin" x:Uid="btnLog" Style="{StaticResource BaseButtonStyle}" HorizontalAlignment="Left" Margin="404,270,0,0" VerticalAlignment="Top" Click="btnLogin_Click"/>
-        <Button x:Name="btnCancel" HorizontalAlignment="Left" Margin="639,62,0,0" VerticalAlignment="Top" Height="73" Width="67" Click="btnCancel_Click">
+        <Button x:Name="btnLogin" x:Uid="btnLog" Style="{StaticResource BaseButtonStyle}" HorizontalAlignment="Left" Margin="404,270,0,0" VerticalAlignment="Top" Click="BtnLogin_Click"/>
+        <Button x:Name="btnCancel" HorizontalAlignment="Left" Margin="639,62,0,0" VerticalAlignment="Top" Height="73" Width="67" Click="BtnCancel_Click">
             <Button.Background>
                 <ImageBrush Stretch="None" ImageSource="../Assets/Cancel.png"/>
             </Button.Background>

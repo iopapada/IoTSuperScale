@@ -8,12 +8,12 @@
     mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
     <Grid Style="{StaticResource ApplicationMainGrid}">
-        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="btnBack_Click">
+        <Button x:Name="btnBack" Style="{StaticResource BarButtonStyle}" Margin="3,2,0,0" Click="BtnBack_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="btnLogOut_Click">
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/LogOut4.png" />
             </Button.Background>
@@ -26,7 +26,7 @@
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}" />
 
         <Button x:Name="btnSave" x:Uid="btnSave" Style="{StaticResource BaseButtonStyle}" Margin="598,231,0,0"/>
-        <Button x:Name="btnAddMaterial" x:Uid="btnAdd" Style="{StaticResource BaseButtonStyle}" Margin="598,164,0,0" Click="btnAddMaterial_Click"/>
+        <Button x:Name="btnAddMaterial" x:Uid="btnAdd" Style="{StaticResource BaseButtonStyle}" Margin="598,164,0,0" Click="BtnAddMaterial_Click"/>
 
         <CalendarDatePicker HorizontalAlignment="Left" Margin="479,3,0,0" VerticalAlignment="Top" Width="313" Height="29" BorderBrush="#668D8C8C" BorderThickness="2,2,2,4"/>
         <TimePicker HorizontalAlignment="Left" Margin="479,34,0,0" VerticalAlignment="Top" Width="313"/>

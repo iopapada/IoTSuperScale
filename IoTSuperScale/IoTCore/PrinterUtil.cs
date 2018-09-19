@@ -12,7 +12,7 @@ namespace IoTSuperScale.IoTCore
     {
         //Printer helper
         static StreamSocket socket;
-        public static async void sendTestToPrinter(string test, string printsSpinner)
+        public static async void SendTestToPrinter(string test, string printsSpinner)
         {
             StorageFile testLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Customer.x");
             if (testLabel != null)
@@ -28,11 +28,11 @@ namespace IoTSuperScale.IoTCore
 
                 StorageFile dataTestLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + testLabel.Name, CreationCollisionOption.ReplaceExisting);
                 File.WriteAllText(dataTestLabel.Path, newVal, App.encoding);
-                sendToPrinterFile(dataTestLabel);
+                SendToPrinterFile(dataTestLabel);
             }
         }
 
-        public static async void sendToPrinterFile(StorageFile dataWeightLabel)
+        public static async void SendToPrinterFile(StorageFile dataWeightLabel)
         {
             socket = new StreamSocket();
             HostName serverHost = new HostName(AppSettings.IpPrinterConfig);

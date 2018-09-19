@@ -56,13 +56,13 @@ namespace IoTSuperScale.IoTViews
             }
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
             Frame.Navigate(typeof(PageLogin), null);
         }
-        private void btnBack_Click(object sender, RoutedEventArgs e)
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
@@ -107,7 +107,7 @@ namespace IoTSuperScale.IoTViews
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        private async void btnPrnt_Click(object sender, RoutedEventArgs e)
+        private async void BtnPrnt_Click(object sender, RoutedEventArgs e)
         {
             protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Supplier.x");
             //edit label with real dat
@@ -124,8 +124,8 @@ namespace IoTSuperScale.IoTViews
                 byte[] fileContent = new byte[reader.UnconsumedBufferLength];
                 reader.ReadBytes(fileContent);
                 string protoVal = encoding.GetString(fileContent, 0, fileContent.Length);
-                string newVal = protoVal.Replace("supplierdescr", SelectedSupplier.supplierDescr);
-                newVal = newVal.Replace("grsupplier", SelectedSupplier.grSupplier);
+                string newVal = protoVal.Replace("supplierdescr", SelectedSupplier.SupplierDescr);
+                newVal = newVal.Replace("grsupplier", SelectedSupplier.GrSupplier);
                 newVal = newVal.Replace("lot", txtBoxLot.Text);
                 newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));
                 newVal = newVal.Replace("nums", printsSpinner.TextValueProperty.ToString());
@@ -133,7 +133,7 @@ namespace IoTSuperScale.IoTViews
                 dataWeightLabel = await ApplicationData.Current.LocalFolder.CreateFileAsync("Data" + protoWeightLabel.Name, CreationCollisionOption.ReplaceExisting);
                 File.WriteAllText(dataWeightLabel.Path, newVal, encoding);
             }
-            PrinterUtil.sendToPrinterFile(dataWeightLabel);
+            PrinterUtil.SendToPrinterFile(dataWeightLabel);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
