@@ -73,8 +73,9 @@ namespace IoTSuperScale.IoTDB
             items.Add(new SupplierItem() { Code = "002", SupplierDescr = "ΜΑΥΡΑΚΗ ΑΣΗΜΙΝΑ", GrSupplier = "GR055490B00000902", SupplierRegion = "ΤΕΡΤΣΑ-ΚΡΗΤΗΣ" });
             items.Add(new SupplierItem() { Code = "003", SupplierDescr = "ΜΑΘΙΟΥΔΑΚΗΣ ΣΤΕΦΑΝΙΑ", GrSupplier = "GR050841B00000902", SupplierRegion = "ΑΡΒΗ-ΚΡΗΤΗΣ" });
             items.Add(new SupplierItem() { Code = "004", SupplierDescr = "ΜΑΥΡΙΔΗΣ ΕΛΕΥΘΕΡΙΟΣ", GrSupplier = "GR050680B00000902", SupplierRegion = "ΤΕΡΤΣΑ-ΚΡΗΤΗΣ" });
-            items.Add(new SupplierItem() { Code = "005", SupplierDescr = "DOLE HELLAS LTD", GrSupplier = "GR0100401B", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
-            items.Add(new SupplierItem() { Code = "005", SupplierDescr = "BELLA FRUTTA", GrSupplier = "GR-----", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
+            items.Add(new SupplierItem() { Code = "005", SupplierDescr = "ΠΑΠΑΔΑΚΗΣ ΣΤΕΛΙΑΝΟΣ", GrSupplier = "GR015832Β00000902", SupplierRegion = "ΑΡΒΗ-ΚΡΗΤΗΣ" });
+            items.Add(new SupplierItem() { Code = "006", SupplierDescr = "DOLE HELLAS LTD", GrSupplier = "GR0100401B", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
+            items.Add(new SupplierItem() { Code = "007", SupplierDescr = "BELLA FRUTTA", GrSupplier = "GR-----", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
             return items;
         }
 
