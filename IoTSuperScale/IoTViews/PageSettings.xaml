@@ -13,13 +13,13 @@
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
+        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="732,2,0,0" Click="BtnLogOut_Click" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/LogOut4.png" />
             </Button.Background>
         </Button>
+        <Border BorderBrush="Black" x:Name="border2_Copy" BorderThickness="2" HorizontalAlignment="Left" Height="68" Margin="730,-1,0,0" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="2" Margin="1,67,0,0" Width="800"/>
-        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="136,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="68,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Width="2" Margin="1,0,0,0"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="1" Margin="1,439,0,0" Width="800"/>
@@ -30,7 +30,7 @@
         <Button x:Name="btnCalibrate4" x:Uid="btnCalibrate4" Style="{StaticResource BaseButtonStyle}" Margin="10,382,0,0" Click="BtnCalibrate1000gr_Click" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblRVoltage" x:Uid="lblRealVoltage" Style="{StaticResource MediumLabelsStyle}" Margin="560,29,0,0" Width="99"/>
-        <TextBlock x:Name="txtRVoltage" Style="{StaticResource IndicatorMediumLabelstyle}" Margin="662,29,0,0" Text="" Width="128"/>
+        <TextBlock x:Name="txtRVoltage" Style="{StaticResource IndicatorMediumLabelstyle}" Margin="608,29,0,0" Text="" Width="128" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <CheckBox x:Name="chkBroadcast" x:Uid="chkBroadcast" Style="{StaticResource BaseCkhBoxstyle}" Margin="9,234,0,0" Width="225" Checked="ChkBroadcast_Checked" Unchecked="ChkBroadcast_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblScreensaver" x:Uid="lblScreensaver" Style="{StaticResource MediumLabelsStyle}" Margin="9,188,0,0" Width="129"/>
         <IoTControls:NumericSpinner x:Name="screenSaverSpinner" Margin="139,176,479,254" LostFocus="ScreenSaverSpinner_LostFocus"/>

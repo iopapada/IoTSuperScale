@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:IoTControls="using:IoTSuperScale.IoTControls"
-    mc:Ignorable="d" Style="{StaticResource ApplicationPage}" PointerPressed="Page_PointerPressed">
+    mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
 
     <Page.Resources>
         <IoTControls:ConvertersUI x:Key="ConvertersUI" />
@@ -45,19 +45,18 @@
                 <ImageBrush ImageSource="Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
+        <Button x:Name="btnLogOut" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="64" Margin="734,1,0,0" Click="BtnLogOut_Click">
             <Button.Background>
-                <ImageBrush ImageSource="Assets/LogOut4.png" />
+                <ImageBrush ImageSource="../Assets/LogOut4.png" Stretch="None"/>
             </Button.Background>
         </Button>
+        <Border BorderBrush="Black" x:Name="border2_Copy" BorderThickness="2" HorizontalAlignment="Left" Height="68" Margin="730,-1,0,0" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5"/>
         <Border x:Name="border0" BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="2" Margin="1,67,0,0" Width="800"/>
-        <Border BorderBrush="Black" x:Name="border1" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="136,0,0,0" Width="2"/>
         <Border BorderBrush="Black" x:Name="border1_Copy" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="68,0,0,0" Width="2"/>
         <Border BorderBrush="Black" x:Name="border1_Copy1" Style="{StaticResource BaseBorderStyle}" Height="68" Width="2" Margin="1,0,0,0"/>
         <Border BorderBrush="Black" Height="1" Style="{StaticResource BaseBorderStyle}" Margin="1,439,0,0" Width="800"/>
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}"/>
 
-        <Image x:Name="press1_3" Style="{StaticResource BaseImageStyle}" Source="/Assets/Guest2.png" Height="58" Margin="744,3,0,0" Width="54" />
         <ComboBox Width="662" Margin="136,71,0,0"
             x:Name="CBoxMaterials"
             DisplayMemberPath="DisplayCodeDescr"
@@ -106,7 +105,7 @@
             <TextBlock x:Name="txtWeight" TextAlignment="Right" HorizontalAlignment="Left" Margin="4,4,-1.8,1.2" VerticalAlignment="Center" Width="601" FontSize="142" FontFamily="Calibri" FontWeight="Bold" Foreground="Black" Height="178"/>
         </Border>
 
-        <TextBlock x:Name="txtScaleName" Style="{StaticResource IndicatorLabelstyle}" Margin="159,3,0,0" Width="211" Height="63"/>
+        <TextBlock x:Name="txtScaleName" Style="{StaticResource IndicatorLabelstyle}" Margin="75,3,0,0" Width="211" Height="63" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock x:Name="txtSum" Style="{StaticResource IndicatorMedium2Labelstyle}" Margin="373,2,0,0" Width="365" Height="55" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="lblRv" Style="{StaticResource IndicatorSmallLabelstyle}" Margin="672,52,0,0" Text="RV:" Height="13"/>

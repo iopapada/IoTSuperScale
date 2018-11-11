@@ -27,9 +27,6 @@ namespace IoTSuperScale
     public sealed partial class PageScale : Page, INotifyPropertyChanged
     {
         //Helper UI values
-        object previousTouch1 = null;
-        object previousTouch2 = null;
-        object currentTouch = null;
         public static DispatcherTimer scaleTimer;
         //Helper values
         public static string lastWeightValue;
@@ -131,8 +128,6 @@ namespace IoTSuperScale
         private void DisplayUtilities()
         {
             btnBack.Visibility = Visibility.Visible;
-            btnLogOut.Visibility = Visibility.Visible;
-            border1.Visibility = Visibility.Visible;
             border1_Copy.Visibility = Visibility.Visible;
             border1_Copy1.Visibility = Visibility.Visible;
 
@@ -157,8 +152,6 @@ namespace IoTSuperScale
         private void HideUtilities()
         {
             btnBack.Visibility = Visibility.Collapsed;
-            btnLogOut.Visibility = Visibility.Collapsed;
-            border1.Visibility = Visibility.Collapsed;
             border1_Copy.Visibility = Visibility.Collapsed;
             border1_Copy1.Visibility = Visibility.Collapsed;
 
@@ -181,15 +174,7 @@ namespace IoTSuperScale
             //btnZero.Visibility = Visibility.Collapsed;
             btnPrnt.Visibility = Visibility.Collapsed;
         }
-        private void Page_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            currentTouch = e.OriginalSource;
-            if ((currentTouch is Image) && (previousTouch1 is TextBlock) && (previousTouch2 is Image))
-                BtnLogOut_Click(null, null);
 
-            previousTouch2 = previousTouch1;
-            previousTouch1 = currentTouch;
-        }
         private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;

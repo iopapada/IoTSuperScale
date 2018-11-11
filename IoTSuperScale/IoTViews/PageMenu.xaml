@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Style="{StaticResource ApplicationPage}">
-    
+
     <Grid Style="{StaticResource ApplicationMainGrid}">
         <Button Name="btnFscale" x:Uid="btnScale" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,104,0,0" VerticalAlignment="Top" Click="BtnScale_Click"/>
         <Button Name="btnPlan" x:Uid="btnPlan" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Click="BtnPlan_Click"/>
@@ -15,7 +15,7 @@
 
         <Button Name="btnSettings" x:Uid="btnSettings" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="12,332,0,0" VerticalAlignment="Top" Click="BtnSettings_Click" />
         <Button Name="btnPrinterUtils" x:Uid="btnPrintUtils" Style="{StaticResource BaseBigButtonStyle}" HorizontalAlignment="Left" Margin="426,332,0,0" VerticalAlignment="Top" Click="BtnPrinterUtils_Click"/>
-        
+
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}"/>
         <Border BorderBrush="Black" BorderThickness="2,1" HorizontalAlignment="Left" Height="1" Margin="0,439,0,0" VerticalAlignment="Top" Width="801" RenderTransformOrigin="0.5,0.5"/>
         <Border x:Name="border0" BorderBrush="Black" BorderThickness="0,0,0,2" HorizontalAlignment="Left" Height="2" Margin="1,67,0,0" VerticalAlignment="Top" Width="800" RenderTransformOrigin="0.5,0.5">
@@ -23,12 +23,12 @@
                 <CompositeTransform ScaleY="-1"/>
             </Border.RenderTransform>
         </Border>
-        <Button x:Name="btnLogOut" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="64" Margin="3,2,0,0" Click="BtnLogOut_Click">
+        <Button x:Name="btnLogOut" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="64" Margin="734,1,0,0" Click="BtnLogOut_Click">
             <Button.Background>
                 <ImageBrush ImageSource="../Assets/LogOut4.png" Stretch="None"/>
             </Button.Background>
         </Button>
-        <Border BorderBrush="Black" x:Name="border1_Copy" BorderThickness="2" HorizontalAlignment="Left" Height="68" Margin="68,0,0,0" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5"/>
+        <Border BorderBrush="Black" x:Name="border1_Copy" BorderThickness="2" HorizontalAlignment="Left" Height="68" Margin="730,-1,0,0" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5"/>
         <Border BorderBrush="Black" x:Name="border1_Copy1" BorderThickness="2" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5" Margin="1,0,0,0"/>
     </Grid>
 </Page>

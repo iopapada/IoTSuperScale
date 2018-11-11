@@ -13,13 +13,13 @@
                 <ImageBrush ImageSource="../Assets/Back4.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnLogOut" Style="{StaticResource BarButtonStyle}" Margin="71,2,0,0" Click="BtnLogOut_Click">
+        <Button x:Name="btnLogOut" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="64" Margin="734,1,0,0" Click="BtnLogOut_Click">
             <Button.Background>
-                <ImageBrush ImageSource="../Assets/LogOut4.png" />
+                <ImageBrush ImageSource="../Assets/LogOut4.png" Stretch="None"/>
             </Button.Background>
         </Button>
+        <Border BorderBrush="Black" x:Name="border1_Copy" BorderThickness="2" HorizontalAlignment="Left" Height="68" Margin="730,-1,0,0" VerticalAlignment="Top" Width="2" RenderTransformOrigin="0.5,0.5"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="2" Margin="1,67,0,0" Width="800"/>
-        <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="136,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Margin="68,0,0,0" Width="2"/>
         <Border BorderBrush="Black" Style="{StaticResource BaseBorderStyle}" Height="68" Width="2" Margin="1,0,0,0"/>
         <Border BorderBrush="Black" Style="{StaticResource FooterBorderStyle}"/>
@@ -28,11 +28,11 @@
         <Button x:Name="btnSave" x:Uid="btnSave" Style="{StaticResource BaseButtonStyle}" Margin="598,231,0,0"/>
         <Button x:Name="btnAddMaterial" x:Uid="btnAdd" Style="{StaticResource BaseButtonStyle}" Margin="598,164,0,0" Click="BtnAddMaterial_Click"/>
 
-        <CalendarDatePicker HorizontalAlignment="Left" Margin="479,3,0,0" VerticalAlignment="Top" Width="313" Height="29" BorderBrush="#668D8C8C" BorderThickness="2,2,2,4"/>
-        <TimePicker HorizontalAlignment="Left" Margin="479,34,0,0" VerticalAlignment="Top" Width="313"/>
+        <CalendarDatePicker HorizontalAlignment="Left" Margin="413,3,0,0" VerticalAlignment="Top" Width="313" Height="29" BorderBrush="#668D8C8C" BorderThickness="2,2,2,4"/>
+        <TimePicker HorizontalAlignment="Left" Margin="413,34,0,0" VerticalAlignment="Top" Width="313"/>
 
-        <local:NumericSpinner x:Name="chamberSpinner" Margin="258,14,360,416"/>
-        <TextBlock x:Name="textBlock" x:Uid="lblChamber" Style="{StaticResource SpecialLabelstyle}" Margin="143,25,0,0" Height="32" Width="112"/>
+        <local:NumericSpinner x:Name="chamberSpinner" Margin="192,14,426,416" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <TextBlock x:Name="textBlock" x:Uid="lblChamber" Style="{StaticResource SpecialLabelstyle}" Margin="77,25,0,0" Height="32" Width="112" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <ScrollViewer Name="myScroll" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Left" Height="208" Margin="1,75,0,0" VerticalAlignment="Top" Width="525" BorderThickness="2">
             <Grid x:Name="grid" HorizontalAlignment="Left" VerticalAlignment="Top" Width="532" Height="700"/>
