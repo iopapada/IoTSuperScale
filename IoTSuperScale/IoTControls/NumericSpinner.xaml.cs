@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -37,6 +38,17 @@ namespace IoTSuperScale.IoTControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             step = Convert.ToInt32(txtValue.Text);
+        }
+
+        private void txtValue_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
+        {
+
+                if (!Regex.IsMatch(sender.Text, "^\\d*?\\d*$") && sender.Text != "")
+                {
+                    int pos = sender.SelectionStart - 1;
+                    sender.Text = sender.Text.Remove(pos, 1);
+                    sender.SelectionStart = pos;
+                }
         }
     }
 }
