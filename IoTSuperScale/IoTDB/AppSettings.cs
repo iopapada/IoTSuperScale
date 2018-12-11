@@ -347,6 +347,53 @@ namespace IoTSuperScale.IoTDB
         }
         #endregion
 
+        #region softaware properties
+        public static string Copyrightattr
+        {
+            get
+            {
+                return (string)localSettings.Values["Copyrightattr"] ?? "";
+            }
+            set
+            {
+                localSettings.Values["Copyrightattr"] = value;
+            }
+        }
+        public static string Companyattr
+        {
+            get
+            {
+                return (string)localSettings.Values["Companyattr"] ?? "";
+            }
+            set
+            {
+                localSettings.Values["Companyattr"] = value;
+            }
+        }
+        public static string Trademarkattr
+        {
+            get
+            {
+                return (string)localSettings.Values["Trademarkattr"] ?? "";
+            }
+            set
+            {
+                localSettings.Values["Trademarkattr"] = value;
+            }
+        }
+        public static string Version
+        {
+            get
+            {
+                return (string)localSettings.Values["Version"] ?? "";
+            }
+            set
+            {
+                localSettings.Values["Version"] = value;
+            }
+        }
+        #endregion
+
         #region printer properties
         public static string IpPrinterConfig
         {

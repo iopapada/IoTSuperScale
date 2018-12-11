@@ -4,6 +4,7 @@ using System.Linq;
 using Windows.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace IoTSuperScale.IoTViews
@@ -17,7 +18,6 @@ namespace IoTSuperScale.IoTViews
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
             LoadSettings();
         }
-
         private void LoadSettings()
         {
             if (AppSettings.LangConfig.Equals("GR"))
@@ -25,19 +25,18 @@ namespace IoTSuperScale.IoTViews
             else
                 CBoxLang.SelectedItem = CBoxLang.Items[1] as ComboBoxItem;
         }
-
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             Frame mainFrame = Window.Current.Content as Frame;
             App.isAuthenticated = false;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
-            mainFrame.Navigate(typeof(PageScale), null);
+            mainFrame.Navigate(typeof(PageScale), null, new SuppressNavigationTransitionInfo());
         }
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = true;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
-            Frame.Navigate(typeof(PageMenu), null);
+            Frame.Navigate(typeof(PageMenu), null, new SuppressNavigationTransitionInfo());
         }
         private void CBoxLang_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

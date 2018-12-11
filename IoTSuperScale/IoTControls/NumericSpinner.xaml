@@ -7,7 +7,7 @@
     mc:Ignorable="d" Height="50" Width="180" Loaded="UserControl_Loaded" VerticalAlignment="Top" HorizontalAlignment="Left">
 
     <Grid>
-        <TextBox x:Name="txtValue" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Height="50" Text="1" FontSize="32" FontFamily="Calibri" Margin="0,0,0,0"/>
+        <TextBox x:Name="txtValue" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Height="50" Text="1" FontSize="32" FontFamily="Calibri" Margin="0,0,0,0" InputScope="Number"/>
         <Button x:Name="btnUp" BorderThickness="2" BorderBrush="Black" Content="" HorizontalAlignment="Left" Margin="68,0,0,0" VerticalAlignment="Top" Width="112" Height="26" Click="ΒtnUp_Click">
             <Button.Background>
                 <ImageBrush ImageSource="ms-appx:///Assets/Up.png" Stretch="None"/>

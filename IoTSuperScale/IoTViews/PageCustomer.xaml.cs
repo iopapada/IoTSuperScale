@@ -8,6 +8,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -39,7 +40,7 @@ namespace IoTSuperScale.IoTViews
         private void BtnLogOut_Click(object sender, RoutedEventArgs e)
         {
             App.isAuthenticated = false;
-            Frame.Navigate(typeof(PageLogin), null);
+            Frame.Navigate(typeof(PageLogin), null, new SuppressNavigationTransitionInfo());
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)

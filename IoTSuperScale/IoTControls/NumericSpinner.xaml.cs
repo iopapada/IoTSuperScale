@@ -10,6 +10,7 @@ namespace IoTSuperScale.IoTControls
     public sealed partial class NumericSpinner : UserControl
     {
         int step;
+
         public string TextValueProperty
         {
             get { return txtValue.Text; }
@@ -21,19 +22,43 @@ namespace IoTSuperScale.IoTControls
         }
         private void ΒtnUp_Click(object sender, RoutedEventArgs e)
         {
-            int temp = Convert.ToInt32(txtValue.Text);
-            if (temp == 0)
-                btnDown.IsHitTestVisible = true;
-            temp = temp + 1;
-            txtValue.Text = temp.ToString();
+            try
+            {
+                int ignoreMe;
+                bool successfullyParsed = int.TryParse(txtValue.Text, out ignoreMe);
+                if (successfullyParsed)
+                {
+                    if (ignoreMe == 0)
+                        btnDown.IsHitTestVisible = true;
+
+                    ignoreMe = ignoreMe + 1;
+                    txtValue.Text = ignoreMe.ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
         private void ΒtnDown_Click(object sender, RoutedEventArgs e)
         {
-            int temp = Convert.ToInt32(txtValue.Text);
-            if (temp == 1)
-                btnDown.IsHitTestVisible = false;
-            temp = temp - 1;
-            txtValue.Text = temp.ToString();
+            try
+            {
+                int ignoreMe;
+                bool successfullyParsed = int.TryParse(txtValue.Text, out ignoreMe);
+                if (successfullyParsed)
+                {
+                    if (ignoreMe == 0)
+                        btnDown.IsHitTestVisible = false;
+                    else
+                    {
+                        ignoreMe = ignoreMe - 1;
+                        txtValue.Text = ignoreMe.ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using static IoTSuperScale.IoTDB.DBinit;
 
@@ -88,6 +89,7 @@ namespace IoTSuperScale.IoTViews
         {
             App.isAuthenticated = false;
             settingsTimer.Stop();
+            Frame.Navigate(typeof(PageLogin), null, new SuppressNavigationTransitionInfo());
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
         }
 
@@ -167,16 +169,22 @@ namespace IoTSuperScale.IoTViews
         {
             try
             {
-                AppSettings.ScreenSaverMins = Int32.Parse(screenSaverSpinner.TextValueProperty.ToString());
-                if (AppSettings.ScreenSaverMins == 0)
+                int ignoreMe;
+                bool successfullyParsed = int.TryParse(screenSaverSpinner.TextValueProperty.ToString(), out ignoreMe);
+                if (successfullyParsed)
                 {
-                    App.Current.idleTimer.Stop();
-                    App.Current.IsIdle = true;
-                }
-                else {
-                    App.Current.idleTimer.Interval = TimeSpan.FromSeconds(60 * AppSettings.ScreenSaverMins);
-                    App.Current.idleTimer.Start();
-                    App.Current.IsIdle = false;
+                    AppSettings.ScreenSaverMins = Int32.Parse(screenSaverSpinner.TextValueProperty.ToString());
+                    if (AppSettings.ScreenSaverMins == 0)
+                    {
+                        App.Current.idleTimer.Stop();
+                        App.Current.IsIdle = true;
+                    }
+                    else
+                    {
+                        App.Current.idleTimer.Interval = TimeSpan.FromSeconds(60 * AppSettings.ScreenSaverMins);
+                        App.Current.idleTimer.Start();
+                        App.Current.IsIdle = false;
+                    }
                 }
             }
             catch (Exception ex)

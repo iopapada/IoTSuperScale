@@ -153,24 +153,34 @@ namespace IoTSuperScale
             var currentDate = DateTime.Now;
             var elapsedTimeSpan = currentDate.Subtract(startDate);
 
-            return string.Format("Version: {0}", FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion);
+            //return string.Format("Version: {0}", FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion);
             //For Assembly version
-            //return string.Format("Version: {0}",Assembly.GetExecutingAssembly().GetName().Version.ToString()).Replace("DB",elapsedTimeSpan.TotalDays.ToString());
+            return string.Format("Version: {0}",Assembly.GetExecutingAssembly().GetName().Version.ToString()).Replace("DB",elapsedTimeSpan.TotalDays.ToString());
 
         }
         public static string GetAppTextFooter()
         {
             var currentAssembly = typeof(App).GetTypeInfo().Assembly;
             var customAttributes = currentAssembly.CustomAttributes;
-            var list = customAttributes.ToList();
-            var res = list[0];
-            var result1 = list.FirstOrDefault(x => x.AttributeType.Name == "AssemblyCopyrightAttribute");
-            string copyrightattr = result1.ConstructorArguments[0].Value.ToString();
-            var result2 = list.FirstOrDefault(x => x.AttributeType.Name == "AssemblyCompanyAttribute");
-            string companyattr = result2.ConstructorArguments[0].Value.ToString();
-            var result3 = list.FirstOrDefault(x => x.AttributeType.Name == "AssemblyTrademarkAttribute");
-            string trademarkattr = result3.ConstructorArguments[0].Value.ToString();
-            return copyrightattr + " " + companyattr + "," + trademarkattr + "," + GetAppVersion();
+            if (customAttributes != null)
+            {
+                var list = customAttributes.ToList();
+                var result1 = list.FirstOrDefault(x => x.AttributeType.Name == "AssemblyCopyrightAttribute");
+                AppSettings.Copyrightattr = result1.ConstructorArguments[0].Value.ToString();
+                var result2 = list.FirstOrDefault(x => x.AttributeType.Name == "AssemblyCompanyAttribute");
+                AppSettings.Companyattr = result2.ConstructorArguments[0].Value.ToString();
+                var result3 = list.FirstOrDefault(x => x.AttributeType.Name == "AssemblyTrademarkAttribute");
+                AppSettings.Trademarkattr = result3.ConstructorArguments[0].Value.ToString();
+            }
+
+            //var d = typeof(App).GetTypeInfo().Assembly.GetName().Version.Major;
+            //var d1 = typeof(App).GetTypeInfo().Assembly.GetName().Version.MajorRevision;
+            //var d2 = typeof(App).GetTypeInfo().Assembly.GetName().Version.Minor;
+            var d3 = typeof(App).GetTypeInfo().Assembly.GetName().Version.MinorRevision;
+            var d4 = typeof(App).GetTypeInfo().Assembly.GetName().Version.Revision;
+            var version = typeof(App).GetTypeInfo().Assembly.GetName().Version;
+            //string dd = typeof(App).GetType().AssemblyQualifiedName;
+            return AppSettings.Copyrightattr + " " + AppSettings.Companyattr + " " + AppSettings.Trademarkattr + d3.ToString() + "/" + d4 + "/" + version + "/" + GetAppVersion();
         }
     }
 }

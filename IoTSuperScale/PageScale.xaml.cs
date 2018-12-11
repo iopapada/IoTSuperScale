@@ -18,6 +18,7 @@ using System.Linq;
 using Windows.UI.Xaml.Navigation;
 using static IoTSuperScale.IoTDB.DBinit;
 using System.Data.SqlClient;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace IoTSuperScale
 {
@@ -58,11 +59,7 @@ namespace IoTSuperScale
                 double zeroPoint = Double.Parse(temp);
                 App.s.zeroPointString = temp + AppSettings.TrailingUnit;
 
-                //Start scale timer tick
-                scaleTimer = new DispatcherTimer();
-                scaleTimer.Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer);
-                scaleTimer.Tick += Timer_Tick;
-                scaleTimer.Start();
+                SetupScaleTimer();
                 //just prepare the singleton object avoiding latency
                 try
                 {
@@ -180,7 +177,7 @@ namespace IoTSuperScale
             App.isAuthenticated = false;
             scaleTimer.Stop();
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
-            Frame.Navigate(typeof(PageLogin), null);
+            Frame.Navigate(typeof(PageLogin), null, new SuppressNavigationTransitionInfo());
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -458,6 +455,17 @@ namespace IoTSuperScale
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             App.Current.IsIdleChanged += OnIsIdleChanged;
+            if (scaleTimer != null)
+                scaleTimer.Start();
+            else
+                SetupScaleTimer();
+        }
+        private void SetupScaleTimer()
+        {
+            //Start scale timer tick
+            scaleTimer = new DispatcherTimer();
+            scaleTimer.Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer);
+            scaleTimer.Tick += Timer_Tick;
             scaleTimer.Start();
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)

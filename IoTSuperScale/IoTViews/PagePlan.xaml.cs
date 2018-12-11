@@ -7,6 +7,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
@@ -33,7 +34,7 @@ namespace IoTSuperScale.IoTViews
         {
             App.isAuthenticated = false;
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
-            Frame.Navigate(typeof(PageLogin), null);
+            Frame.Navigate(typeof(PageLogin), null, new SuppressNavigationTransitionInfo());
         }
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
