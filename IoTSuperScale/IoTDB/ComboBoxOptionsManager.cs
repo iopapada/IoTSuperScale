@@ -73,9 +73,11 @@ namespace IoTSuperScale.IoTDB
             items.Add(new SupplierItem() { Code = "002", SupplierDescr = "ΜΑΥΡΑΚΗ ΑΣΗΜΙΝΑ", GrSupplier = "GR055490B00000902", SupplierRegion = "ΤΕΡΤΣΑ-ΚΡΗΤΗΣ" });
             items.Add(new SupplierItem() { Code = "003", SupplierDescr = "ΜΑΘΙΟΥΔΑΚΗΣ ΣΤΕΦΑΝΙΑ", GrSupplier = "GR050841B00000902", SupplierRegion = "ΑΡΒΗ-ΚΡΗΤΗΣ" });
             items.Add(new SupplierItem() { Code = "004", SupplierDescr = "ΜΑΥΡΙΔΗΣ ΕΛΕΥΘΕΡΙΟΣ", GrSupplier = "GR050680B00000902", SupplierRegion = "ΤΕΡΤΣΑ-ΚΡΗΤΗΣ" });
-            items.Add(new SupplierItem() { Code = "005", SupplierDescr = "ΠΑΠΑΔΑΚΗΣ ΣΤΕΛΙΑΝΟΣ", GrSupplier = "GR015832Β00000902", SupplierRegion = "ΑΡΒΗ-ΚΡΗΤΗΣ" });
-            items.Add(new SupplierItem() { Code = "006", SupplierDescr = "DOLE HELLAS LTD", GrSupplier = "GR0100401B", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
-            items.Add(new SupplierItem() { Code = "007", SupplierDescr = "BELLA FRUTTA", GrSupplier = "GR-----", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
+            items.Add(new SupplierItem() { Code = "005", SupplierDescr = "ΜΗΤΣΟΠΟΥΛΟΣ", GrSupplier = "GR050686B00000902", SupplierRegion = "ΑΡΒΗ-ΚΡΗΤΗΣ" });
+            items.Add(new SupplierItem() { Code = "006", SupplierDescr = "ΠΑΠΑΔΑΚΗΣ ΣΤΕΛΙΑΝΟΣ", GrSupplier = "GR015832Β00000902", SupplierRegion = "ΑΡΒΗ-ΚΡΗΤΗΣ" });
+            items.Add(new SupplierItem() { Code = "007", SupplierDescr = "ΣΤΡΑΤΑΚΗΣ ΙΩΑΝΝΗΣ", GrSupplier = "GR000285Β00000902", SupplierRegion = "ΑΡΒΗ-ΚΡΗΤΗΣ" });
+            items.Add(new SupplierItem() { Code = "008", SupplierDescr = "DOLE HELLAS LTD", GrSupplier = "GR0100401B", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
+            items.Add(new SupplierItem() { Code = "009", SupplierDescr = "BELLA FRUTTA", GrSupplier = "GR-----", SupplierRegion = "ΚΕΝ. ΑΜΕΡΙΚΗ" });
             return items;
         }
 
@@ -91,10 +93,11 @@ namespace IoTSuperScale.IoTDB
             items.Add(new CustomerItem() { Code = "006", CustomerDescr = "ΤΣΟΛΑΚΗΣ Δ5" });
             items.Add(new CustomerItem() { Code = "007", CustomerDescr = "ΜΠΑΦΕΤΗΣ Κ37/39/41/43" });
             items.Add(new CustomerItem() { Code = "008", CustomerDescr = "PLANET FRUITS" });
-            items.Add(new CustomerItem() { Code = "009", CustomerDescr = "ΑΒ ΒΑΣΙΛΟΠΟΥΛΟΣ" });
-            items.Add(new CustomerItem() { Code = "010", CustomerDescr = "BELLA FRUTTA" });
-            items.Add(new CustomerItem() { Code = "011", CustomerDescr = "LIBERO" });
-            items.Add(new CustomerItem() { Code = "012", CustomerDescr = "ΧΑΛΚΙΑΔΑΚΗΣ Α.Ε" });
+            items.Add(new CustomerItem() { Code = "009", CustomerDescr = "ΤΡΙΑΝΤΑΦΥΛΛΗΣ" });
+            items.Add(new CustomerItem() { Code = "010", CustomerDescr = "ΑΒ ΒΑΣΙΛΟΠΟΥΛΟΣ" });
+            items.Add(new CustomerItem() { Code = "011", CustomerDescr = "BELLA FRUTTA" });
+            items.Add(new CustomerItem() { Code = "012", CustomerDescr = "LIBERO" });
+            items.Add(new CustomerItem() { Code = "013", CustomerDescr = "ΧΑΛΚΙΑΔΑΚΗΣ Α.Ε" });
             return items;
         }
     }
