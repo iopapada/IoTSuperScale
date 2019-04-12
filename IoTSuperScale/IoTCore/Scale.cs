@@ -1,7 +1,6 @@
 ﻿using IoTSuperScale.IoTDB;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -128,9 +127,10 @@ namespace IoTSuperScale.IoTCore
                 t.Wait();
                 int temp = _GetOutputData();
                 string tempString = temp.ToString();
-                suggestedVals.Add(Int32.Parse(tempString.Substring(0, 2)));
+                suggestedVals.Add(Int32.Parse(tempString));
+                //suggestedVals.Add(Int32.Parse(tempString.Substring(0, 2)));
             }
-            dbgTheVal = suggestedVals.GroupBy(s => s).OrderByDescending(s => s.Count()).First().Key;
+            //dbgTheVal = suggestedVals.GroupBy(s => s).OrderByDescending(s => s.Count()).First().Key;
         }
         private void InitializeDevice()
         {

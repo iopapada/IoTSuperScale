@@ -81,14 +81,15 @@
 
         <AutoSuggestBox Width="206" Margin="592,120,0,0"
             x:Name="CBoxLotNums"
-            DisplayMemberPath="GetLot"
+            DisplayMemberPath="GetInfo"
             Style="{StaticResource BaseAutoSuggestBoxstyle}"
             ItemsSource="{x:Bind LotOptions, Mode=OneWay}"
             SuggestionChosen="CBoxLotNums_SuggestionChosen"
             TextChanged="CBoxLotNums_TextChanged"
             QuerySubmitted="CBoxLotNums_QuerySubmitted" 
             HorizontalAlignment="Left" VerticalAlignment="Top" 
-            LostFocus="CBoxLotNums_LostFocus">
+            LostFocus="CBoxLotNums_LostFocus" 
+            GettingFocus="CBoxLotNums_GettingFocus">
             <AutoSuggestBox.TextBoxStyle>
                 <Style TargetType="TextBox">
                     <Setter Property="InputScope" Value="number"/>

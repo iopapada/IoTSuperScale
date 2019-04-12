@@ -15,7 +15,7 @@ namespace IoTSuperScale.IoTDB
         public double Qty2 { get; set; }
         public string MUQ2 { get; set; }
         public string Description{ get; set;}
-        public string GetLot
+        public string GetInfo
         {
             get
             {

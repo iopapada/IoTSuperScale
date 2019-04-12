@@ -184,7 +184,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return (string)localSettings.Values["IpERPServerConfig"] ?? "192.168.1.1";
+                return (string)localSettings.Values["IpERPServerConfig"] ?? "192.168.1.5";
             }
             set
             {
@@ -206,7 +206,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return (string)localSettings.Values["ERPDBInstance"] ?? "";
+                return (string)localSettings.Values["ERPDBInstance"] ?? "MSSQLSERVER";
             }
             set
             {

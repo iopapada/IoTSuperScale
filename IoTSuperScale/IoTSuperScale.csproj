@@ -68,7 +68,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -176,6 +176,7 @@
     <Content Include="Assets\Delete2.png" />
     <Content Include="Assets\Down.png" />
     <Content Include="Assets\EN.png" />
+    <Content Include="Assets\Exit.png" />
     <Content Include="Assets\GR.png" />
     <Content Include="Assets\Guest.png" />
     <Content Include="Assets\Guest2.png" />

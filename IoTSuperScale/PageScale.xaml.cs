@@ -430,27 +430,27 @@ namespace IoTSuperScale
             if (args.ChosenSuggestion != null)
             {
                 LotItem chsLotItem = args.ChosenSuggestion as LotItem;
-                CBoxLotNums.Text = chsLotItem.GetLot;
+                CBoxLotNums.Text = chsLotItem.Code;
             }
             else
             {
                 var matchingLot = LotOptions.ToList().Where(c => c.Code.IndexOf(sender.Text, StringComparison.CurrentCultureIgnoreCase) > -1).OrderByDescending(c => c.Code.StartsWith(sender.Text, StringComparison.CurrentCultureIgnoreCase));
                 if (matchingLot.Count() >= 1)
-                    CBoxLotNums.Text = matchingLot.FirstOrDefault().GetLot;
+                    CBoxLotNums.Text = matchingLot.FirstOrDefault().Code;
             }
         }
         private void CBoxLotNums_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            SelectedLot = new LotItem();
             SelectedLot = args.SelectedItem as LotItem;
-            sender.Text = SelectedLot.GetLot;
+            sender.Text = SelectedLot.Code;
         }
         private void CBoxLotNums_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (SelectedLot == null)
-                SelectedLot = new LotItem();
-            if(String.IsNullOrEmpty(SelectedLot.Code))
-                SelectedLot.Code = CBoxLotNums.Text;
+            SelectedLot.Code = CBoxLotNums.Text;
+        }
+        private void CBoxLotNums_GettingFocus(UIElement sender, GettingFocusEventArgs args)
+        {
+            SelectedLot = new LotItem();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

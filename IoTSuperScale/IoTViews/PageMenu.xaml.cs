@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Windows.ApplicationModel.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace IoTSuperScale.IoTViews
 {
@@ -49,6 +47,12 @@ namespace IoTSuperScale.IoTViews
         private void BtnPrinterUtils_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(PagePrinterUtils), null, new SuppressNavigationTransitionInfo());
+        }
+
+        private void BtnQuit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
+            //CoreApplication.Exit();
         }
     }
 }
