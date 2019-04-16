@@ -20,7 +20,7 @@ namespace IoTSuperScale.IoTCore
         public int lastOutput;
         private double lastFV = -1;
         private double bLastFV = -1;
-        private int dbgTheVal;
+        private double FV = -1;
 
         public Scale()
         {
@@ -45,29 +45,36 @@ namespace IoTSuperScale.IoTCore
             try
             {
                 finalStringVal = zeroPointString;
-                //Capture voltage only one time...
-                lastOutput = _GetOutputData();
-                double dataOffsetDiff = lastOutput - AppSettings.OffsetZero;
-                if (AppSettings.CalibrationKilo != 1)
-                    finalDigitVal = dataOffsetDiff / AppSettings.CalibrationKilo;
-                else if (AppSettings.CalibrationHalfKilo != 1)
-                    finalDigitVal = dataOffsetDiff / AppSettings.CalibrationHalfKilo;
-                
-                finalStringVal = AppSettings.LeadingUnit + Math.Round(finalDigitVal, AppSettings.Precision).ToString() + AppSettings.TrailingUnit;
-                //Auto correct offset...
-                if (finalDigitVal < 0.05 && finalDigitVal > -0.05)
+                //Capture 3 times for processing f.e high picks voltage...
+                for (int i = 0; i < 3; i++)
                 {
-                    AppSettings.OffsetZero = lastOutput;
-                    finalStringVal = zeroPointString;
+                    lastOutput = _GetOutputData();
+                    double dataOffsetDiff = lastOutput - AppSettings.OffsetZero;
+                    if (AppSettings.CalibrationKilo != 1)
+                        finalDigitVal = dataOffsetDiff / AppSettings.CalibrationKilo;
+                    else if (AppSettings.CalibrationHalfKilo != 1)
+                        finalDigitVal = dataOffsetDiff / AppSettings.CalibrationHalfKilo;
+
+                    finalStringVal = AppSettings.LeadingUnit + Math.Round(finalDigitVal, AppSettings.Precision).ToString() + AppSettings.TrailingUnit;
+                    //Auto correct offset...
+                    if (finalDigitVal < 0.05 && finalDigitVal > -0.05)
+                    {
+                        AppSettings.OffsetZero = lastOutput;
+                        finalStringVal = zeroPointString;
+                    }
+                    //Broadcast scale value only when we have real weigth and only three attempt for zero values
+                    FV = Math.Round(finalDigitVal, AppSettings.Precision);
+                    //double dbgTemp1 = Convert.ToDouble(String.Format("{0:" + zeroPoint.ToString() + "}", finalDigitVal));
+                    if (!(FV == 0 && bLastFV == 0 && lastFV == 0) && AppSettings.BroadcastPcksConfig)
+                    {
+                        BroadcastScaleVal(finalStringVal);
+                    }
+                    bLastFV = lastFV;
+                    lastFV = FV; 
                 }
-                //Broadcast scale value only when we have real weigth and only three attempt for zero values
-                double dbgTemp = Convert.ToDouble(String.Format("{0:" + zeroPoint.ToString() + "}", finalDigitVal));
-                if (!(dbgTemp == 0 && bLastFV == 0 && lastFV == 0) && AppSettings.BroadcastPcksConfig)
-                {
-                    BroadcastScaleVal(finalStringVal);
-                }
-                bLastFV = lastFV;
-                lastFV = dbgTemp;
+
+                if (bLastFV == FV)
+                    return finalStringVal = AppSettings.LeadingUnit + Math.Round(FV, AppSettings.Precision).ToString() + AppSettings.TrailingUnit;
                 return finalStringVal;
             }
             catch (Exception ex)
