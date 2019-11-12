@@ -120,8 +120,7 @@ namespace IoTSuperScale.IoTViews
         }
         private void Timer_Tick(object sender, object e)
         {
-            App.s.GetReading();
-            txtRVoltage.Text = App.s.lastOutput.ToString();
+            txtRVoltage.Text = App.s._GetOutputData().ToString();
         }
         private void ChkBroadcast_Checked(object sender, RoutedEventArgs e)
         {

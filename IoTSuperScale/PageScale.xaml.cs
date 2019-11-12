@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using static IoTSuperScale.IoTDB.DBinit;
 using System.Data.SqlClient;
 using Windows.UI.Xaml.Media.Animation;
+using System.Text;
 
 namespace IoTSuperScale
 {
@@ -30,7 +31,6 @@ namespace IoTSuperScale
         //Helper UI values
         public static DispatcherTimer scaleTimer;
         //Helper values
-        public static string lastWeightValue;
         public static double tareweight;
         private ObservableCollection<PackagedMaterialItem> MaterialOptions;
         private ObservableCollection<SupplierItem> SupplierOptions;
@@ -46,6 +46,10 @@ namespace IoTSuperScale
         int step;
         int pallet;
         double sum;
+        //Scale values
+        private double lastFV = -1;
+        private double bLastFV = -1;
+        private double FV = -1;
 
         public PageScale()
         {
@@ -193,15 +197,20 @@ namespace IoTSuperScale
             try
             {
                 txtWeight.Text = App.s.GetReading();
-                txtRv.Text = App.s.lastOutput.ToString();
+                txtRv.Text = App.s.voltOutput.ToString();
                 //calculation net weight
                 if (App.isAuthenticated && !SelectedMaterial.Code.Equals("000") && !txtWeight.Text.Equals(App.s.zeroPointString))
                     txtNetW.Text = CalculateNetW(App.s.finalDigitVal, SelectedMaterial.TarePack, SelectedMaterial.TarePrecentage, Int32.Parse(qtySpinner.TextValueProperty));
                 else
                     txtNetW.Text = App.s.zeroPointString;
-
+                //Repaint weight indicator
                 OnChangeWeightDigit();
-                lastWeightValue = txtWeight.Text.ToString();
+                //Broadcast scale value only when we have real weigth and only three attempt for zero values
+                bLastFV = lastFV;
+                lastFV = FV;
+                FV = App.s.finalDigitVal;
+                if (!(FV == 0 && bLastFV == 0 && lastFV == 0) && AppSettings.BroadcastPcksConfig)
+                    App.s.BroadcastScaleVal(App.s.finalStringVal);
             }
             catch (Exception ex)
             {
@@ -222,7 +231,7 @@ namespace IoTSuperScale
         }
         private void OnChangeWeightDigit()
         {
-            if (txtWeight.Text.ToString().Equals(lastWeightValue))
+            if (FV == lastFV)
                 txtWeightBorder.Style = Resources["NeutralTextBoxStyle"] as Style;
             //txtWeightBorder.Background = new SolidColorBrush(Color.FromArgb(191, 0, 245, 56));
             else
