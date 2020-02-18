@@ -40,6 +40,12 @@
             </Button.Background>
         </Button>
 
+        <Button x:Name="btnQuit" HorizontalAlignment="Left" VerticalAlignment="Top" Height="64" Width="64" Margin="724,356,0,0" Click="BtnQuit_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="../Assets/Exit.png" Stretch="None"/>
+            </Button.Background>
+        </Button>
+
         <TextBlock x:Name="txtFooter" Style="{StaticResource FooterLabelstyle}"/>
     </Grid>
 </Page>

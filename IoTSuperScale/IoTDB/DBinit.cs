@@ -73,15 +73,72 @@ namespace IoTSuperScale.IoTDB
                 if (SingletonERP.GetERPDbInstance().GetERPDBConnection().State == ConnectionState.Open) erpDBconn.Close();
             }
         }
-        public static ObservableCollection<PackagedMaterialItem> GetAllSuppliers()
+        public static ObservableCollection<SupplierItem> GetAllPrintableSuppliers()
         {
-            return null;
+            string GetSuppliersQuery =  @"select sup.HECODE, sup.HEUSERDEFTEXT01, sup.HEUSERDEFTEXT02, sup.HEUSERDEFTEXT03 " +
+                                        "from HESUPPLIERS as sup " +
+                                        "where sup.HEUSERDEFBOOL01 = 1 " +
+                                        "Order By sup.HECODE Asc ";
+
+            var sup = new ObservableCollection<SupplierItem>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(GetSuppliersQuery, SingletonERP.GetERPDbInstance().GetERPDBConnection()))
+                {
+                    using (SqlDataReader myReader = cmd.ExecuteReader())
+                    {
+                        while (myReader.Read())
+                        {
+                            var supplier = new SupplierItem(myReader.GetString(0), myReader.GetString(1), myReader.GetString(2), myReader.GetString(3));
+                            sup.Add(supplier);
+                        }
+                        //DataTable myTable = new DataTable();
+                        //myTable.Load(myReader);
+                        SingletonERP.GetERPDbInstance().CloseERPDBConnection();
+                    }
+                }
+                return sup;
+            }
+            catch (Exception ex)
+            {
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLotNumsQuery"));
+                return sup;
+            }
+
         }
-        public static ObservableCollection<PackagedMaterialItem> GetAllCustomers()
+        public static ObservableCollection<CustomerItem> GetAllPrintableCustomers()
         {
-            return null;
+            string GetSuppliersQuery = @"select cus.HECODE, cus.HEUSERDEFTEXT01, cus.HEUSERDEFTEXT02, cus.HEUSERDEFTEXT03 " +
+                                        "from HECUSTOMERS as cus " +
+                                        "where cus.HEUSERDEFBOOL01 = 1 " +
+                                        "Order By cus.HECODE Asc ";
+
+            var cus = new ObservableCollection<CustomerItem>();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(GetSuppliersQuery, SingletonERP.GetERPDbInstance().GetERPDBConnection()))
+                {
+                    using (SqlDataReader myReader = cmd.ExecuteReader())
+                    {
+                        while (myReader.Read())
+                        {
+                            var customers = new CustomerItem(myReader.GetString(0), myReader.GetString(1));
+                            cus.Add(customers);
+                        }
+                        //DataTable myTable = new DataTable();
+                        //myTable.Load(myReader);
+                        SingletonERP.GetERPDbInstance().CloseERPDBConnection();
+                    }
+                }
+                return cus;
+            }
+            catch (Exception ex)
+            {
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLotNumsQuery"));
+                return cus;
+            }
         }
-        public static ObservableCollection<PackagedMaterialItem> GetAllMaterials()
+        public static ObservableCollection<PackagedMaterialItem> GetAllPrintableMaterials()
         {
             return null;
         }

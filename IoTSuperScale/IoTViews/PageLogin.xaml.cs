@@ -1,6 +1,5 @@
 ﻿using IoTSuperScale.IoTDB;
-using System;
-using System.Linq;
+using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -61,6 +60,12 @@ namespace IoTSuperScale.IoTViews
             var _Frame = Window.Current.Content as Frame;
             _Frame.Navigate(_Frame.Content.GetType());
             _Frame.GoBack();
+        }
+
+        private void BtnQuit_Click(object sender, RoutedEventArgs e)
+        {
+            //Application.Current.Exit();
+            CoreApplication.Exit();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

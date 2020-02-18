@@ -110,6 +110,7 @@
     <Compile Include="IoTCore\InputAndGainOption.cs" />
     <Compile Include="IoTCore\PrinterUtil.cs" />
     <Compile Include="IoTCore\Scale.cs" />
+    <Compile Include="IoTCore\SerialCOM.cs" />
     <Compile Include="IoTDB\AppSettings.cs" />
     <Compile Include="IoTDB\ComboBoxOptionsManager.cs" />
     <Compile Include="IoTDB\CustomerItem.cs" />

@@ -58,7 +58,7 @@ namespace IoTSuperScale
                 this.InitializeComponent();
                 txtScaleName.Text = AppSettings.ScaleName+" ("+AppSettings.LCcapacity+")";
                 txtFooter.Text = App.GetAppTextFooter();
-
+                //IoTCore.SerialCOM.SerialConfig();
                 string temp = App.s.CreateZeroPoint();
                 double zeroPoint = Double.Parse(temp);
                 App.s.zeroPointString = temp + AppSettings.TrailingUnit;
@@ -197,6 +197,7 @@ namespace IoTSuperScale
             try
             {
                 txtWeight.Text = App.s.GetReading();
+                //txtWeight.Text = IoTCore.SerialCOM.SerialReadAsync().ToString();
                 txtRv.Text = App.s.voltOutput.ToString();
                 //calculation net weight
                 if (App.isAuthenticated && !SelectedMaterial.Code.Equals("000") && !txtWeight.Text.Equals(App.s.zeroPointString))
@@ -281,7 +282,7 @@ namespace IoTSuperScale
                 string newVal = protoVal.Replace("materialdescr", SelectedMaterial.MaterialReadableDescr);
                 newVal = newVal.Replace("country", SelectedMaterial.Country);
                 newVal = newVal.Replace("region", SelectedMaterial.Region);
-                newVal = newVal.Replace("grsupplier", SelectedSupplier.GrSupplier);
+                newVal = newVal.Replace("grsupplier", SelectedSupplier.GrSupplier+SelectedMaterial.GRmaterial);
                 newVal = newVal.Replace("category", SelectedMaterial.Category);
                 newVal = newVal.Replace("variety", SelectedMaterial.Variety);
                 newVal = newVal.Replace("datereceipt", DateTime.Now.ToString("dd-MM-yyyy"));

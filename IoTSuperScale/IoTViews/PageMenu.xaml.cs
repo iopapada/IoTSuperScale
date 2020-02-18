@@ -48,11 +48,5 @@ namespace IoTSuperScale.IoTViews
         {
             Frame.Navigate(typeof(PagePrinterUtils), null, new SuppressNavigationTransitionInfo());
         }
-
-        private void BtnQuit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-            //CoreApplication.Exit();
-        }
     }
 }
