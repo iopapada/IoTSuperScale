@@ -109,7 +109,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleGridError"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleGridError"));
             }
         }
         public PackagedMaterialItem SelectedMaterial

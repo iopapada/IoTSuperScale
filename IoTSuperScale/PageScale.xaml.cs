@@ -16,16 +16,10 @@ using Windows.ApplicationModel.Resources;
 using System.Threading.Tasks;
 using System.Linq;
 using Windows.UI.Xaml.Navigation;
-using static IoTSuperScale.IoTDB.DBinit;
-using System.Data.SqlClient;
 using Windows.UI.Xaml.Media.Animation;
-using System.Text;
 
 namespace IoTSuperScale
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class PageScale : Page, INotifyPropertyChanged
     {
         //Helper UI values
@@ -41,7 +35,7 @@ namespace IoTSuperScale
         public event PropertyChangedEventHandler PropertyChanged;
         StorageFile currentLabel;
         StorageFile dataLabel;
-        public static SqlConnection sin;
+        
         //Printer values
         int step;
         int pallet;
@@ -64,18 +58,7 @@ namespace IoTSuperScale
                 App.s.zeroPointString = temp + AppSettings.TrailingUnit;
 
                 SetupScaleTimer();
-                //just prepare the singleton object avoiding latency
-                try
-                {
-                    sin = SingletonERP.GetERPDbInstance().GetERPDBConnection();
-                    SingletonERP.GetERPDbInstance().CloseERPDBConnection();
-                    //sin2 = SingletonMRP.getMRPDbInstance().GetMRPDBConnection();
-                    //SingletonMRP.getMRPDbInstance().CloseMRPDBConnection();
-                }
-                catch (Exception ex)
-                {
-                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleERPerrorDBConnection"));
-                }
+             
                 //By authenticated access
                 if (App.isAuthenticated)
                 {
@@ -111,9 +94,10 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleErrorOnLoadScale"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleErrorOnLoadScale"));
             }
         }
+
         private async void LoadLabelsFiles()
         {
             try
@@ -122,11 +106,12 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleNonExistLabels"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleNonExistLabels"));
             }
         }
-        #region UI functions & bar buttons
-        private void DisplayUtilities()
+
+    #region UI functions & bar buttons
+    private void DisplayUtilities()
         {
             btnBack.Visibility = Visibility.Visible;
             border1_Copy.Visibility = Visibility.Visible;
@@ -215,7 +200,7 @@ namespace IoTSuperScale
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleErrorScaleValues"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleErrorScaleValues"));
             }
         }
         private string CalculateNetW(double weight, double tareweight, double precentage, int qty)
@@ -252,12 +237,12 @@ namespace IoTSuperScale
             //edit label with real data
             if (SelectedSupplier.Code == "000" && (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.BIO || SelectedMaterial.Type == PackagedMaterialItem.MaterialType.SEMIBIO))
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgGrSupplier"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleLabelError"));
                 return;
             }
             if (String.IsNullOrEmpty(CBoxLotNums.Text) || String.IsNullOrEmpty(SelectedLot.Code))
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleLabelError"));
                 return;
             }
             //Check printer settings
@@ -399,7 +384,7 @@ namespace IoTSuperScale
             }
             catch (Exception)
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgNonExistLabels"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgNonExistLabels"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleLabelError"));
             }
         }
         void RaisePropertyChanged(string prop)

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="IoannisTeam" Publisher="CN=ioanp" Version="1.0.0.0" />
+  <Identity Name="IoannisTeam" Publisher="CN=Ioannis Papadakis" Version="1.0.40.0" />
   <mp:PhoneIdentity PhoneProductId="4decb786-06a3-409e-a297-15090c745715" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>IoTSuperScale</DisplayName>
@@ -11,14 +11,17 @@
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
   <Resources>
-    <Resource Language="x-generate" />
+    <Resource Language="en-US" />
+    <Resource Language="el-GR" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="IoTSuperScale.App">
-      <uap:VisualElements DisplayName="ms-resource:AppDisplayName" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="ms-resource:AppDescription" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="IoTSuperScale">
+      <uap:VisualElements DisplayName="ms-resource:AppDisplayName" Square44x44Logo="Assets\Square44x44Logo.png" Description="ms-resource:AppDisplayName" BackgroundColor="transparent" Square150x150Logo="Assets\Square150x150Logo.png">
+        <uap:DefaultTile>
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="landscapeFlipped" />
         </uap:InitialRotationPreference>

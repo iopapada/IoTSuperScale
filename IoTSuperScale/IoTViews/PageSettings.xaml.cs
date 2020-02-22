@@ -49,11 +49,11 @@ namespace IoTSuperScale.IoTViews
 #pragma warning disable CS0642 // Possible mistaken empty statement
                 if (SingletonERP.GetERPDbInstance().GetERPDBConnection()!=null) ;
 #pragma warning restore CS0642 // Possible mistaken empty statement
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titlePingDB"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titlePingDB"));
             }
             catch (SqlException ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleERPerrorDBConnection"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleERPerrorDBConnection"));
             }
             finally {
                 SingletonERP.GetERPDbInstance().CloseERPDBConnection();
@@ -66,11 +66,11 @@ namespace IoTSuperScale.IoTViews
 #pragma warning disable CS0642 // Possible mistaken empty statement
                 if (SingletonMRP.GetMRPDbInstance().GetMRPDBConnection() != null) ;
 #pragma warning restore CS0642 // Possible mistaken empty statement
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titlePingDB"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titlePingDB"));
             }
             catch (SqlException ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleMRPerrorDBConnection"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleMRPerrorDBConnection"));
             }
             finally
             {
@@ -150,7 +150,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSaveLCcapacity"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleSettingsOnSaveLCcapacity"));
             }
         }
         private void DecimalPoints_LostFocus(object sender, RoutedEventArgs e)
@@ -161,7 +161,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSavePrecision"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleSettingsOnSavePrecision"));
             }
         }
         private void ScreenSaverSpinner_LostFocus(object sender, RoutedEventArgs e)
@@ -188,7 +188,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSaveScreensaver"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleSettingsOnSaveScreensaver"));
             }
         }
         private void TxtScaleTimer_LosingFocus(UIElement sender, Windows.UI.Xaml.Input.LosingFocusEventArgs args)
@@ -199,7 +199,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleSettingsOnSaveTimer"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleSettingsOnSaveTimer"));
             }
         }
         private void ΤxtBoxPortServer_LostFocus(object sender, RoutedEventArgs e)

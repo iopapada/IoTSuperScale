@@ -30,7 +30,7 @@ namespace IoTSuperScale.IoTDB
                 }
                 catch (SqlException ex)
                 {
-                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleMRPerrorDBConnection"));
+                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleMRPerrorDBConnection"));
                 }
                 return mrpDBconn;
             }
@@ -64,7 +64,7 @@ namespace IoTSuperScale.IoTDB
                 }
                 catch (SqlException ex)
                 {
-                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleERPerrorDBConnection"));
+                    App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleERPerrorDBConnection"));
                 }
                 return erpDBconn;
             }
@@ -101,7 +101,7 @@ namespace IoTSuperScale.IoTDB
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLotNumsQuery"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLotNumsQuery"));
                 return sup;
             }
 
@@ -134,7 +134,7 @@ namespace IoTSuperScale.IoTDB
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLotNumsQuery"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLotNumsQuery"));
                 return cus;
             }
         }
@@ -186,7 +186,7 @@ namespace IoTSuperScale.IoTDB
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLotNumsQuery"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLotNumsQuery"));
                 return lots;
             }
         }

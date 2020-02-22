@@ -53,7 +53,7 @@ namespace IoTSuperScale.IoTViews
             }
             catch (Exception ex)
             {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleEncodingError"));
+                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleEncodingError"));
             }
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
@@ -114,7 +114,7 @@ namespace IoTSuperScale.IoTViews
             //edit label with real dat
             if (txtBoxLot.Text == string.Empty || txtBoxLot.Text == null)
             {
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Messages").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Messages").GetString("titleLabelError"));
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLot"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleLabelError"));
                 return;
             }
             if (protoWeightLabel != null)

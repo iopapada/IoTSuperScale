@@ -173,6 +173,16 @@
             <Setter Property="TextAlignment" Value="Left"/>
         </Style>
 
+        <Style x:Key="MediumLabelsStyleRight" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="18px"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+
         <Style x:Key="Medium2LabelsStyle" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>

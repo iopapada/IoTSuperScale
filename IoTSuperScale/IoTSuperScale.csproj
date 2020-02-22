@@ -2,6 +2,8 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <AppxBundleAutoResourcePackageQualifiers>Scale|DXFeatureLevel</AppxBundleAutoResourcePackageQualifiers>
+    <AppxDefaultResourceQualifiers>Language=en;el</AppxDefaultResourceQualifiers>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{6688CBF6-A4D7-44DC-B79F-03C779B58472}</ProjectGuid>
@@ -18,6 +20,14 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>IoTSuperScale_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <AppInstallerUri>\\C\Appx</AppInstallerUri>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <AppxBundle>Never</AppxBundle>
+    <PackageCertificateThumbprint>42313078F93D13D6C69296DB8DC0913090F59A53</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -102,6 +112,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Configuration\Startup.cs" />
     <Compile Include="IoTControls\ConvertersUI.cs" />
     <Compile Include="IoTControls\NumericSpinner.xaml.cs">
       <DependentUpon>NumericSpinner.xaml</DependentUpon>
@@ -154,16 +165,16 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <PRIResource Include="IoTLang\en-US\Messages.resw" />
-    <PRIResource Include="IoTLang\en-US\Resources.resw" />
-    <PRIResource Include="IoTLang\el-GR\Resources.resw" />
-    <PRIResource Include="IoTLang\el-GR\Messages.resw" />
-    <None Include="IoTLabels\Bio.x" />
-    <None Include="IoTLabels\BioOutEE.x" />
-    <None Include="IoTLabels\Customer.x" />
-    <None Include="IoTLabels\Material.x" />
-    <None Include="IoTLabels\SemiBio.x" />
-    <None Include="IoTLabels\Supplier.x" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+    <PRIResource Include="Strings\el-GR\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <Content Include="Assets\IoTLabels\Bio.x" />
+    <Content Include="Assets\IoTLabels\BioOutEE.x" />
+    <Content Include="Assets\IoTLabels\Customer.x" />
+    <Content Include="Assets\IoTLabels\Material.x" />
+    <Content Include="Assets\IoTLabels\SemiBio.x" />
+    <Content Include="Assets\IoTLabels\Supplier.x" />
     <None Include="IoTSuperScale_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -186,16 +197,14 @@
     <Content Include="Assets\Next42x42.png" />
     <Content Include="Assets\Refresh.png" />
     <Content Include="Assets\settings.png" />
-    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\Up.png" />
     <Content Include="Assets\User.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>

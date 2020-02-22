@@ -315,4 +315,58 @@
   <data name="lblMRPDBname.Text" xml:space="preserve">
     <value>DB MRP:</value>
   </data>
+  <data name="msgGrSupplier" xml:space="preserve">
+    <value>Please fill in the supplier GR</value>
+  </data>
+  <data name="msgLot" xml:space="preserve">
+    <value>Please fill in the lot number</value>
+  </data>
+  <data name="msgNonExistLabels" xml:space="preserve">
+    <value>There is no such label</value>
+  </data>
+  <data name="msgPingDB" xml:space="preserve">
+    <value>Test connection successful</value>
+  </data>
+  <data name="titleEncodingError" xml:space="preserve">
+    <value>Encoding error</value>
+  </data>
+  <data name="titleERPerrorDBConnection" xml:space="preserve">
+    <value>Error with ERP database connection</value>
+  </data>
+  <data name="titleErrorOnLoadScale" xml:space="preserve">
+    <value>Error on load scale</value>
+  </data>
+  <data name="titleErrorScaleValues" xml:space="preserve">
+    <value>Error on reading scale values</value>
+  </data>
+  <data name="titleGridError" xml:space="preserve">
+    <value>Error in grid design</value>
+  </data>
+  <data name="titleLabelError" xml:space="preserve">
+    <value>Print label error</value>
+  </data>
+  <data name="titleLotNumsQuery" xml:space="preserve">
+    <value>Lot numbers of Product</value>
+  </data>
+  <data name="titleMRPerrorDBConnection" xml:space="preserve">
+    <value>Error with MRP database connection</value>
+  </data>
+  <data name="titleNonExistLabels" xml:space="preserve">
+    <value>Not found labels</value>
+  </data>
+  <data name="titlePingDB" xml:space="preserve">
+    <value>Connection with database</value>
+  </data>
+  <data name="titleSettingsOnSaveLCcapacity" xml:space="preserve">
+    <value>Exception in save capacity value</value>
+  </data>
+  <data name="titleSettingsOnSavePrecision" xml:space="preserve">
+    <value>Exception in save presicion value</value>
+  </data>
+  <data name="titleSettingsOnSaveScreensaver" xml:space="preserve">
+    <value>Exception in save screensaver value</value>
+  </data>
+  <data name="titleSettingsOnSaveTimer" xml:space="preserve">
+    <value>Exception in save read timer value</value>
+  </data>
 </root>

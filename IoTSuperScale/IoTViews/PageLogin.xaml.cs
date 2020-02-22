@@ -1,5 +1,7 @@
 ﻿using IoTSuperScale.IoTDB;
+using System.Collections.Generic;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -39,27 +41,33 @@ namespace IoTSuperScale.IoTViews
         }
         private void CBoxLang_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //IReadOnlyList<string> userLanguages = ApplicationLanguages.ManifestLanguages;
+            //IReadOnlyList<string> runtimeLanguages = ResourceContext.GetForCurrentView().Languages;
+
+            //ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
+            //Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().Reset();
+            //Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
+
             ComboBoxItem temp1 = CBoxLang.SelectedItem as ComboBoxItem;
-            var culture = new System.Globalization.CultureInfo("en-US");
             switch (temp1.Name)
             {
                 case "GR":
-                    culture = new System.Globalization.CultureInfo("el-GR");
+                    ApplicationLanguages.PrimaryLanguageOverride = "el-GR";
+                    ResourceContext.SetGlobalQualifierValue("Language", "el-GR");
                     break;
                 default:
-                    culture = new System.Globalization.CultureInfo("en-US");
+                    ApplicationLanguages.PrimaryLanguageOverride = "en-US";
+                    ResourceContext.SetGlobalQualifierValue("Language", "en-US");
                     break;
                     
             }
             AppSettings.LangConfig = temp1.Name;
 
-            ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
-            Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().Reset();
-            Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
             //Reload frame
             var _Frame = Window.Current.Content as Frame;
             _Frame.Navigate(_Frame.Content.GetType());
             _Frame.GoBack();
+            //_Frame.Navigate(this.GetType());
         }
 
         private void BtnQuit_Click(object sender, RoutedEventArgs e)

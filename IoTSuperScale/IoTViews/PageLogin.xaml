@@ -26,7 +26,7 @@
                     <Image Width="20" Height="16" Source="../Assets/GR.png" Stretch="None"  />
                 </StackPanel>
             </ComboBoxItem>
-            <ComboBoxItem Name="EN">
+            <ComboBoxItem Name="US">
                 <StackPanel Orientation="Vertical">
                     <Image Width="20" Height="16" Source="../Assets/EN.png" Stretch="None" />
                 </StackPanel>

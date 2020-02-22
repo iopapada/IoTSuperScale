@@ -315,4 +315,58 @@
   <data name="lblMRPDBname.Text" xml:space="preserve">
     <value>DB MRP:</value>
   </data>
+  <data name="msgGrSupplier" xml:space="preserve">
+    <value>Παρακαλώ συμπληρώστε το GR του προμηθευτή</value>
+  </data>
+  <data name="msgLot" xml:space="preserve">
+    <value>Παρακαλώ συμπληρώστε τον αριθμό παρτίδας</value>
+  </data>
+  <data name="msgNonExistLabels" xml:space="preserve">
+    <value>Δεν ύπαρχει το συγκεκριμένο πρότυπο ετικέτας</value>
+  </data>
+  <data name="msgPingDB" xml:space="preserve">
+    <value>Επιτυχής σύνδεση</value>
+  </data>
+  <data name="titleEncodingError" xml:space="preserve">
+    <value>Σφάλμα κωδικοποίησης</value>
+  </data>
+  <data name="titleERPerrorDBConnection" xml:space="preserve">
+    <value>Σφάλμα σύνδεσης με την βάση ERP</value>
+  </data>
+  <data name="titleErrorOnLoadScale" xml:space="preserve">
+    <value>Σφάλμα κατά την φόρτωση του ζυστικού</value>
+  </data>
+  <data name="titleErrorScaleValues" xml:space="preserve">
+    <value>Σφάλμα κατά την ανάγνωση τιμών ζύγισης</value>
+  </data>
+  <data name="titleGridError" xml:space="preserve">
+    <value>Σφάλμα σχεδίασης του πίνακα</value>
+  </data>
+  <data name="titleLabelError" xml:space="preserve">
+    <value>Σφάλμα κατά την εκτύπωση ετικέτας</value>
+  </data>
+  <data name="titleLotNumsQuery" xml:space="preserve">
+    <value>Σφάλμα αναζήτησης αριθμών παρτίδας</value>
+  </data>
+  <data name="titleMRPerrorDBConnection" xml:space="preserve">
+    <value>Σφάλμα σύνδεσης με την βάση MRP</value>
+  </data>
+  <data name="titleNonExistLabels" xml:space="preserve">
+    <value>Σφάλμα ετικέτας</value>
+  </data>
+  <data name="titlePingDB" xml:space="preserve">
+    <value>Σύνδεση με την βάση δεδομένων</value>
+  </data>
+  <data name="titleSettingsOnSaveLCcapacity" xml:space="preserve">
+    <value>Σφάλμα αποθήκευσης της τιμής χωρητικότητας</value>
+  </data>
+  <data name="titleSettingsOnSavePrecision" xml:space="preserve">
+    <value>Σφάλμα αποθήκευσης της τιμής ακρίβειας</value>
+  </data>
+  <data name="titleSettingsOnSaveScreensaver" xml:space="preserve">
+    <value>Σφάλμα αποθήκευσης της τιμής αδράνειας</value>
+  </data>
+  <data name="titleSettingsOnSaveTimer" xml:space="preserve">
+    <value>Σφάλμα αποθήκευσης της τιμής ανάγνωσης</value>
+  </data>
 </root>
