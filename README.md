@@ -116,8 +116,9 @@ Add additional notes about how to deploy this on a live system
 ## Demo in real World!!
 
 Add additional notes about how to deploy this on a live system
-<img src="Demonstration/2.jpg" width="45%"></img> 
-<img src="Demonstration/1.jpg" width="45%"></img> 
+
+<img src="Demonstration/2.jpg" width="48%"></img> 
+<img src="Demonstration/1.jpg" width="48%"></img> 
 
 ## New features
 
