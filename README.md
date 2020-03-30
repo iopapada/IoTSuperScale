@@ -21,8 +21,8 @@ What things you will need to install the software and how to install them:
 
 Fisrt of all you have to Go to the Windows 10 developer center and Get the Windows 10 IoT Core Dashboard. Select set up device in order to create the OS image of raspberry. [Link to set up device](https://www.windowscentral.com/how-install-windows-10-iot-raspberry-pi-3)
 
-<img src="https://www.programoergosum.com/images/cursos/238-control-de-gpio-con-python-en-raspberry-pi/pines-gpio-rpi-2.png" width="50%"></img>
-<img src="https://www.programoergosum.com/images/cursos/238-control-de-gpio-con-python-en-raspberry-pi/pines-gpio-rpi-2.png" width="50%"></img>
+<img src="https://www.programoergosum.com/images/cursos/238-control-de-gpio-con-python-en-raspberry-pi/pines-gpio-rpi-2.png" width="45%"></img>
+<img src="https://www.programoergosum.com/images/cursos/238-control-de-gpio-con-python-en-raspberry-pi/pines-gpio-rpi-2.png" width="45%"></img>
 
 Clone the project in Visual studio and create the App package by right clicking the .csproj -> Store -> Create App Packages.
 In your Browser type the ip_device:8080 -> credentials device -> Apps -> Apps manager -> Local storage -> Choose file from AppPackages.
