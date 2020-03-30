@@ -23,6 +23,8 @@ Fisrt of all you have to Go to the Windows 10 developer center and Get the Windo
 
 ![alt Raspberry GPIO pins](https://www.google.com/search?q=raspberry+pi+3+b%2B&sxsrf=ALeKk01OBO8st5aVfrS-pbdA2m6mgbCd_g:1585504080906&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiN4qD8nsDoAhXzweYKHaUyAIQQ_AUoAXoECAwQAw&biw=1920&bih=937#imgrc=FgNob9M3AV6tBM&imgdii=KzpD3WChgPaJsM)
 
+<img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="30%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="30%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105284/26aa7ad4-63ae-11e5-88b7-bc523a095c9f.png" width="30%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105288/28698fae-63ae-11e5-8ba7-a62360a8e8a7.png" width="30%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105283/251b6868-63ae-11e5-9918-b789d9d682ec.png" width="30%"></img> <img src="https://cloud.githubusercontent.com/assets/4307137/10105290/2a183f3a-63ae-11e5-9380-50d9f6d8afd6.png" width="30%"></img> 
+
 ## On Coding side
 
 You will find features such as:
