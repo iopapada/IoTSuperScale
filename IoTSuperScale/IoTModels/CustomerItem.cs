@@ -1,4 +1,4 @@
-﻿namespace IoTSuperScale.IoTDB
+﻿namespace IoTSuperScale.Models
 {
     public class CustomerItem
     {
@@ -14,5 +14,8 @@
         {
         }
 
+        public CustomerItem()
+        {
+        }
     }
 }

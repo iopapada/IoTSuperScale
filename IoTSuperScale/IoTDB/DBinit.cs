@@ -2,13 +2,13 @@
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using Windows.ApplicationModel.Resources;
 
-namespace IoTSuperScale.IoTDB
+namespace IoTSuperScale.Models
 {
     public class DBinit
     {
+        #region MRP
         public sealed class SingletonMRP
         {
             private static SingletonMRP dbMRPInstance = null;
@@ -39,10 +39,12 @@ namespace IoTSuperScale.IoTDB
                 if (SingletonMRP.GetMRPDbInstance().GetMRPDBConnection().State == ConnectionState.Open) mrpDBconn.Close();
             }
         }
+        #endregion
+
         public sealed class SingletonERP
         {
             private static SingletonERP dbERPInstance = null;
-            private readonly SqlConnection erpDBconn = new SqlConnection(AppSettings.ERPDBConnectionString);
+            //private readonly SqlConnection erpDBconn = new SqlConnection(AppSettings.ERPDBConnectionString);
 
             private SingletonERP()
             {
@@ -55,22 +57,44 @@ namespace IoTSuperScale.IoTDB
                 }
                 return dbERPInstance;
             }
+            public bool TestERPDBConnection()
+            {
+                SqlConnection erpDBconn = new SqlConnection(AppSettings.ERPDBConnectionString);
+                if (string.IsNullOrEmpty(erpDBconn.Database) || string.IsNullOrWhiteSpace(erpDBconn.Database))
+                    return false;
+                try
+                {
+                    erpDBconn.Open();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+                finally {
+                    erpDBconn.Close();
+                }
+            }
             public SqlConnection GetERPDBConnection()
             {
                 SqlConnection erpDBconn = new SqlConnection(AppSettings.ERPDBConnectionString);
                 try
                 {
-                    erpDBconn.Open();
+                    if (string.IsNullOrEmpty(erpDBconn.Database) || string.IsNullOrWhiteSpace(erpDBconn.Database))
+                        App.PrintOkMessage("No database", ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleERPerrorDBConnection"));
+                    else
+                        erpDBconn.Open();
+                    return erpDBconn;
                 }
                 catch (SqlException ex)
                 {
                     App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleERPerrorDBConnection"));
+                    return erpDBconn;
                 }
-                return erpDBconn;
             }
             public void CloseERPDBConnection()
             {
-                if (SingletonERP.GetERPDbInstance().GetERPDBConnection().State == ConnectionState.Open) erpDBconn.Close();
+                if (SingletonERP.GetERPDbInstance().GetERPDBConnection().State == ConnectionState.Open) GetERPDbInstance().GetERPDBConnection().Close();
             }
         }
         public static ObservableCollection<SupplierItem> GetAllPrintableSuppliers()
@@ -92,9 +116,7 @@ namespace IoTSuperScale.IoTDB
                             var supplier = new SupplierItem(myReader.GetString(0), myReader.GetString(1), myReader.GetString(2), myReader.GetString(3));
                             sup.Add(supplier);
                         }
-                        //DataTable myTable = new DataTable();
-                        //myTable.Load(myReader);
-                        SingletonERP.GetERPDbInstance().CloseERPDBConnection();
+                        //SingletonERP.GetERPDbInstance().CloseERPDBConnection();
                     }
                 }
                 return sup;
@@ -103,6 +125,10 @@ namespace IoTSuperScale.IoTDB
             {
                 App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLotNumsQuery"));
                 return sup;
+            }
+            finally
+            {
+                SingletonERP.GetERPDbInstance().CloseERPDBConnection();
             }
 
         }
@@ -125,9 +151,7 @@ namespace IoTSuperScale.IoTDB
                             var customers = new CustomerItem(myReader.GetString(0), myReader.GetString(1));
                             cus.Add(customers);
                         }
-                        //DataTable myTable = new DataTable();
-                        //myTable.Load(myReader);
-                        SingletonERP.GetERPDbInstance().CloseERPDBConnection();
+                        //SingletonERP.GetERPDbInstance().CloseERPDBConnection();
                     }
                 }
                 return cus;
@@ -137,6 +161,10 @@ namespace IoTSuperScale.IoTDB
                 App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLotNumsQuery"));
                 return cus;
             }
+            finally
+            {
+                SingletonERP.GetERPDbInstance().CloseERPDBConnection();
+            }
         }
         public static ObservableCollection<PackagedMaterialItem> GetAllPrintableMaterials()
         {
@@ -144,7 +172,6 @@ namespace IoTSuperScale.IoTDB
         }
         public static ObservableCollection<LotItem> GetLotsOfProduct(string itemCode)
         {
-            //string testt = @"select * from HEITEMS";
             string GetLotsQuery = @"select lot.HECREATIONDATE, lot.HECODE, lot.HEBLOCKSALES, data.HECODE, data.HENAME," +
                                    "attr.HEABALANCE, attr.HEBBALANCE, attr.HEABILLEDPURQTY, attr.HEBBILLEDPURQTY, " +
                                    "attr.HEABILLEDSALQTY, attr.HEBBILLEDSALQTY, attr.HEASALQTY, attr.HEBSALQTY, " +
@@ -160,26 +187,22 @@ namespace IoTSuperScale.IoTDB
             {
                 using (SqlCommand cmd = new SqlCommand(GetLotsQuery, SingletonERP.GetERPDbInstance().GetERPDBConnection()))
                 {
-                    //cmd.CommandType = CommandType.Text;
-                    //cmd.Parameters.AddWithValue("@itemCode",itemCode.ToString());
                     cmd.Parameters.Add("@itemCode", SqlDbType.NVarChar);
                     cmd.Parameters["@itemCode"].Value = itemCode;
-                    //SqlDataAdapter test = new SqlDataAdapter(cmd);
-                    //test.Fill(ds,"orders");
                     using (SqlDataReader myReader = cmd.ExecuteReader())
                     {
                         while (myReader.Read())
                         {
-                            var material = new LotItem();
-                            material.Code = myReader.GetString(1);
-                            material.Qty1 = Double.Parse(myReader.GetDecimal(5).ToString());
-                            material.Qty2 = Double.Parse(myReader.GetDecimal(6).ToString());
+                            LotItem material = new LotItem
+                            {
+                                Code = myReader.GetString(1),
+                                Qty1 = Double.Parse(myReader.GetDecimal(5).ToString()),
+                                Qty2 = Double.Parse(myReader.GetDecimal(6).ToString())
+                            };
 
                             lots.Add(material);
                         }
-                        //DataTable myTable = new DataTable();
-                        //myTable.Load(myReader);
-                        SingletonERP.GetERPDbInstance().CloseERPDBConnection();
+                        //SingletonERP.GetERPDbInstance().CloseERPDBConnection();
                     }
                 }
                 return lots;
@@ -188,6 +211,9 @@ namespace IoTSuperScale.IoTDB
             {
                 App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgLotNumsQuery"));
                 return lots;
+            }
+            finally {
+                SingletonERP.GetERPDbInstance().CloseERPDBConnection();
             }
         }
     }

@@ -1,5 +1,5 @@
-﻿using IoTSuperScale.IoTCore;
-using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Core;
+using IoTSuperScale.Models;
 using IoTSuperScale.IoTViews;
 using System.ComponentModel;
 using Windows.UI.Xaml;
@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Animation;
+using IoTSuperScale.DB;
 
 namespace IoTSuperScale
 {
@@ -73,7 +74,7 @@ namespace IoTSuperScale
                     DisplayUtilities();
                     //Load materials in ComboBox
                     MaterialOptions = new ObservableCollection<PackagedMaterialItem>();
-                    ComboBoxOptionsManager.GetEnabledPackMaterialsList(MaterialOptions);
+                    DBOptionsManager.GetEnabledPackMaterialsList(MaterialOptions);
                     _SelectedMaterial = MaterialOptions[0];
                     SelectedMaterial = MaterialOptions[0];
                     //Load empty lot
@@ -81,13 +82,13 @@ namespace IoTSuperScale
                     RaisePropertyChanged("LotOptions");
                     //Load suppliers in ComboBox
                     SupplierOptions = new ObservableCollection<SupplierItem>();
-                    ComboBoxOptionsManager.GetAllSuppliersList(SupplierOptions);
+                    DBOptionsManager.GetAllSuppliersList(SupplierOptions);
                     _SelectedSupplier = SupplierOptions[0];
                     SelectedSupplier = SupplierOptions[0];
                     //Load some labels
                     LoadLabelsFiles();
                     //we want to save the state of pagescale
-                    NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
+                    NavigationCacheMode = NavigationCacheMode.Required;
                 }
                 else
                     HideUtilities();
@@ -102,7 +103,7 @@ namespace IoTSuperScale
         {
             try
             {
-                currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
+                currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\Material.x");
             }
             catch (Exception ex)
             {
@@ -165,12 +166,12 @@ namespace IoTSuperScale
         {
             App.isAuthenticated = false;
             scaleTimer.Stop();
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            NavigationCacheMode = NavigationCacheMode.Disabled;
             Frame.Navigate(typeof(PageLogin), null, new SuppressNavigationTransitionInfo());
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            NavigationCacheMode = NavigationCacheMode.Disabled;
             scaleTimer.Stop();
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame.CanGoBack)
@@ -328,7 +329,7 @@ namespace IoTSuperScale
                     //Load lots of selected material
                     CBoxLotNums.Text = "";
                     LotOptions = new ObservableCollection<LotItem>();
-                    LotOptions = DBinit.GetLotsOfProduct(SelectedMaterial.Code);
+                    LotOptions = DBOptionsManager.GetLotsOfProduct(SelectedMaterial.Code);
                     RaisePropertyChanged("LotOptions");
                     //Load suppliers 
                     SelectedSupplier = SupplierOptions[0];
@@ -373,14 +374,14 @@ namespace IoTSuperScale
                 if (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.BIO)
                 {
                     if(SelectedMaterial.IsEEcountry==true)
-                        currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Bio.x");
+                        currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\Bio.x");
                     else
-                        currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("BioOutEE.x");
+                        currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\BioOutEE.x");
                 }
                 else if (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.SEMIBIO)
-                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("SemiBio.x");
+                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\SemiBio.x");
                 else if (SelectedMaterial.Type == PackagedMaterialItem.MaterialType.CONVENTIONAL)
-                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Material.x");
+                    currentLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\Material.x");
             }
             catch (Exception)
             {
@@ -389,8 +390,7 @@ namespace IoTSuperScale
         }
         void RaisePropertyChanged(string prop)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
         private void CBoxMaterials_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -458,8 +458,10 @@ namespace IoTSuperScale
         private void SetupScaleTimer()
         {
             //Start scale timer tick
-            scaleTimer = new DispatcherTimer();
-            scaleTimer.Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer);
+            scaleTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer)
+            };
             scaleTimer.Tick += Timer_Tick;
             scaleTimer.Start();
         }

@@ -369,4 +369,13 @@
   <data name="titleSettingsOnSaveTimer" xml:space="preserve">
     <value>Σφάλμα αποθήκευσης της τιμής ανάγνωσης</value>
   </data>
+  <data name="titlErrorDuringCopyingFile" xml:space="preserve">
+    <value>Σφάλμα κατά την αντγραφή αρχείων</value>
+  </data>
+  <data name="titleErrorJSONFile" xml:space="preserve">
+    <value>Σφάλμα ανάγνωσης αρχείου JSON</value>
+  </data>
+  <data name="msgNoPingDB" xml:space="preserve">
+    <value>Μη επιτυχής σύνδεση</value>
+  </data>
 </root>

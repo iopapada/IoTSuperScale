@@ -1,4 +1,4 @@
-﻿using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Models;
 using System;
 using Windows.UI.Xaml.Data;
 

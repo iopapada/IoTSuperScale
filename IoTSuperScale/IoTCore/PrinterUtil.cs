@@ -1,4 +1,4 @@
-﻿using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Models;
 using System;
 using System.IO;
 using Windows.Networking;
@@ -6,7 +6,7 @@ using Windows.Networking.Sockets;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-namespace IoTSuperScale.IoTCore
+namespace IoTSuperScale.Core
 {
     public class PrinterUtil
     {
@@ -14,7 +14,7 @@ namespace IoTSuperScale.IoTCore
         static StreamSocket socket;
         public static async void SendTestToPrinter(string test, string printsSpinner)
         {
-            StorageFile testLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Customer.x");
+            StorageFile testLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\Customer.x");
             if (testLabel != null)
             {
                 //fill the data

@@ -1,12 +1,12 @@
 ﻿using System;
 using Windows.Storage;
 
-namespace IoTSuperScale.IoTDB
+namespace IoTSuperScale.Models
 {
     public sealed class AppSettings
     {
         static ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-        static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+        //static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
 
         #region general properties
         private static int GetIntSetting(string key, int defaultValue)
@@ -184,7 +184,7 @@ namespace IoTSuperScale.IoTDB
         {
             get
             {
-                return (string)localSettings.Values["IpERPServerConfig"] ?? "192.168.1.5";
+                return (string)localSettings.Values["IpERPServerConfig"] ?? "";
             }
             set
             {

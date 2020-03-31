@@ -123,12 +123,12 @@
     <Compile Include="IoTCore\Scale.cs" />
     <Compile Include="IoTCore\SerialCOM.cs" />
     <Compile Include="IoTDB\AppSettings.cs" />
-    <Compile Include="IoTDB\ComboBoxOptionsManager.cs" />
-    <Compile Include="IoTDB\CustomerItem.cs" />
+    <Compile Include="IoTDB\DBOptionsManager.cs" />
+    <Compile Include="IoTModels\CustomerItem.cs" />
     <Compile Include="IoTDB\DBinit.cs" />
-    <Compile Include="IoTDB\LotItem.cs" />
-    <Compile Include="IoTDB\PackagedMaterialItem.cs" />
-    <Compile Include="IoTDB\SupplierItem.cs" />
+    <Compile Include="IoTModels\LotItem.cs" />
+    <Compile Include="IoTModels\PackagedMaterialItem.cs" />
+    <Compile Include="IoTModels\SupplierItem.cs" />
     <Compile Include="IoTViews\PageCustomer.xaml.cs">
       <DependentUpon>PageCustomer.xaml</DependentUpon>
     </Compile>
@@ -175,6 +175,9 @@
     <Content Include="Assets\IoTLabels\Material.x" />
     <Content Include="Assets\IoTLabels\SemiBio.x" />
     <Content Include="Assets\IoTLabels\Supplier.x" />
+    <Content Include="Assets\JsonModels\materials.json" />
+    <Content Include="Assets\JsonModels\customers.json" />
+    <Content Include="Assets\JsonModels\suppliers.json" />
     <None Include="IoTSuperScale_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +263,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

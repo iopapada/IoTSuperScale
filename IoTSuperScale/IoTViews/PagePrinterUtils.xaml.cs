@@ -1,5 +1,5 @@
-﻿using IoTSuperScale.IoTCore;
-using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Core;
+using IoTSuperScale.Models;
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

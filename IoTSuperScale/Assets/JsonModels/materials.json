@@ -1,0 +1,53 @@
+[
+  {
+    "Code": "004",
+    "DisplayCodeDescr": "004 - test4",
+    "MaterialDescr": "test4",
+    "MaterialReadableDescr": "test4 readable description",
+    "Country": "ΕΛΛΑΔΑ",
+    "Region": "ΑΡΒΗ-ΚΡΗΤΗ",
+    "Recipe": null,
+    "Type": "BIO",
+    "IsEnabled": true,
+    "TarePack": 0,
+    "TarePrecentage": 0,
+    "IsEEcountry": true,
+    "Category": "II",
+    "Variety": "Cavendish",
+    "GRmaterial": "00000902"
+  },
+  {
+    "Code": "005",
+    "DisplayCodeDescr": "005 - test5",
+    "MaterialDescr": "test5",
+    "MaterialReadableDescr": "test5 readable description",
+    "Country": "Greece",
+    "Region": "Athens",
+    "Recipe": null,
+    "Type": "SEMIBIO",
+    "IsEnabled": true,
+    "TarePack": 0,
+    "TarePrecentage": 0,
+    "IsEEcountry": true,
+    "Category": "II",
+    "Variety": "Cavendish",
+    "GRmaterial": "00000902"
+  },
+  {
+    "Code": "006",
+    "DisplayCodeDescr": "005 - test6",
+    "MaterialDescr": "test6",
+    "MaterialReadableDescr": "test6 readable description",
+    "Country": "ΕΛΛΑΔΑ",
+    "Region": "ΑΡΒΗ-ΚΡΗΤΗ",
+    "Recipe": "RECIPELUX",
+    "Type": "CONVENTIONAL",
+    "IsEnabled": true,
+    "TarePack": 8,
+    "TarePrecentage": 0.07,
+    "IsEEcountry": true,
+    "Category": "II",
+    "Variety": "Cavendish",
+    "GRmaterial": "00000902"
+  }
+]

@@ -1,4 +1,4 @@
-﻿using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 
-namespace IoTSuperScale.IoTCore
+namespace IoTSuperScale.Core
 {
     public sealed class Scale
     {
@@ -44,7 +44,7 @@ namespace IoTSuperScale.IoTCore
                 finalStringVal = zeroPointString;
                 //voltOutput = 0;
                 voltOutput = _GetOutputData();
-                //TRANSFORM THE PROCESSED VOLTAGE VALUE
+                //Transform the processed voltage value
                 double dataOffsetDiff = voltOutput - AppSettings.OffsetZero;
                 if (AppSettings.CalibrationKilo != 1)
                     finalDigitVal = dataOffsetDiff / AppSettings.CalibrationKilo;
@@ -149,7 +149,6 @@ namespace IoTSuperScale.IoTCore
             int result = 0;
             if (device != null)
             {
-
                 result = device.Read();
             }
             device.PowerDown();

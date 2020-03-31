@@ -271,7 +271,7 @@
     <value>Inst ERP:</value>
   </data>
   <data name="lblDBname.Text" xml:space="preserve">
-    <value>DB name:</value>
+    <value>DB ERP:</value>
   </data>
   <data name="lblDBpass.Text" xml:space="preserve">
     <value>DB pass:</value>
@@ -368,5 +368,14 @@
   </data>
   <data name="titleSettingsOnSaveTimer" xml:space="preserve">
     <value>Exception in save read timer value</value>
+  </data>
+  <data name="titlErrorDuringCopyingFile" xml:space="preserve">
+    <value>Error during copying files</value>
+  </data>
+  <data name="titleErrorJSONFile" xml:space="preserve">
+    <value>Error on reading JSON file</value>
+  </data>
+  <data name="msgNoPingDB" xml:space="preserve">
+    <value>Test connection did not succeed</value>
   </data>
 </root>

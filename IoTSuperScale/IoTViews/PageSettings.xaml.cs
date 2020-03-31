@@ -1,4 +1,4 @@
-﻿using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Models;
 using System;
 using System.Data.SqlClient;
 using Windows.ApplicationModel.Resources;
@@ -6,7 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using static IoTSuperScale.IoTDB.DBinit;
+using static IoTSuperScale.Models.DBinit;
 
 namespace IoTSuperScale.IoTViews
 {
@@ -17,8 +17,10 @@ namespace IoTSuperScale.IoTViews
         public PageSettings()
         {
             this.InitializeComponent();
-            settingsTimer = new DispatcherTimer();
-            settingsTimer.Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer);
+            settingsTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(AppSettings.ScaleTimer)
+            };
             settingsTimer.Tick += Timer_Tick;
             settingsTimer.Start();
             this.LoadSettings();
@@ -44,44 +46,21 @@ namespace IoTSuperScale.IoTViews
         }
         private void BtnERPDBconnectionTest_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-#pragma warning disable CS0642 // Possible mistaken empty statement
-                if (SingletonERP.GetERPDbInstance().GetERPDBConnection()!=null) ;
-#pragma warning restore CS0642 // Possible mistaken empty statement
+     
+            if (SingletonERP.GetERPDbInstance().TestERPDBConnection())
                 App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titlePingDB"));
-            }
-            catch (SqlException ex)
-            {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleERPerrorDBConnection"));
-            }
-            finally {
-                SingletonERP.GetERPDbInstance().CloseERPDBConnection();
-            }
+            else
+                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgNoPingDB"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titlePingDB"));
         }
         private void BtnMRPDBconnectionTest_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-#pragma warning disable CS0642 // Possible mistaken empty statement
-                if (SingletonMRP.GetMRPDbInstance().GetMRPDBConnection() != null) ;
-#pragma warning restore CS0642 // Possible mistaken empty statement
-                App.PrintOkMessage(ResourceLoader.GetForViewIndependentUse("Resources").GetString("msgPingDB"), ResourceLoader.GetForViewIndependentUse("Resources").GetString("titlePingDB"));
-            }
-            catch (SqlException ex)
-            {
-                App.PrintOkMessage(ex.Message, ResourceLoader.GetForViewIndependentUse("Resources").GetString("titleMRPerrorDBConnection"));
-            }
-            finally
-            {
-                SingletonMRP.GetMRPDbInstance().CloseMRPDBConnection();
-            }
+            
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
             settingsTimer.Stop();
             Frame rootFrame = Window.Current.Content as Frame;
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            NavigationCacheMode = NavigationCacheMode.Disabled;
             if (rootFrame.CanGoBack)
                 rootFrame.GoBack();
         }
@@ -90,7 +69,7 @@ namespace IoTSuperScale.IoTViews
             App.isAuthenticated = false;
             settingsTimer.Stop();
             Frame.Navigate(typeof(PageLogin), null, new SuppressNavigationTransitionInfo());
-            NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            NavigationCacheMode = NavigationCacheMode.Disabled;
         }
 
         public void LoadSettings()
@@ -168,8 +147,7 @@ namespace IoTSuperScale.IoTViews
         {
             try
             {
-                int ignoreMe;
-                bool successfullyParsed = int.TryParse(screenSaverSpinner.TextValueProperty.ToString(), out ignoreMe);
+                bool successfullyParsed = int.TryParse(screenSaverSpinner.TextValueProperty.ToString(), out int ignoreMe);
                 if (successfullyParsed)
                 {
                     AppSettings.ScreenSaverMins = Int32.Parse(screenSaverSpinner.TextValueProperty.ToString());

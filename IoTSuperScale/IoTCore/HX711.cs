@@ -2,7 +2,7 @@
 using System;
 using Windows.Devices.Gpio;
 
-namespace IoTSuperScale.IoTCore
+namespace IoTSuperScale.Core
 {
     //24-Bit Analog-to-Digital Converter (ADC) for Weigh Scales
     public class HX711

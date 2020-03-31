@@ -1,0 +1,20 @@
+[
+  {
+    "Code": "004",
+    "SupplierDescr": "supplier4",
+    "GrSupplier": "GRsupplier4",
+    "SupplierRegion": "Region4 - Location4"
+  },
+  {
+    "Code": "005",
+    "SupplierDescr": "supplier5",
+    "GrSupplier": "GRsupplier5",
+    "SupplierRegion": "Region5 - Location5"
+  },
+  {
+    "Code": "006",
+    "SupplierDescr": "supplier6",
+    "GrSupplier": "GRsupplier6",
+    "SupplierRegion": "Region6 - Location6"
+  }
+]

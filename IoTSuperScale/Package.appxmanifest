@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="IoannisTeam" Publisher="CN=Ioannis Papadakis" Version="1.0.40.0" />
+  <Identity Name="IoannisTeam" Publisher="CN=Ioannis Papadakis" Version="1.0.42.0" />
   <mp:PhoneIdentity PhoneProductId="4decb786-06a3-409e-a297-15090c745715" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>IoTSuperScale</DisplayName>

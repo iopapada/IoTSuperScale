@@ -4,7 +4,7 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.SerialCommunication;
 using Windows.Storage.Streams;
 
-namespace IoTSuperScale.IoTCore
+namespace IoTSuperScale.Core
 {
     class SerialCOM
     {

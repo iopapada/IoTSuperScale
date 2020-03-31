@@ -1,5 +1,6 @@
-﻿using IoTSuperScale.IoTControls;
-using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.DB;
+using IoTSuperScale.IoTControls;
+using IoTSuperScale.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace IoTSuperScale.IoTViews
             this.InitializeComponent();
             //Load materials in ComboBox
             MaterialOptions = new ObservableCollection<PackagedMaterialItem>();
-            ComboBoxOptionsManager.GetEnabledPackMaterialsList(MaterialOptions);
+            DBOptionsManager.GetEnabledPackMaterialsList(MaterialOptions);
             _SelectedMaterial = MaterialOptions[0];
             SelectedMaterial = MaterialOptions[0];
             txtFooter.Text = App.GetAppTextFooter();
@@ -69,30 +70,38 @@ namespace IoTSuperScale.IoTViews
                 grid.ColumnDefinitions.Add(col2);
                 grid.ColumnDefinitions.Add(col3);
 
-                ComboBox cboxMaterial = new ComboBox();
-                cboxMaterial.MinWidth = 290;
-                cboxMaterial.MaxWidth = 290;
-                cboxMaterial.Width = 290;
-                cboxMaterial.Height = 50;
-                cboxMaterial.HorizontalAlignment = HorizontalAlignment.Left;
-                cboxMaterial.Name = "CBoxMaterials";
-                cboxMaterial.DisplayMemberPath = "DisplayCodeDescr";
-                cboxMaterial.ItemsSource = MaterialOptions;
-                cboxMaterial.FontSize = 16;
+                ComboBox cboxMaterial = new ComboBox
+                {
+                    MinWidth = 290,
+                    MaxWidth = 290,
+                    Width = 290,
+                    Height = 50,
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    Name = "CBoxMaterials",
+                    DisplayMemberPath = "DisplayCodeDescr",
+                    ItemsSource = MaterialOptions,
+                    FontSize = 16
+                };
                 //cboxMaterial.SelectedItem = SelectedMaterial;
                 //cboxMaterial.SelectedValuePath = SelectedMaterial.code;
 
-                NumericSpinner numSpinner = new NumericSpinner();
-                numSpinner.Name = "spinner" + rowCount;
-                numSpinner.TextValueProperty = "24";
+                NumericSpinner numSpinner = new NumericSpinner
+                {
+                    Name = "spinner" + rowCount,
+                    TextValueProperty = "24"
+                };
 
-                Button btnDelete = new Button();
-                btnDelete.Name = "btnDel" + rowCount;
-                btnDelete.Width = 50;
-                btnDelete.Height = 50;
+                Button btnDelete = new Button
+                {
+                    Name = "btnDel" + rowCount,
+                    Width = 50,
+                    Height = 50
+                };
                 ImageBrush myBrush = new ImageBrush();
-                Image image = new Image();
-                image.Source = new BitmapImage(new Uri("ms-appx:///Assets/Delete.png"));
+                Image image = new Image
+                {
+                    Source = new BitmapImage(new Uri("ms-appx:///Assets/Delete.png"))
+                };
                 myBrush.ImageSource = image.Source;
                 btnDelete.Background = myBrush;
 
@@ -129,8 +138,7 @@ namespace IoTSuperScale.IoTViews
         }
         void RaisePropertyChanged(string prop)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

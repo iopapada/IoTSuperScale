@@ -1,5 +1,6 @@
-﻿using IoTSuperScale.IoTCore;
-using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Core;
+using IoTSuperScale.DB;
+using IoTSuperScale.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,13 +14,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace IoTSuperScale.IoTViews
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class PageReceipt : Page, INotifyPropertyChanged
     {
         private ObservableCollection<SupplierItem> SupplierOptions;
@@ -38,12 +34,12 @@ namespace IoTSuperScale.IoTViews
             txtFooter.Text = App.GetAppTextFooter();
             //Load suppliers in ComboBox
             SupplierOptions = new ObservableCollection<SupplierItem>();
-            ComboBoxOptionsManager.GetAllSuppliersList(SupplierOptions);
+            DBOptionsManager.GetAllSuppliersList(SupplierOptions);
             _SelectedSupplier = SupplierOptions[0];
             SelectedSupplier = SupplierOptions[0];
             //Load packaged materials in ComboBox
             PackagedMaterialOptions = new ObservableCollection<PackagedMaterialItem>();
-            ComboBoxOptionsManager.GetEnabledPackMaterialsList(PackagedMaterialOptions);
+            DBOptionsManager.GetEnabledPackMaterialsList(PackagedMaterialOptions);
             _SelectedPackagedMaterial = PackagedMaterialOptions[0];
             SelectedPackagedMaterial = PackagedMaterialOptions[0];
             try
@@ -104,13 +100,12 @@ namespace IoTSuperScale.IoTViews
         }
         void RaisePropertyChanged(string prop)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
         private async void BtnPrnt_Click(object sender, RoutedEventArgs e)
         {
-            protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Supplier.x");
+            protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\Supplier.x");
             //edit label with real dat
             if (txtBoxLot.Text == string.Empty || txtBoxLot.Text == null)
             {

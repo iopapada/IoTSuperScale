@@ -1,4 +1,4 @@
-﻿namespace IoTSuperScale.IoTDB
+﻿namespace IoTSuperScale.Models
 {
     public class PackagedMaterialItem
     {

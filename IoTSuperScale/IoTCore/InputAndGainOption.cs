@@ -1,4 +1,4 @@
-﻿namespace IoTSuperScale.IoTCore
+﻿namespace IoTSuperScale.Core
 {
     public enum InputAndGainOption : int
     {

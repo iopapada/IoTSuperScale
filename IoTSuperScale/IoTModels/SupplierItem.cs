@@ -1,4 +1,4 @@
-﻿namespace IoTSuperScale.IoTDB
+﻿namespace IoTSuperScale.Models
 {
     public class SupplierItem
     {
@@ -19,6 +19,10 @@
         {
             Code = code;
             SupplierDescr = descr;
+        }
+
+        public SupplierItem()
+        {
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using IoTSuperScale.Configuration;
-using IoTSuperScale.IoTCore;
-using IoTSuperScale.IoTDB;
+using IoTSuperScale.Core;
+using IoTSuperScale.Models;
 using IoTSuperScale.IoTViews;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,10 +14,11 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System.Diagnostics;
 
 namespace IoTSuperScale
 {
-    
+
     sealed partial class App : Application
     {
         public static bool isAuthenticated;
@@ -64,8 +64,10 @@ namespace IoTSuperScale
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-            idleTimer = new DispatcherTimer();
-            idleTimer.Interval = TimeSpan.FromSeconds(60*AppSettings.ScreenSaverMins);
+            idleTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(60 * AppSettings.ScreenSaverMins)
+            };
             idleTimer.Tick += ΟnIdleTimerTick;
             if (AppSettings.ScreenSaverMins != 0)
                 idleTimer.Start();
@@ -135,14 +137,11 @@ namespace IoTSuperScale
         }
         public static string GetAppVersion()
         {
-            const string proteasbirth = "04-05-2017";
-            var startDate = DateTime.Parse(proteasbirth);
-            var currentDate = DateTime.Now;
-            var elapsedTimeSpan = currentDate.Subtract(startDate);
+            Package package = Package.Current;
+            PackageId packageId = package.Id;
+            PackageVersion version = packageId.Version;
 
-            //return string.Format("Version: {0}", FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion);
-            //For Assembly version
-            return string.Format("Version: {0}",Assembly.GetExecutingAssembly().GetName().Version.ToString()).Replace("DB",elapsedTimeSpan.TotalDays.ToString());
+            return string.Format("Version: {0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 
         }
         public static string GetAppTextFooter()
@@ -159,15 +158,9 @@ namespace IoTSuperScale
                 var result3 = list.FirstOrDefault(x => x.AttributeType.Name == "AssemblyTrademarkAttribute");
                 AppSettings.Trademarkattr = result3.ConstructorArguments[0].Value.ToString();
             }
-
-            //var d = typeof(App).GetTypeInfo().Assembly.GetName().Version.Major;
-            //var d1 = typeof(App).GetTypeInfo().Assembly.GetName().Version.MajorRevision;
-            //var d2 = typeof(App).GetTypeInfo().Assembly.GetName().Version.Minor;
-            var d3 = typeof(App).GetTypeInfo().Assembly.GetName().Version.MinorRevision;
-            var d4 = typeof(App).GetTypeInfo().Assembly.GetName().Version.Revision;
+            //same with GetAppVersion
             var version = typeof(App).GetTypeInfo().Assembly.GetName().Version;
-            //string dd = typeof(App).GetType().AssemblyQualifiedName;
-            return AppSettings.Copyrightattr + " " + AppSettings.Companyattr + " " + AppSettings.Trademarkattr + d3.ToString() + "/" + d4 + "/" + version + "/" + GetAppVersion();
+            return AppSettings.Copyrightattr + " " + AppSettings.Companyattr + " " + AppSettings.Trademarkattr + " " + GetAppVersion();
         }
     }
 }

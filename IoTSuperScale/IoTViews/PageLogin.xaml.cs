@@ -1,4 +1,4 @@
-﻿using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Models;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.Resources.Core;

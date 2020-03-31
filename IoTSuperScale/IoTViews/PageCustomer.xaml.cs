@@ -1,5 +1,6 @@
-﻿using IoTSuperScale.IoTCore;
-using IoTSuperScale.IoTDB;
+﻿using IoTSuperScale.Core;
+using IoTSuperScale.Models;
+using IoTSuperScale.DB;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,13 +12,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace IoTSuperScale.IoTViews
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class PageCustomer : Page
     {
         private ObservableCollection<CustomerItem> CustomerOptions;
@@ -32,7 +28,7 @@ namespace IoTSuperScale.IoTViews
             txtFooter.Text = App.GetAppTextFooter();
             //Load Customers in ComboBox
             CustomerOptions = new ObservableCollection<CustomerItem>();
-            ComboBoxOptionsManager.GetAllCustomersList(CustomerOptions);
+            DBOptionsManager.GetAllCustomersList(CustomerOptions);
             _SelectedCustomer = CustomerOptions[0];
             SelectedCustomer = CustomerOptions[0];
             NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
@@ -67,12 +63,11 @@ namespace IoTSuperScale.IoTViews
         }
         void RaisePropertyChanged(string prop)
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
         private async void BtnPrnt_Click(object sender, RoutedEventArgs e)
         {
-            protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync("Customer.x");
+            protoWeightLabel = await ApplicationData.Current.LocalFolder.GetFileAsync(@"Labels\Customer.x");
             //edit label with real data
             if (protoWeightLabel != null)
             {
