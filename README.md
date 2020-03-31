@@ -1,11 +1,10 @@
 # IoTSuperScale
-
 A Universal Windows Platform (UWP) application targeting on devices with minimum version OS-Windows 10 IoT 10.0.17763. It is a business application implemented and tested on raspberry pi 3B for measuring the weight of products (large packages) and printing labels with a variety of product information. UWP apps are applications that can be used across all compatible Microsoft Windows devices such as tablets, smartphones, Microsoft HoloLens, Internet of Things and of course personal computers. UWP is an API part of Windows 10 and Windows 10 Mobile and support C++, VB, C#, F# and JavaScript.
+
 ## Getting Started
-
 Unlike Windows CE of the past, Windows 10 IoT Core is a subset of Windows 10 that is designed to run Windows Universal applications. It is available as a free download and lacks the usual Windows 10 system user interface. As a result this project cost no more than 700&euro; instead of a ready solution that would have at least 7Κ&euro; without license, configuration and maintenance expenses.
-### Hardware Requirements
 
+### Hardware Requirements
 What things you will need to install the software, their costs and how to install them:
 || Component  | Cost |
 |--| ------------- | ------------- |
@@ -19,9 +18,8 @@ What things you will need to install the software, their costs and how to instal
 |8.| [ZebraNet 10/100 Print Server](https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn11.bigcommerce.com%2Fs-40d25%2Fimages%2Fstencil%2F1280x1280%2Fproducts%2F420%2F1587%2Fzebra-p1031031-zebranet-10-100-external-print-server-supports-the-following-printers-2824-2844-2824z-3842-2844z-105sl-110pax4-110xiiiip_1__41471.1487287824.jpg%3Fc%3D2%26imbypass%3Don&imgrefurl=https%3A%2F%2Fwww.barcodes.com.au%2Fzebra-print-server-external-10-100%2F&tbnid=s8LZkPO-yk5SoM&vet=12ahUKEwi9qrnPmMDoAhWQlRQKHS_XDM4QMygkegQIARBW..i&docid=VH3UMg9CvTczOM&w=1280&h=960&q=server%20printer%20zebra%20gc%20420t&ved=2ahUKEwi9qrnPmMDoAhWQlRQKHS_XDM4QMygkegQIARBW)  | 100&euro; |
 
 ### Installing App
-
 These instructions will get you a copy of the project up and running on your local device for development and testing purposes.
-Fisrt of all you have to Go to the Windows 10 developer center and Get the Windows 10 IoT Core Dashboard. Select set up device in order to create the OS image of raspberry [(Link to set up device).](https://www.windowscentral.com/how-install-windows-10-iot-raspberry-pi-3) Also about wiring the only important is the connection with amplifier where CLK is wired with GPIO pin23 and DAT is wired with GPIO pin24.
+Fisrt of all you have to Go to the Windows 10 developer center and Get the Windows 10 IoT Core Dashboard. Select set up device in order to create the OS image of raspberry [(Link to set up device)](https://www.windowscentral.com/how-install-windows-10-iot-raspberry-pi-3). Also about wiring the only important is the connection with amplifier where CLK is wired with GPIO pin23 and DAT is wired with GPIO pin24.
 
 <img src="https://www.programoergosum.com/images/cursos/238-control-de-gpio-con-python-en-raspberry-pi/pines-gpio-rpi-2.png" width="45%"></img>
 <img img src="Demonstration/10.jpg" width="35%">
@@ -37,7 +35,7 @@ public static int DataPinNumber{
 }
 ```
 
-Clone the project in Visual studio and create the App package by right clicking in solution explorer the .csproj -> Store -> Create App Packages. In your Browser type the ip_device:8080 -> credentials device -> Apps -> Apps manager -> Local storage -> Choose file from AppPackages.
+Clone the project in Visual studio and create the App package by right clicking in solution explorer the .csproj -> Store -> Create App Packages [Package a UWP App](https://docs.microsoft.com/en-us/windows/msix/package/packaging-uwp-apps). For the installation of application you have to go in your Browser type the ip_device:8080 -> credentials device -> Apps -> Apps manager -> Local storage -> Choose file from AppPackages that you create. As you will see the intro page has only weight indicator due to lack of credentials and it is not working because there is no calibration. The login button is dummy so just press it !!
 
 <img src="Demonstration/4.jpg" width="30%"></img> 
 <img src="Demonstration/5.jpg" width="30%"></img> 
@@ -108,34 +106,26 @@ using (BinaryReader fileReader = new BinaryReader(dataWeightLabel.OpenStreamForR
     }
 }
 ```
-
 ### Great hints on coding the app
-
-[HX711 amplifier](https://github.com/Pabreetzio/IotScale)
-[On Creating and read files .x and .json](https://docs.microsoft.com/en-us/windows/uwp/files/quickstart-reading-and-writing-files "How to create and read files in UWP")
+* [HX711 amplifier](https://github.com/Pabreetzio/IotScale)
+* [On Creating and read files .x and .json](https://docs.microsoft.com/en-us/windows/uwp/files/quickstart-reading-and-writing-files "How to create and read files in UWP")
 
 ## Configuration of system
-
-### Configuration 
-In order to access local state of device 
-### Configuration Printer settings
-### Configuration Network settings
-Add additional notes about how to deploy this on a live system
+At last the most painful step the configuration of system (Weight calibration, IP printer, Files and SQL Server). First of all from settings menu we calibrate with a standard weight of 1KG or 0,5KG, now the weight indicator is ready. Also we have to set up ip printer from Printer Utils and SQL server from settings menu. Finally in order to access local state of device and modify the default Files (), type in file explorer \\ip_device\c$ and select the path \Data\Users\DefaultAccount \AppData\Local\Packages\Package_name\LocalState
 
 <img src="Demonstration/7.jpg" width="30%"></img> 
 <img src="Demonstration/8.jpg" width="30%"></img> 
 <img src="Demonstration/9.jpg" width="30%"></img> 
 
-## Demo in real World!!
-
-Add additional notes about how to deploy this on a live system
-
+## Happy Birthday!! System in real World!!
 <img src="Demonstration/2.jpg" width="48%"></img> 
 <img src="Demonstration/1.jpg" width="48%"></img> 
 
 ## New features
-* Serial communication
-* Desktop appli
-## What you have to consider before implementing UWP application on Windows IoT 10
+* Reading weight values from Serial communication 
+* Reading DB values from a dedicated Desktop Application 
+* Desktop application responsible for controling room automations
 
-* [Performance](https://docs.microsoft.com/en-us/windows/uwp/debug-test-perf/performance-and-xaml-ui "Performance")
+## What you have to consider before implementing UWP application on Windows IoT 10
+* [Windows 10 IoT](https://docs.microsoft.com/en-us/windows/iot-core/)
+* [Performance for UWP](https://docs.microsoft.com/en-us/windows/uwp/debug-test-perf/performance-and-xaml-ui "Performance")
