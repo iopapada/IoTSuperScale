@@ -1,6 +1,6 @@
 # IoTSuperScale
 
-A Universal Windows Platform (UWP) application targeting on devices with minimum version OS-Windows 10 IoT 10.0.16299. It is a business application implemented and tested on raspberry pi 3B for measuring the weight of products (large packages) and printing labels with a variety of product information. UWP apps are applications that can be used across all compatible Microsoft Windows devices such as tablets, smartphones, Microsoft HoloLens, Internet of Things and of course personal computers. UWP is an API part of Windows 10 and Windows 10 Mobile and support C++, VB, C#, F# and JavaScript.
+A Universal Windows Platform (UWP) application targeting on devices with minimum version OS-Windows 10 IoT 10.0.17763. It is a business application implemented and tested on raspberry pi 3B for measuring the weight of products (large packages) and printing labels with a variety of product information. UWP apps are applications that can be used across all compatible Microsoft Windows devices such as tablets, smartphones, Microsoft HoloLens, Internet of Things and of course personal computers. UWP is an API part of Windows 10 and Windows 10 Mobile and support C++, VB, C#, F# and JavaScript.
 ## Getting Started
 
 Unlike Windows CE of the past, Windows 10 IoT Core is a subset of Windows 10 that is designed to run Windows Universal applications. It is available as a free download and lacks the usual Windows 10 system user interface. As a result this project cost no more than 700&euro; instead of a ready solution that would have at least 7Κ&euro; without license, configuration and maintenance expenses.
@@ -21,10 +21,21 @@ What things you will need to install the software, their costs and how to instal
 ### Installing App
 
 These instructions will get you a copy of the project up and running on your local device for development and testing purposes.
-Fisrt of all you have to Go to the Windows 10 developer center and Get the Windows 10 IoT Core Dashboard. Select set up device in order to create the OS image of raspberry. [Link to set up device](https://www.windowscentral.com/how-install-windows-10-iot-raspberry-pi-3) Also about wiring the only important is the connection with amplifier where 
+Fisrt of all you have to Go to the Windows 10 developer center and Get the Windows 10 IoT Core Dashboard. Select set up device in order to create the OS image of raspberry [(Link to set up device).](https://www.windowscentral.com/how-install-windows-10-iot-raspberry-pi-3) Also about wiring the only important is the connection with amplifier where CLK is wired with GPIO pin23 and DAT is wired with GPIO pin24.
 
 <img src="https://www.programoergosum.com/images/cursos/238-control-de-gpio-con-python-en-raspberry-pi/pines-gpio-rpi-2.png" width="45%"></img>
-<img img src="Demonstration/10.jpg" width="45%">
+<img img src="Demonstration/10.jpg" width="35%">
+
+```C#
+public static int ClockPinNumber{
+    get{return GetIntSetting("clockPinNumber", 23);}
+    set{localSettings.Values["clockPinNumber"] = value;}
+}
+public static int DataPinNumber{
+    get{return GetIntSetting("DataPinNumber", 24);}
+    set{localSettings.Values["DataPinNumber"] = value;}
+}
+```
 
 Clone the project in Visual studio and create the App package by right clicking in solution explorer the .csproj -> Store -> Create App Packages. In your Browser type the ip_device:8080 -> credentials device -> Apps -> Apps manager -> Local storage -> Choose file from AppPackages.
 
@@ -69,7 +80,6 @@ if (finalDigitVal < 0.05 && finalDigitVal > -0.05){
     AppSettings.OffsetZero = voltOutput;
     finalStringVal = zeroPointString;
 }
-
 return finalStringVal;
 ```
 * **Connection with MS SQL server**
