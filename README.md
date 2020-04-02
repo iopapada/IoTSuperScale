@@ -111,7 +111,7 @@ using (BinaryReader fileReader = new BinaryReader(dataWeightLabel.OpenStreamForR
 * [On Creating and read files .x and .json](https://docs.microsoft.com/en-us/windows/uwp/files/quickstart-reading-and-writing-files "How to create and read files in UWP")
 
 ## Configuration of system
-At last the most painful step the configuration of system (Weight calibration, IP printer, Files and SQL Server). First of all from settings menu we calibrate with a standard weight of 1KG or 0,5KG, now the weight indicator is ready. Also we have to set up ip printer from Printer Utils and SQL server from settings menu. Finally in order to access local state of device and modify the default Files (), type in file explorer \\ip_device\c$ and select the path \Data\Users\DefaultAccount \AppData\Local\Packages\Package_name\LocalState
+At last the most painful step the configuration of system (Weight calibration, IP printer, Files and SQL Server). First of all from settings menu we calibrate with a standard weight of 1KG or 0,5KG, now the weight indicator is ready. Also we have to set up ip printer from Printer Utils and SQL server from settings menu. Finally in order to access local state of device and modify the default label Files and JSON models, type in file explorer \\ip_device\c$ and select the path \Data\Users\DefaultAccount \AppData\Local\Packages\Package_name\LocalState
 
 <img src="Demonstration/7.jpg" width="30%"></img> 
 <img src="Demonstration/8.jpg" width="30%"></img> 
